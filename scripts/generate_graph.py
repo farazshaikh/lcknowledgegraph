@@ -12,18 +12,37 @@ import networkx as nx
 
 def generate_cytoscape_json(G):
     elements = {"nodes": [], "edges": []}
+    
+    # Add nodes
     for node in G.nodes:
-        print(f"Adding node  Cytoscape{node}")
-        elements['nodes'].append({ "data": { "id": node, "label": node} })
+        print(f"Adding node to Cytoscape: {node}")
+        elements['nodes'].append({
+            "data": {
+                "id": str(node),  # Ensure ID is a string
+                "label": str(node)
+            }
+        })
 
-    for edge in G.edges:
-        edge_id = f"{edge[0]}__to__{edge[1]}"
-        elements['edges'].append({ "data": { "id": edge_id, "source": edge[0], "target": edge[1] } })
+    # Add edges
+    for i, edge in enumerate(G.edges):
+        source, target = edge
+        edge_id = f"e{i}"
+        elements['edges'].append({
+            "data": {
+                "id": edge_id,
+                "source": str(source),  # Ensure source is a string
+                "target": str(target)   # Ensure target is a string
+            }
+        })
 
-    with open("./output/graph.json", "w") as f:
-        json.dump(elements, f)
+    # Create web directory if it doesn't exist
+    os.makedirs("web", exist_ok=True)
+    
+    # Write to file
+    with open("./web/graph.json", "w") as f:
+        json.dump(elements, f, indent=2)
 
-    print("Cytoscape.js elements JSON generated at output/graph.json")
+    print("Cytoscape.js elements JSON generated at web/graph.json")
 
 
 

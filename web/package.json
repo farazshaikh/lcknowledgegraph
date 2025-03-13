@@ -1,0 +1,13 @@
+{
+  "name": "knowledge-graph-visualization",
+  "version": "1.0.0",
+  "description": "Visualization for concept knowledge graph",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cytoscape": "^3.26.0",
+    "cytoscape-dagre": "^2.5.0"
+  }
+} 

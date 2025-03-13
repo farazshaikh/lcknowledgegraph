@@ -1,70 +1,178 @@
-<script src="https://unpkg.com/cytoscape@3/dist/cytoscape.min.js"></script>
-<style>
-  #cy {
-    width: 100%;
-    height: 600px;
-    display: block;
-    border: 1px solid #ccc;
-    margin: 20px 0;
-  }
-</style>
-<div id="cy"></div>
-<script>
-// Fetch the graph data and initialize Cytoscape
-fetch('graph.json')
-  .then(res => res.json())
-  .then(elements => {
-    // Create layout selection menu
-    const layoutMenu = document.createElement('select');
-    layoutMenu.id = 'layout-select';
-    layoutMenu.style.margin = '10px 0';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Graph Visualization</title>
+    <script src="https://unpkg.com/cytoscape@3.23.0/dist/cytoscape.min.js"></script>
+    <script src="https://unpkg.com/cytoscape-dagre@2.5.0/cytoscape-dagre.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        #header {
+            padding: 10px 20px;
+            background-color: #f5f5f5;
+            border-bottom: 1px solid #ddd;
+        }
+        #cy {
+            flex-grow: 1;
+            width: 100%;
+            border: 1px solid #ccc;
+        }
+        .controls {
+            padding: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        #search {
+            padding: 5px;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>Knowledge Graph</h1>
+        <div class="controls">
+            <input type="text" id="search" placeholder="Search for a concept...">
+            <button id="reset">Reset View</button>
+        </div>
+    </div>
+    <div id="cy"></div>
 
-    // Available layouts
-    const layouts = [
-      { name: 'cose', displayName: 'Force-directed (CoSE)' },
-      { name: 'breadthfirst', displayName: 'Breadth-first' },
-      { name: 'circle', displayName: 'Circle' },
-      { name: 'grid', displayName: 'Grid' },
-      { name: 'concentric', displayName: 'Concentric' },
-      { name: 'dagre', displayName: 'Dagre (Hierarchical)' }
-    ];
+    <script>
+        window.onload = function() {
+            console.log('Page loaded, fetching graph data...');
 
-    // Add options to select menu
-    layouts.forEach(layout => {
-      const option = document.createElement('option');
-      option.value = layout.name;
-      option.textContent = layout.displayName;
-      layoutMenu.appendChild(option);
-    });
+            fetch('./graph.json')
+                .then(response => {
+                    console.log('Response status:', response.status);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Graph data loaded:', data);
 
-    // Insert menu before the graph
-    const cyElement = document.getElementById('cy');
-    cyElement.parentNode.insertBefore(layoutMenu, cyElement);
+                    // Register the dagre layout
+                    cytoscape.use(cytoscapeDagre);
 
-    // Initialize Cytoscape
-    const cy = cytoscape({
-      container: document.getElementById('cy'),
-      elements: elements,
-      layout: { name: 'cose' },  // default layout
-      style: [
-        { selector: 'node', style: { 'label': 'data(label)', 'background-color': '#6FB1FC', 'text-valign': 'center' } },
-        { selector: 'edge', style: { 'width': 2, 'line-color': '#ccc', 'target-arrow-color': '#ccc', 'target-arrow-shape': 'triangle' } }
-      ]
-    });
+                    // Initialize cytoscape
+                    const cy = cytoscape({
+                        container: document.getElementById('cy'),
+                        elements: data,
+                        style: [
+                            {
+                                selector: 'node',
+                                style: {
+                                    'label': 'data(label)',
+                                    'text-valign': 'center',
+                                    'text-halign': 'center',
+                                    'background-color': '#6FB1FC',
+                                    'text-outline-width': 2,
+                                    'text-outline-color': '#fff',
+                                    'color': '#000'
+                                }
+                            },
+                            {
+                                selector: 'edge',
+                                style: {
+                                    'width': 2,
+                                    'line-color': '#ccc',
+                                    'target-arrow-color': '#ccc',
+                                    'target-arrow-shape': 'triangle',
+                                    'curve-style': 'bezier'
+                                }
+                            },
+                            {
+                                selector: '.highlighted',
+                                style: {
+                                    'background-color': '#ff7f0e',
+                                    'line-color': '#ff7f0e',
+                                    'target-arrow-color': '#ff7f0e',
+                                    'transition-property': 'background-color, line-color, target-arrow-color',
+                                    'transition-duration': '0.5s'
+                                }
+                            }
+                        ],
+                        layout: {
+                            name: 'circle', // Start with a simple layout
+                            padding: 30
+                        }
+                    });
 
-    // Handle layout changes
-    layoutMenu.addEventListener('change', function() {
-      const selectedLayout = this.value;
-      cy.layout({ name: selectedLayout }).run();
-    });
+                    // Add search functionality
+                    const searchInput = document.getElementById('search');
+                    searchInput.addEventListener('input', function() {
+                        const query = this.value.toLowerCase();
 
-    // On node click, display concept info (e.g., problems list)
-    cy.on('tap', 'node', function(evt) {
-      const nodeData = evt.target.data();
-      const conceptName = nodeData.label;
-      // Assume concept_problems mapping is loaded in conceptProblemsMap variable
-      const problems = conceptProblemsMap[conceptName] || [];
-      alert(conceptName + " Examples:\n - " + problems.join("\n - "));
-    });
-  });
-</script>
+                        // Reset all styles
+                        cy.elements().removeClass('highlighted');
+
+                        if (query.length > 2) {
+                            // Find matching nodes
+                            const matchingNodes = cy.nodes().filter(node => {
+                                return node.data('label').toLowerCase().includes(query);
+                            });
+
+                            if (matchingNodes.length > 0) {
+                                // Highlight matching nodes
+                                matchingNodes.addClass('highlighted');
+                                matchingNodes.connectedEdges().addClass('highlighted');
+                            }
+                        }
+                    });
+
+                    // Reset button
+                    document.getElementById('reset').addEventListener('click', function() {
+                        cy.elements().removeClass('highlighted');
+                        searchInput.value = '';
+                        cy.fit();
+
+                        // Apply dagre layout
+                        cy.layout({
+                            name: 'dagre',
+                            rankDir: 'TB',
+                            nodeSep: 50,
+                            rankSep: 100,
+                            padding: 30
+                        }).run();
+                    });
+
+                    // Double-click to focus on a node
+                    cy.on('dblclick', 'node', function(evt) {
+                        const node = evt.target;
+                        cy.elements().removeClass('highlighted');
+                        node.addClass('highlighted');
+                        node.connectedEdges().addClass('highlighted');
+
+                        // Center on the selected node
+                        cy.animate({
+                            center: { eles: node },
+                            zoom: 1.5,
+                            duration: 500
+                        });
+                    });
+
+                    // Apply dagre layout after initial rendering
+                    setTimeout(() => {
+                        cy.layout({
+                            name: 'dagre',
+                            rankDir: 'TB',
+                            nodeSep: 50,
+                            rankSep: 100,
+                            padding: 30
+                        }).run();
+                    }, 100);
+                })
+                .catch(error => {
+                    console.error('Error loading graph data:', error);
+                });
+        };
+    </script>
+</body>
+</html>
