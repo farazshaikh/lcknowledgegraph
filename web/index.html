@@ -32,14 +32,85 @@
         .controls {
             padding: 10px;
             display: flex;
-            gap: 10px;
+            gap: 20px;
+            align-items: center;
+        }
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .control-label {
+            font-weight: bold;
+            font-size: 14px;
+            color: #333;
         }
         #search {
-            padding: 5px;
+            padding: 8px;
             width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
         #layout-select {
-            padding: 5px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        /* Autocomplete styles */
+        .autocomplete-container {
+            position: relative;
+            display: inline-block;
+        }
+        .autocomplete-items {
+            position: absolute;
+            border: 1px solid #ddd;
+            border-top: none;
+            z-index: 99;
+            top: 100%;
+            left: 0;
+            right: 0;
+            max-height: 300px;
+            overflow-y: auto;
+            background-color: white;
+            border-radius: 0 0 4px 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #f5f5f5;
+        }
+        .autocomplete-items div:last-child {
+            border-bottom: none;
+        }
+        .autocomplete-items div:hover {
+            background-color: #e9e9e9;
+        }
+        .autocomplete-active {
+            background-color: #4CAF50 !important;
+            color: white;
+        }
+        .nav-links {
+            margin-top: 10px;
+        }
+        .nav-links a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
@@ -47,20 +118,31 @@
     <div id="header">
         <h1>Knowledge Graph</h1>
         <div class="controls">
-            <input type="text" id="search" placeholder="Search for a concept...">
-            <select id="layout-select">
-                <option value="circle">Circle</option>
-                <option value="grid">Grid</option>
-                <option value="concentric">Concentric</option>
-                <option value="breadthfirst">Breadth First</option>
-                <option value="cose">Force-Directed (CoSE)</option>
-                <option value="random">Random</option>
-                <option value="dagre">Dagre (Hierarchical)</option>
-            </select>
+            <div class="control-group">
+                <label for="search" class="control-label">Select Concept:</label>
+                <div class="autocomplete-container">
+                    <input type="text" id="search" placeholder="Type to search concepts...">
+                    <div id="autocomplete-list" class="autocomplete-items" style="display: none;"></div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label for="layout-select" class="control-label">Layout:</label>
+                <select id="layout-select">
+                    <option value="circle">Circle</option>
+                    <option value="grid">Grid</option>
+                    <option value="concentric">Concentric</option>
+                    <option value="breadthfirst">Breadth First</option>
+                    <option value="cose">Force-Directed (CoSE)</option>
+                    <option value="random">Random</option>
+                    <option value="dagre">Dagre (Hierarchical)</option>
+                </select>
+            </div>
+
             <button id="reset">Reset View</button>
         </div>
-        <div class="nav-links" style="margin-top: 10px;">
-            <a href="/metrics" style="color: #3498db; text-decoration: none; font-weight: bold;">View Graph Metrics</a>
+        <div class="nav-links">
+            <a href="/metrics">View Graph Metrics</a>
         </div>
     </div>
     <div id="cy"></div>
@@ -183,7 +265,7 @@
                         } else if (layoutName === 'cose') {
                             layoutOptions.idealEdgeLength = 100;
                         }
-                        
+
                         try {
                             console.log(`Creating layout with options:`, layoutOptions);
                             const layout = cy.layout(layoutOptions);
@@ -201,25 +283,203 @@
                         }
                     }
 
-                    // Add search functionality
-                    const searchInput = document.getElementById('search');
-                    searchInput.addEventListener('input', function() {
-                        const query = this.value.toLowerCase();
+                    // Get all concept labels for autocomplete
+                    const conceptLabels = cy.nodes().map(node => node.data('label'));
 
+                    // Sort concept labels alphabetically for easier browsing
+                    conceptLabels.sort((a, b) => a.localeCompare(b));
+
+                    // Autocomplete functionality
+                    const searchInput = document.getElementById('search');
+                    const autocompleteList = document.getElementById('autocomplete-list');
+
+                    // Function to highlight matching nodes
+                    function highlightMatchingNodes(query) {
                         // Reset all styles
                         cy.elements().removeClass('highlighted');
 
-                        if (query.length > 2) {
+                        if (query.length > 1) {
                             // Find matching nodes
                             const matchingNodes = cy.nodes().filter(node => {
-                                return node.data('label').toLowerCase().includes(query);
+                                return node.data('label').toLowerCase().includes(query.toLowerCase());
                             });
 
                             if (matchingNodes.length > 0) {
                                 // Highlight matching nodes
                                 matchingNodes.addClass('highlighted');
                                 matchingNodes.connectedEdges().addClass('highlighted');
+
+                                // If there's only one match, center on it
+                                if (matchingNodes.length === 1) {
+                                    cy.animate({
+                                        center: { eles: matchingNodes },
+                                        zoom: 1.5,
+                                        duration: 500
+                                    });
+                                }
                             }
+                        }
+                    }
+
+                    // Function to focus on a specific node by ID
+                    function focusOnNode(nodeId) {
+                        const node = cy.getElementById(nodeId);
+                        if (node.length > 0) {
+                            // Reset all styles
+                            cy.elements().removeClass('highlighted');
+
+                            // Highlight the node and its connections
+                            node.addClass('highlighted');
+                            node.connectedEdges().addClass('highlighted');
+
+                            // Center on the node
+                            cy.animate({
+                                center: { eles: node },
+                                zoom: 1.5,
+                                duration: 500
+                            });
+
+                            // Update search input with the node's label
+                            searchInput.value = node.data('label');
+
+                            console.log(`Focused on node: ${nodeId} (${node.data('label')})`);
+                            return true;
+                        } else {
+                            console.error(`Node not found: ${nodeId}`);
+                            return false;
+                        }
+                    }
+
+                    // Function to update autocomplete list
+                    function updateAutocompleteList(query) {
+                        // Clear previous autocomplete list
+                        autocompleteList.innerHTML = '';
+
+                        if (!query || query.length < 1) {
+                            // If empty query, show all concepts (limited to first 20)
+                            const allConcepts = conceptLabels.slice(0, 20);
+
+                            if (allConcepts.length > 0) {
+                                autocompleteList.style.display = 'block';
+
+                                allConcepts.forEach(concept => {
+                                    const div = document.createElement('div');
+                                    div.textContent = concept;
+                                    div.addEventListener('click', function() {
+                                        searchInput.value = concept;
+                                        autocompleteList.style.display = 'none';
+                                        highlightMatchingNodes(concept);
+                                    });
+                                    autocompleteList.appendChild(div);
+                                });
+                            }
+                        } else {
+                            // Filter concepts that match the query
+                            const matches = conceptLabels.filter(label =>
+                                label.toLowerCase().includes(query.toLowerCase())
+                            );
+
+                            if (matches.length > 0) {
+                                autocompleteList.style.display = 'block';
+
+                                // Sort matches by relevance (exact match first, then starts with, then includes)
+                                matches.sort((a, b) => {
+                                    const aLower = a.toLowerCase();
+                                    const bLower = b.toLowerCase();
+                                    const queryLower = query.toLowerCase();
+
+                                    if (aLower === queryLower) return -1;
+                                    if (bLower === queryLower) return 1;
+                                    if (aLower.startsWith(queryLower) && !bLower.startsWith(queryLower)) return -1;
+                                    if (bLower.startsWith(queryLower) && !aLower.startsWith(queryLower)) return 1;
+                                    return a.localeCompare(b);
+                                });
+
+                                // Limit to 20 suggestions
+                                const limitedMatches = matches.slice(0, 20);
+
+                                // Create suggestion items
+                                limitedMatches.forEach(match => {
+                                    const div = document.createElement('div');
+                                    div.textContent = match;
+                                    div.addEventListener('click', function() {
+                                        searchInput.value = match;
+                                        autocompleteList.style.display = 'none';
+                                        highlightMatchingNodes(match);
+                                    });
+                                    autocompleteList.appendChild(div);
+                                });
+                            } else {
+                                autocompleteList.style.display = 'none';
+                            }
+                        }
+                    }
+
+                    // Show autocomplete dropdown when input is focused
+                    searchInput.addEventListener('focus', function() {
+                        updateAutocompleteList(this.value);
+                    });
+
+                    // Update autocomplete list as user types
+                    searchInput.addEventListener('input', function() {
+                        const query = this.value;
+                        updateAutocompleteList(query);
+
+                        // Also highlight matching nodes as user types
+                        highlightMatchingNodes(query);
+                    });
+
+                    // Hide autocomplete list when clicking outside
+                    document.addEventListener('click', function(e) {
+                        if (e.target !== searchInput && !autocompleteList.contains(e.target)) {
+                            autocompleteList.style.display = 'none';
+                        }
+                    });
+
+                    // Keyboard navigation for autocomplete
+                    searchInput.addEventListener('keydown', function(e) {
+                        const items = autocompleteList.getElementsByTagName('div');
+                        if (items.length === 0) return;
+
+                        let activeItem = autocompleteList.querySelector('.autocomplete-active');
+                        const activeIndex = Array.from(items).indexOf(activeItem);
+
+                        if (e.key === 'ArrowDown') {
+                            e.preventDefault();
+                            if (activeItem) {
+                                activeItem.classList.remove('autocomplete-active');
+                                const nextIndex = (activeIndex + 1) % items.length;
+                                items[nextIndex].classList.add('autocomplete-active');
+                                items[nextIndex].scrollIntoView({ block: 'nearest' });
+                            } else {
+                                items[0].classList.add('autocomplete-active');
+                                items[0].scrollIntoView({ block: 'nearest' });
+                            }
+                        } else if (e.key === 'ArrowUp') {
+                            e.preventDefault();
+                            if (activeItem) {
+                                activeItem.classList.remove('autocomplete-active');
+                                const prevIndex = (activeIndex - 1 + items.length) % items.length;
+                                items[prevIndex].classList.add('autocomplete-active');
+                                items[prevIndex].scrollIntoView({ block: 'nearest' });
+                            } else {
+                                items[items.length - 1].classList.add('autocomplete-active');
+                                items[items.length - 1].scrollIntoView({ block: 'nearest' });
+                            }
+                        } else if (e.key === 'Enter') {
+                            e.preventDefault();
+                            if (activeItem) {
+                                searchInput.value = activeItem.textContent;
+                                autocompleteList.style.display = 'none';
+                                highlightMatchingNodes(activeItem.textContent);
+                            } else if (items.length > 0) {
+                                // If no active item but there are items, select the first one
+                                searchInput.value = items[0].textContent;
+                                autocompleteList.style.display = 'none';
+                                highlightMatchingNodes(items[0].textContent);
+                            }
+                        } else if (e.key === 'Escape') {
+                            autocompleteList.style.display = 'none';
                         }
                     });
 
@@ -233,6 +493,7 @@
                     document.getElementById('reset').addEventListener('click', function() {
                         cy.elements().removeClass('highlighted');
                         searchInput.value = '';
+                        autocompleteList.style.display = 'none';
                         cy.fit();
 
                         // Apply circle layout
@@ -253,13 +514,44 @@
                             zoom: 1.5,
                             duration: 500
                         });
+
+                        // Update search input with the selected node's label
+                        searchInput.value = node.data('label');
                     });
 
-                    // Apply circle layout first
+                    // Apply circle layout first, then focus on algorithm_design
                     setTimeout(() => {
                         try {
                             applyLayout('circle');
                             console.log('Initial circle layout applied');
+
+                            // After layout is applied, focus on algorithm_design
+                            setTimeout(() => {
+                                // Find the algorithm_design node
+                                const algorithmDesignNode = cy.nodes().filter(node =>
+                                    node.data('id') === 'algorithm_design'
+                                );
+
+                                if (algorithmDesignNode.length > 0) {
+                                    // Highlight the node and its connections
+                                    algorithmDesignNode.addClass('highlighted');
+                                    algorithmDesignNode.connectedEdges().addClass('highlighted');
+
+                                    // Center on the node
+                                    cy.animate({
+                                        center: { eles: algorithmDesignNode },
+                                        zoom: 1.5,
+                                        duration: 500
+                                    });
+
+                                    // Update search input
+                                    searchInput.value = algorithmDesignNode.data('label');
+
+                                    console.log('Focused on algorithm_design node');
+                                } else {
+                                    console.error('algorithm_design node not found');
+                                }
+                            }, 1000);
                         } catch (error) {
                             console.error('Error applying initial layout:', error);
                         }
