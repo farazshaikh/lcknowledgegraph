@@ -112,6 +112,40 @@
         button:hover {
             background-color: #45a049;
         }
+        .highlight-options {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            align-items: center;
+        }
+        .highlight-options label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+        .highlight-options input[type="radio"] {
+            margin: 0;
+        }
+        /* Different highlight classes */
+        .highlighted {
+            background-color: #ff7f0e !important;
+            line-color: #ff7f0e !important;
+            target-arrow-color: #ff7f0e !important;
+        }
+        .reachable {
+            background-color: #2ca02c !important;
+            line-color: #2ca02c !important;
+            target-arrow-color: #2ca02c !important;
+        }
+        .prerequisite {
+            background-color: #d62728 !important;
+            line-color: #d62728 !important;
+            target-arrow-color: #d62728 !important;
+        }
+        .faded {
+            opacity: 0.25;
+        }
     </style>
 </head>
 <body>
@@ -141,6 +175,23 @@
 
             <button id="reset">Reset View</button>
         </div>
+        
+        <div class="highlight-options">
+            <span class="control-label">Highlight Mode:</span>
+            <label>
+                <input type="radio" name="highlight-mode" value="direct" checked>
+                Direct Connections
+            </label>
+            <label>
+                <input type="radio" name="highlight-mode" value="reachable">
+                Reachable Nodes
+            </label>
+            <label>
+                <input type="radio" name="highlight-mode" value="prerequisites">
+                Prerequisites
+            </label>
+        </div>
+        
         <div class="nav-links">
             <a href="/metrics">View Graph Metrics</a>
         </div>
@@ -207,6 +258,34 @@
                                     'transition-property': 'background-color, line-color, target-arrow-color',
                                     'transition-duration': '0.5s'
                                 }
+                            },
+                            {
+                                selector: '.reachable',
+                                style: {
+                                    'background-color': '#2ca02c',
+                                    'line-color': '#2ca02c',
+                                    'target-arrow-color': '#2ca02c',
+                                    'transition-property': 'background-color, line-color, target-arrow-color',
+                                    'transition-duration': '0.5s'
+                                }
+                            },
+                            {
+                                selector: '.prerequisite',
+                                style: {
+                                    'background-color': '#d62728',
+                                    'line-color': '#d62728',
+                                    'target-arrow-color': '#d62728',
+                                    'transition-property': 'background-color, line-color, target-arrow-color',
+                                    'transition-duration': '0.5s'
+                                }
+                            },
+                            {
+                                selector: '.faded',
+                                style: {
+                                    'opacity': 0.25,
+                                    'transition-property': 'opacity',
+                                    'transition-duration': '0.5s'
+                                }
                             }
                         ],
                         layout: {
@@ -265,7 +344,7 @@
                         } else if (layoutName === 'cose') {
                             layoutOptions.idealEdgeLength = 100;
                         }
-
+                        
                         try {
                             console.log(`Creating layout with options:`, layoutOptions);
                             const layout = cy.layout(layoutOptions);
@@ -283,65 +362,70 @@
                         }
                     }
 
-                    // Get all concept labels for autocomplete
-                    const conceptLabels = cy.nodes().map(node => node.data('label'));
-
-                    // Sort concept labels alphabetically for easier browsing
-                    conceptLabels.sort((a, b) => a.localeCompare(b));
-
-                    // Autocomplete functionality
+                    // Add search functionality
                     const searchInput = document.getElementById('search');
                     const autocompleteList = document.getElementById('autocomplete-list');
-
-                    // Function to highlight matching nodes
+                    
+                    // Get all concept labels for autocomplete
+                    const conceptLabels = cy.nodes().map(node => node.data('label'));
+                    
+                    // Sort concept labels alphabetically for easier browsing
+                    conceptLabels.sort((a, b) => a.localeCompare(b));
+                    
+                    // Autocomplete functionality
                     function highlightMatchingNodes(query) {
                         // Reset all styles
-                        cy.elements().removeClass('highlighted');
-
-                        if (query.length > 1) {
-                            // Find matching nodes
-                            const matchingNodes = cy.nodes().filter(node => {
-                                return node.data('label').toLowerCase().includes(query.toLowerCase());
-                            });
-
-                            if (matchingNodes.length > 0) {
-                                // Highlight matching nodes
+                        resetStyles();
+                        
+                        if (query.length < 2) return;
+                        
+                        // Find matching nodes
+                        const matchingNodes = cy.nodes().filter(node => {
+                            return node.data('label').toLowerCase().includes(query.toLowerCase());
+                        });
+                        
+                        if (matchingNodes.length > 0) {
+                            // Apply the appropriate highlight based on the selected mode
+                            const highlightMode = document.querySelector('input[name="highlight-mode"]:checked').value;
+                            
+                            if (matchingNodes.length === 1) {
+                                // If only one node matches, apply the selected highlight mode
+                                applyHighlightMode(matchingNodes[0], highlightMode);
+                                
+                                // Center on the selected node
+                                cy.animate({
+                                    center: { eles: matchingNodes },
+                                    zoom: 1.5,
+                                    duration: 500
+                                });
+                            } else {
+                                // If multiple nodes match, just highlight them directly
                                 matchingNodes.addClass('highlighted');
-                                matchingNodes.connectedEdges().addClass('highlighted');
-
-                                // If there's only one match, center on it
-                                if (matchingNodes.length === 1) {
-                                    cy.animate({
-                                        center: { eles: matchingNodes },
-                                        zoom: 1.5,
-                                        duration: 500
-                                    });
-                                }
                             }
                         }
                     }
-
+                    
                     // Function to focus on a specific node by ID
                     function focusOnNode(nodeId) {
                         const node = cy.getElementById(nodeId);
                         if (node.length > 0) {
                             // Reset all styles
-                            cy.elements().removeClass('highlighted');
-
-                            // Highlight the node and its connections
-                            node.addClass('highlighted');
-                            node.connectedEdges().addClass('highlighted');
-
+                            resetStyles();
+                            
+                            // Apply the appropriate highlight based on the selected mode
+                            const highlightMode = document.querySelector('input[name="highlight-mode"]:checked').value;
+                            applyHighlightMode(node, highlightMode);
+                            
                             // Center on the node
                             cy.animate({
                                 center: { eles: node },
                                 zoom: 1.5,
                                 duration: 500
                             });
-
+                            
                             // Update search input with the node's label
                             searchInput.value = node.data('label');
-
+                            
                             console.log(`Focused on node: ${nodeId} (${node.data('label')})`);
                             return true;
                         } else {
@@ -349,7 +433,104 @@
                             return false;
                         }
                     }
-
+                    
+                    // Function to reset all styles
+                    function resetStyles() {
+                        cy.elements().removeClass('highlighted reachable prerequisite faded');
+                    }
+                    
+                    // Function to apply the selected highlight mode
+                    function applyHighlightMode(node, mode) {
+                        if (mode === 'direct') {
+                            // Highlight the node and its direct connections
+                            node.addClass('highlighted');
+                            node.connectedEdges().addClass('highlighted');
+                            
+                            // Optional: fade other elements
+                            cy.elements().not(node).not(node.connectedEdges()).addClass('faded');
+                        } 
+                        else if (mode === 'reachable') {
+                            // Highlight the node
+                            node.addClass('highlighted');
+                            
+                            // Find all nodes reachable from this node (BFS)
+                            const reachableNodes = [];
+                            const reachableEdges = [];
+                            
+                            // Start BFS from the selected node
+                            const queue = [node];
+                            const visited = new Set([node.id()]);
+                            
+                            while (queue.length > 0) {
+                                const currentNode = queue.shift();
+                                
+                                // Get outgoing edges
+                                const outgoingEdges = currentNode.outgoers('edge');
+                                outgoingEdges.forEach(edge => {
+                                    reachableEdges.push(edge);
+                                    
+                                    const targetNode = edge.target();
+                                    if (!visited.has(targetNode.id())) {
+                                        visited.add(targetNode.id());
+                                        reachableNodes.push(targetNode);
+                                        queue.push(targetNode);
+                                    }
+                                });
+                            }
+                            
+                            // Highlight reachable nodes and edges
+                            cy.collection(reachableNodes).addClass('reachable');
+                            cy.collection(reachableEdges).addClass('reachable');
+                            
+                            // Optional: fade other elements
+                            cy.elements()
+                                .not(node)
+                                .not(cy.collection(reachableNodes))
+                                .not(cy.collection(reachableEdges))
+                                .addClass('faded');
+                        }
+                        else if (mode === 'prerequisites') {
+                            // Highlight the node
+                            node.addClass('highlighted');
+                            
+                            // Find all prerequisite nodes (reverse BFS)
+                            const prerequisiteNodes = [];
+                            const prerequisiteEdges = [];
+                            
+                            // Start reverse BFS from the selected node
+                            const queue = [node];
+                            const visited = new Set([node.id()]);
+                            
+                            while (queue.length > 0) {
+                                const currentNode = queue.shift();
+                                
+                                // Get incoming edges
+                                const incomingEdges = currentNode.incomers('edge');
+                                incomingEdges.forEach(edge => {
+                                    prerequisiteEdges.push(edge);
+                                    
+                                    const sourceNode = edge.source();
+                                    if (!visited.has(sourceNode.id())) {
+                                        visited.add(sourceNode.id());
+                                        prerequisiteNodes.push(sourceNode);
+                                        queue.push(sourceNode);
+                                    }
+                                });
+                            }
+                            
+                            // Highlight prerequisite nodes and edges
+                            cy.collection(prerequisiteNodes).addClass('prerequisite');
+                            cy.collection(prerequisiteEdges).addClass('prerequisite');
+                            
+                            // Optional: fade other elements
+                            cy.elements()
+                                .not(node)
+                                .not(cy.collection(prerequisiteNodes))
+                                .not(cy.collection(prerequisiteEdges))
+                                .addClass('faded');
+                        }
+                    }
+                    
                     // Function to update autocomplete list
                     function updateAutocompleteList(query) {
                         // Clear previous autocomplete list
@@ -491,7 +672,7 @@
 
                     // Reset button
                     document.getElementById('reset').addEventListener('click', function() {
-                        cy.elements().removeClass('highlighted');
+                        resetStyles();
                         searchInput.value = '';
                         autocompleteList.style.display = 'none';
                         cy.fit();
@@ -504,9 +685,11 @@
                     // Double-click to focus on a node
                     cy.on('dblclick', 'node', function(evt) {
                         const node = evt.target;
-                        cy.elements().removeClass('highlighted');
-                        node.addClass('highlighted');
-                        node.connectedEdges().addClass('highlighted');
+                        resetStyles();
+                        
+                        // Apply the appropriate highlight based on the selected mode
+                        const highlightMode = document.querySelector('input[name="highlight-mode"]:checked').value;
+                        applyHighlightMode(node, highlightMode);
 
                         // Center on the selected node
                         cy.animate({
@@ -517,6 +700,16 @@
 
                         // Update search input with the selected node's label
                         searchInput.value = node.data('label');
+                    });
+                    
+                    // Add event listener for highlight mode change
+                    document.querySelectorAll('input[name="highlight-mode"]').forEach(radio => {
+                        radio.addEventListener('change', function() {
+                            // If a node is currently selected (search input has a value), reapply highlight
+                            if (searchInput.value.trim() !== '') {
+                                highlightMatchingNodes(searchInput.value);
+                            }
+                        });
                     });
 
                     // Apply circle layout first, then focus on algorithm_design
@@ -533,9 +726,9 @@
                                 );
 
                                 if (algorithmDesignNode.length > 0) {
-                                    // Highlight the node and its connections
-                                    algorithmDesignNode.addClass('highlighted');
-                                    algorithmDesignNode.connectedEdges().addClass('highlighted');
+                                    // Apply the appropriate highlight based on the selected mode
+                                    const highlightMode = document.querySelector('input[name="highlight-mode"]:checked').value;
+                                    applyHighlightMode(algorithmDesignNode[0], highlightMode);
 
                                     // Center on the node
                                     cy.animate({
