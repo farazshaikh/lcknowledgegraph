@@ -1,0 +1,323 @@
+2,Add Two Numbers,cc->data_structures->arrays->linkedlist->linkedlist_addition;cc->mathematics->addition->carry,linkedlist,"Add digits node by node with carry, build a new result list. Keep track of carry for any leftover."
+3,Longest Substring Without Repeating Characters,cc->data_structures->two_pointers->sliding_window;cc->computer_science_basics->hashing,map,"Use two pointers and a set/map to track used chars. Move the start pointer when a char repeats, and record the max length."
+5,Longest Palindromic Substring,cc->data_structures->strings->expand_around_center;cc->algorithm_design->dp,,"For each center (character or gap), expand outwards to find palindromes. Keep track of the max length found."
+7,Reverse Integer,cc->mathematics->math_manipulations;cc->computer_arithmetic->handle_overflow,,Reverse digits by mod/div operations and build the result. Watch for overflow bounds.
+8,String to Integer (atoi),cc->data_structures->strings->string_parsing;cc->computer_science_basics->edge_cases,,"Strip spaces, handle sign, parse digits until non-digit. Clamp to integer bounds if overflow occurs."
+11,Container With Most Water,cc->data_structures->two_pointers->two_pointer_approach,,"Start with left=0, right=n-1, compute area. Move the pointer with the smaller height inward, tracking max area."
+15,3Sum,cc->data_structures->sorting->sorting;cc->data_structures->two_pointers->two_pointer,,"Sort the array, fix one number, then use two-pointer on the remainder. Skip duplicates and record valid triplets."
+16,3Sum Closest,cc->data_structures->sorting->sorting;cc->data_structures->two_pointers->two_pointer,,"Sort, then fix one number and use two-pointer to find the sum closest to target. Track minimum difference."
+17,Letter Combinations of a Phone Number,cc->algorithm_design->backtracking->backtracking;cc->data_structures->mappings->phone_keypad_mapping,,"Map each digit to letters, then recursively build possible strings. Collect all valid letter combinations."
+18,4Sum,cc->data_structures->sorting->sorting;cc->data_structures->two_pointers->two_pointer,,"Sort the array, fix two numbers, then two-pointer the remaining part. Carefully skip duplicates."
+19,Remove Nth Node From End of List,cc->data_structures->arrays->linkedlist;cc->algorithm_design->fast_slow_pointer,linkedlist,"Move fast pointer n steps, then move both until fast hits null. Remove the slow pointer’s next node."
+22,Generate Parentheses,cc->algorithm_design->backtracking->backtracking_with_constraints,,"Recursively build parentheses strings, tracking '(' and ')' usage. Only add ')' when valid."
+24,Swap Nodes in Pairs,cc->data_structures->linkedlist->linked_list_node_swaps,linkedlist,Swap every two adjacent nodes in the list. Update pointers carefully to maintain linkage.
+29,Divide Two Integers,cc->mathematics->math;cc->computer_arithmetic->bit_manipulation,,Simulate division by repeated subtraction or shifting. Handle overflow and sign properly.
+31,Next Permutation,cc->algorithm_basics->permutation_rearrangement,,"From the end, find the first decreasing pair. Swap with next larger element and reverse the suffix."
+33,Search in Rotated Sorted Array,cc->algorithm_design->binary_search->binary_search_variant,,Identify which half is sorted based on mid vs boundaries. Narrow the search range accordingly.
+34,Find First and Last Position of Element in Sorted Array,cc->algorithm_design->binary_search->binary_search_boundaries,,"Use binary search to find the leftmost occurrence, then another to find the rightmost. Return [-1,-1] if not found."
+36,Valid Sudoku,cc->data_structures->hash_set->hash_sets_for_row_col_box,set,"For each row, column, and sub-box, ensure no duplicate digits. Use sets or direct boolean checks."
+38,Count and Say,cc->algorithm_basics->string_generation_pattern,,Iteratively build the next sequence by describing the previous term’s consecutive digits.
+40,Combination Sum II,cc->algorithm_design->backtracking->backtracking_with_sorted_input,,"Sort, then backtrack while skipping duplicates. Only take each candidate once at a given level."
+43,Multiply Strings,cc->algorithm_basics->string_multiplication_simulation,,"Multiply each digit of one string by each digit of the other, summing partial products. Handle carry and leading zeros."
+46,Permutations,cc->algorithm_design->backtracking->backtracking;cc->data_structures->swapping,,"Recursively choose each element as the first, swap, and generate permutations of the remainder."
+48,Rotate Image,cc->data_structures->matrix->matrix_transpose;cc->data_structures->matrix->reverse,,"Transpose the matrix, then reverse each row to rotate 90 degrees in-place."
+49,Group Anagrams,cc->data_structures->hash_set->hashing_by_sorted_key_or_char_count,map,"Sort each string or build a frequency key, store in a map from key to group of anagrams."
+50,"Pow(x, n)",cc->mathematics->exponentiation->fast_exponentiation,,"Recursively divide n by 2, square the result. Handle odd exponents separately."
+53,Maximum Subarray,cc->algorithm_design->dp->kadanes_algorithm,,"Iterate while keeping track of the current sum, reset if it drops below zero. Maintain max sum encountered."
+54,Spiral Matrix,cc->algorithm_basics->simulation->simulation_of_boundary_loops,,Peel the matrix layer by layer in a spiral. Update boundaries after each loop.
+55,Jump Game,cc->algorithm_design->greedy->greedy_max_reach,,"Track the furthest index reachable. If you cannot move forward, return false."
+56,Merge Intervals,cc->data_structures->sorting->sorting;cc->algorithm_basics->merging,,Sort intervals by start. Merge overlapping intervals by taking the max end.
+57,Insert Interval,cc->data_structures->intervals->intervals;cc->algorithm_design->merging,,"Locate insertion point, merge overlapping intervals, then insert the final merged result."
+62,Unique Paths,cc->mathematics->combinatorics;cc->algorithm_design->dp,,Use either combinatorial formula or DP grid to count ways.
+63,Unique Paths II,cc->algorithm_design->dp->dp_with_obstacle_handling,,"Same DP approach, but cells with obstacles get dp=0."
+71,Simplify Path,cc->data_structures->stack->stack_for_directories,stack,"Split on '/', push valid dirs to stack, pop on '..', ignore '.' or empty segments."
+72,Edit Distance,cc->algorithm_design->dp->dp_for_string_transformations,,"dp[i][j] = 1 + min(replace/delete/insert), or dp[i-1][j-1] if chars match."
+73,Set Matrix Zeroes,cc->data_structures->matrix->matrix_marking_approach,,Track which rows/cols need zero; set them in a second pass.
+75,Sort Colors,cc->algorithm_basics->dutch_national_flag_algorithm,,"Use three pointers to partition 0,1,2 in one pass."
+78,Subsets,cc->algorithm_design->backtracking->backtracking;cc->data_structures->bitmask,,Generate all subsets via recursion or bitwise enumeration.
+79,Word Search,cc->algorithm_design->dfs->dfs_backtracking_on_board,,"For each cell, DFS to match the word. Mark visited to avoid reuse."
+80,Remove Duplicates from Sorted Array II,cc->data_structures->arrays->array_manipulation;cc->programming_basics->pointer_approach,array,Allow each element up to two occurrences. Overwrite beyond that limit in-place.
+74,Search a 2D Matrix,cc->algorithm_design->binary_search->binary_search,,"Either flatten conceptually and do 1D binary search, or do row-col approach. Compare mid value with target."
+93,Restore IP Addresses,cc->algorithm_design->backtracking->backtracking;cc->data_structures->segment_validation,,Partition string into 4 segments (0–255). Collect valid addresses.
+98,Validate Binary Search Tree,cc->algorithm_design->recursion->recursion_with_range_bounds,tree,"Check each node’s value is within min/max, recurse left/right. Return false if out of bounds."
+102,Binary Tree Level Order Traversal,cc->algorithm_design->bfs->bfs_by_levels,tree,"Queue the root, pop level nodes, push children. Collect levels in a list of lists."
+103,Binary Tree Zigzag Level Order Traversal,cc->algorithm_design->bfs->bfs_with_direction_toggle,tree,"Same as level order, but reverse the list on alternate levels."
+105,Construct Binary Tree from Preorder and Inorder Traversal,cc->data_structures->tree->tree_construction_with_index_lookups,tree,"Root is preorder[0]. Find it in inorder, recurse left and right."
+113,Path Sum II,cc->algorithm_design->dfs->dfs_path_building,tree,"Track running sum down each path. If leaf sum equals target, add path to result."
+114,Flatten Binary Tree to Linked List,cc->algorithm_design->dfs->dfs;cc->data_structures->pointer_re_linking,tree,"Flatten left subtree, attach it, then link to right. Update pointers carefully."
+116,Populating Next Right Pointers in Each Node,cc->algorithm_design->bfs->tree_bfs;cc->recursion->perfect_tree_recursion,tree,Use level order or connect children as you go. Each node’s next = right sibling.
+128,Longest Consecutive Sequence,cc->data_structures->set->set;cc->data_structures->union_find,set;unionfind,Use a set or union-find to track consecutive runs. Keep longest streak.
+129,Sum Root to Leaf Numbers,cc->algorithm_design->dfs->dfs_building_integer,tree,Pass the current value*10 + node.val down. Sum at leaves.
+131,Palindrome Partitioning,cc->algorithm_design->backtracking->backtracking;cc->data_structures->palindrome_check,,Partition string and check each substring is palindrome. Collect all valid ways.
+133,Clone Graph,cc->data_structures->graph->graph_bfs_dfs_cloning,graph,"Keep a map old->new node. Traverse, creating cloned neighbors recursively or iteratively."
+138,Copy List with Random Pointer,cc->data_structures->linkedlist->linked_list_mapping;cc->data_structures->linkedlist->weaving,linkedlist,"Either store old->new in a hash map, or weave cloned nodes in the original, then fix random links."
+139,Word Break,cc->algorithm_design->dp->dp_substring_checks,,dp[i] is true if substring(0..i) can be broken into dictionary words. Check all j < i for substring in set.
+146,LRU Cache,cc->data_structures->linkedlist->design_with_doubly_linked_list;cc->data_structures->hashmap->hash,linkedlist;map,"Use a hash map for O(1) access. A linked list tracks recency, moving recently accessed to the front."
+150,Evaluate Reverse Polish Notation,cc->data_structures->stack->stack_for_rpn,stack,"Iterate tokens, push numbers, pop top two on operator, compute, push result. Return final stack top."
+152,Maximum Product Subarray,cc->algorithm_design->dp->dp_tracking_min_max_up_to_current,,Negative flips min and max. Keep track of global maximum.
+153,Find Minimum in Rotated Sorted Array,cc->algorithm_design->binary_search->binary_search_pivot,,Compare mid to edges. Narrow down to the segment where min lies.
+151,Reverse Words in a String,cc->data_structures->strings->string_manipulation,,"Split by spaces, reverse the words, and rejoin. Trim extra spaces."
+162,Find Peak Element,cc->algorithm_design->binary_search->binary_search;cc->computer_science_basics->linear_check,,"In O(log n), compare mid with mid+1 to decide which half to search. Or linearly check neighbors."
+167,Two Sum II - Input Array Is Sorted,cc->data_structures->two_pointers->two_pointer_in_sorted_array,,"Start left=0, right=n-1, compare sum to target, adjust pointers inward."
+173,Binary Search Tree Iterator,cc->data_structures->stack->inorder_stack_approach,tree;stack,"Push left nodes, pop top as next. After pop, push the node’s right subtree left path."
+189,Rotate Array,cc->data_structures->arrays->reverse_array;cc->data_structures->arrays->auxiliary_array,array,"Reverse entire array, then reverse the two parts. Or shift elements using temp array."
+198,House Robber,cc->algorithm_design->dp->dp_on_linear_houses,,dp[i] = max of dp[i-1] or nums[i] + dp[i-2]. Final dp[n-1] is the answer.
+199,Binary Tree Right Side View,cc->algorithm_design->bfs->bfs;cc->algorithm_design->dfs->dfs_with_right_first,tree,"At each level, record the rightmost node. Or do a DFS with level track and store first visit."
+200,Number of Islands,cc->algorithm_design->dfs->dfs_bfs_on_grid,array,"Traverse the grid, for each unvisited land, run DFS/BFS to mark the connected region, increment count."
+207,Course Schedule,cc->data_structures->graph->graph_cycle_detection;cc->data_structures->graph->topological_sort,graph,"Create adjacency list. If there's a cycle, no solution. Otherwise, can finish courses."
+209,Minimum Size Subarray Sum,cc->data_structures->two_pointers->sliding_window;cc->algorithm_design->subarray_sum->sliding_window_and_subarray_sum,,"Move end pointer, accumulate sum, shrink from start if sum >= target. Track min length."
+210,Course Schedule II,cc->data_structures->graph->topological_sort,graph,"Use Kahn’s or DFS to produce a valid course order. If cycle, return empty array."
+215,Kth Largest Element in an Array,cc->data_structures->heap->heap;cc->algorithm_design->selection->quickselect,heap,Use a min-heap of size k or partition approach. Return the k-th largest after partial sort.
+227,Basic Calculator II,cc->data_structures->stack->stack;cc->programming_basics->direct_parse,stack,"Parse expression tokens. Use stack to store numbers, handle * / immediately. Compute + - at the end."
+235,Lowest Common Ancestor of a Binary Search Tree,cc->data_structures->tree->bst_property_compare_values,tree,"Traverse from root. If both nodes < root, go left; if both > root, go right; else root is LCA."
+236,Lowest Common Ancestor of a Binary Tree,cc->algorithm_design->recursion->tree_recursion,tree,"Recurse down; if we find p or q, bubble up. If both sides non-null, current node is LCA."
+238,Product of Array Except Self,cc->algorithm_basics->prefix_suffix_multiplication,array,"Compute prefix products, then multiply with suffix product in second pass. O(1) extra space aside from output."
+249,Group Shifted Strings,cc->data_structures->hashing->hash_pattern_differences,map,"For each string, build a relative shift signature. Group strings with identical shift signatures."
+253,Meeting Rooms II,cc->data_structures->heap->min_heap;cc->algorithm_design->timeline->timeline_approach,heap,"Sort intervals by start, use a min-heap to track end times. Or separate start/end arrays and track usage."
+286,Walls and Gates,cc->algorithm_design->bfs->multi_source_bfs,array,Put all gates (distance=0) in queue initially. BFS outward to fill distances to the nearest gate.
+2265,Count Nodes Equal to Average of Subtree,cc->algorithm_design->dfs->tree_dfs_for_sum_count,tree,"Compute subtree sum and count. If node’s val == (sum/count), increment result."
+314,Binary Tree Vertical Order Traversal,cc->algorithm_design->bfs->bfs_with_column_indices,tree,"Use a queue storing (node,col). Collect values in a map col->list, then output col-sorted lists."
+333,Largest BST Subtree,cc->algorithm_design->recursion->tree_recursion_with_subtree_info,tree,"Return subtree size, min, max, isBST. If node is BST, update global max size."
+334,Increasing Triplet Subsequence,cc->algorithm_design->greedy->greedy_track_two_smallest,,"Maintain two pointers for smallest and mid. If we find a bigger number than mid, triplet exists."
+339,Nested List Weight Sum,cc->algorithm_design->dfs->dfs;cc->algorithm_design->bfs->bfs_of_nested_structure,list,"At each level, multiply integer by depth. Recursively add or BFS with a queue tracking depth."
+341,Flatten Nested List Iterator,cc->data_structures->stack->stack_based_flatten,stack,"Repeatedly expand top if it's a list. If it's an integer, that's our next element."
+347,Top K Frequent Elements,cc->data_structures->heap->heap;cc->algorithm_design->bucket_sort,heap,"Count frequencies, push to a min-heap or use bucket by frequency. Extract top K frequent."
+348,Design Tic-Tac-Toe,cc->data_structures->matrix->rows;cc->data_structures->matrix->cols;cc->data_structures->matrix->diag_counters,,"For each player, increment row/col/diag counts. If absolute value hits n, that player wins."
+378,Kth Smallest Element in a Sorted Matrix,cc->data_structures->heap->heap;cc->algorithm_design->binary_search->binary_searching_by_value,heap,Use a min-heap or binary search in the value range. Count how many elements <= mid to narrow search.
+380,Insert Delete GetRandom O(1),cc->data_structures->hashmap->hashmap;cc->data_structures->array->dynamic_array,map;array,"For O(1) insert/delete, store values in an array and map their index. For random, pick a random array index."
+394,Decode String,cc->data_structures->stack->stack;cc->algorithm_design->recursion->recursion,stack,"Push current string and number on stack when encountering '['. On ']', pop and build repeated substring."
+398,Random Pick Index,cc->algorithm_design->sampling->reservoir_sampling;cc->data_structures->list->storing_indices,,"Maintain a list of indices per value, then pick random. Or do reservoir sampling as you traverse."
+419,Battleships in a Board,cc->data_structures->grid->grid_scanning,array,Count a battleship when you see 'X' that isn’t a continuation (above/left). Mark visited or just check adjacency.
+424,Longest Repeating Character Replacement,cc->data_structures->two_pointers->sliding_window;cc->algorithm_design->frequency,map,"Grow the window, track count of the top char. If window size - max_freq > k, shrink from left."
+443,String Compression,cc->data_structures->two_pointers->two_pointer_in_place,,"Track runs of the same character. Store the count digits and move on, returning final length."
+468,Validate IP Address,cc->data_structures->strings->string_split_and_format_checks,,"Split by '.' or ':', check valid range or hex length. Distinguish IPv4, IPv6, or neither."
+490,The Maze,cc->algorithm_design->dfs->dfs_bfs_rolling_approach,array,"Roll the ball in each direction until hitting a wall. Mark visited states, check if you can reach the goal."
+494,Target Sum,cc->algorithm_design->dfs->dfs;cc->algorithm_design->dp->subset_sum_dp,,We want ways to assign +/- to reach target. Transform to subset sum or backtrack all possibilities.
+498,Diagonal Traverse,cc->algorithm_basics->simulation->simulation_of_diagonals,,Traverse diagonals by sum of indices. Reverse direction every alternate diagonal.
+523,Continuous Subarray Sum,cc->algorithm_design->prefix_sum->prefix_sum_mod_k,,"Compute prefix sum % k, store in a map. If the same mod reappears with distance > 1, subarray sum is multiple of k."
+525,Contiguous Array,cc->algorithm_design->prefix_sum->prefix_sum_0_neg1_1_pos1,,"Map prefix sums to index. If sum repeats, subarray in between has equal 0 and 1."
+529,Minesweeper,cc->algorithm_design->dfs->dfs_bfs_reveal_squares,array,"If a revealed cell has 0 adjacent mines, recursively reveal neighbors. Stop if you hit a mine."
+536,Construct Binary Tree from String,cc->algorithm_design->recursion->recursion_with_parentheses_parse,tree,"Parse the string: first number is root, parentheses sections represent left/right subtrees."
+545,Boundary of Binary Tree,cc->data_structures->tree->tree_traversal_boundary,tree,"Collect left boundary, leaves, and right boundary in reverse. Avoid double counting corners."
+556,Next Greater Element III,cc->algorithm_design->permutation->permutation_next_greater_logic,,"Treat digits like next_permutation. If not possible, return -1."
+560,Subarray Sum Equals K,cc->algorithm_design->prefix_sum->prefix_sum;cc->data_structures->hashing->hashing,map,"Keep running sum in a map. If sum - k exists, increment count by how many times that remainder appeared."
+636,Exclusive Time of Functions,cc->data_structures->stack->stack_of_function_calls;cc->computer_science_basics->timestamps,stack,"On 'start', push function id. On 'end', pop and accumulate intervals. Subtract nested time from parent."
+647,Palindromic Substrings,cc->data_structures->strings->expand_around_center;cc->algorithm_design->dp->dp,,"For each center, expand outwards while it’s a palindrome. Or DP with dp[i][j] if s[i]==s[j]."
+658,Find K Closest Elements,cc->algorithm_design->binary_search->binary_search;cc->data_structures->two_pointers->two_pointer,,"Locate position of x, then expand outwards or do a left boundary search for size k. Return slice."
+670,Maximum Swap,cc->algorithm_design->greedy->greedy_digit_swap_from_left,,"Scan from left, find a bigger digit on the right that can be swapped. Perform once for max number."
+695,Max Area of Island,cc->algorithm_design->dfs->dfs_bfs_in_grid,array,"For each unvisited '1', explore the entire connected region. Track the maximum area found."
+721,Accounts Merge,cc->data_structures->union_find->union_find;cc->algorithm_design->dfs->dfs_on_email_lists,unionfind,Merge accounts with shared emails. Collect final results sorted by name/email.
+735,Asteroid Collision,cc->data_structures->stack->stack_approach,stack,"Push new asteroid. If collision occurs with top of stack, pop smaller or break if stack top is bigger."
+739,Daily Temperatures,cc->data_structures->stack->monotonic_stack,stack,"Traverse from right or keep a stack of indices. Pop while top is cooler, the difference is the answer."
+426,Convert Binary Search Tree to Sorted Doubly Linked List,cc->data_structures->tree->inorder_traversal_link,tree,"Perform an inorder DFS, link previous node to current. Finally link head and tail to make it circular."
+787,Cheapest Flights Within K Stops,cc->algorithm_design->graph->shortest_path_with_limited_stops;cc->algorithm_design->graph->bellman_ford;cc->algorithm_design->bfs->bfs,graph,Track cost to each node up to K edges. Update in BFS or Bellman-Ford style.
+791,Custom Sort String,cc->data_structures->sorting->custom_priority_sort,,"Store order in a dict of char->rank. Sort the input string’s characters by that rank, append leftover."
+708,Insert into a Sorted Circular Linked List,cc->data_structures->linkedlist->linked_list_insertion_logic,linkedlist,Traverse until insertion point or wrap around. Insert new node maintaining sorted order.
+825,Friends Of Appropriate Ages,cc->data_structures->sorting->sorting;cc->data_structures->two_pointers->two_pointer_on_age_constraints,,"Sort ages, for each age find valid range. Possibly use prefix sums or two-pointer approach."
+622,Design Circular Queue,cc->data_structures->arrays->array_with_front_rear_indices,array,"Implement a fixed-size ring buffer with front, rear, and count. Wrap around on boundary."
+852,Peak Index in a Mountain Array,cc->algorithm_design->binary_search->binary_search_for_peak,,"Compare mid with mid+1. If ascending, go right; else go left until peak found."
+863,All Nodes Distance K in Binary Tree,cc->algorithm_design->bfs->bfs_dfs_from_target_node,tree,"First store parent references, then BFS from target to find nodes at distance K."
+865,Smallest Subtree with all the Deepest Nodes,cc->algorithm_design->dfs->tree_dfs;cc->data_structures->tree->depth_tracking,tree,"Identify deepest level, find the subtree containing all deepest nodes. Essentially LCA of deepest leaves."
+528,Random Pick with Weight,cc->algorithm_design->prefix_sum->prefix_sums;cc->probabilistic_methods->random_selection,,"Compute prefix sums of weights, pick a random in [0,total). Binary search for the correct segment."
+921,Minimum Add to Make Parentheses Valid,cc->computer_science_basics->balance_counters,,Track needed '(' or ')'. Each unmatched ')' increments needed. Return total needed.
+930,Binary Subarrays With Sum,cc->algorithm_design->prefix_sum->prefix_sum_in_0_1_array,,"Similar to subarray-sum = k approach. Map prefix sums, subarray if current_sum - target in map."
+934,Shortest Bridge,cc->algorithm_design->dfs->dfs;cc->algorithm_design->bfs->bfs_across_islands,array,"Find the first island via DFS, then BFS outward to reach the second island in min steps."
+958,Check Completeness of a Binary Tree,cc->algorithm_design->bfs->bfs_level_order_checking,tree,"Traverse level by level; once a null is found, ensure no more non-null nodes appear."
+973,K Closest Points to Origin,cc->data_structures->heap->heap;cc->algorithm_design->selection->quickselect,heap,"Compute distance squared, keep a max-heap of size k or do partition-based quickselect."
+983,Minimum Cost For Tickets,cc->algorithm_design->dp->dp_with_intervals,,"For each travel day, cost = min of day pass, 7-day pass, 30-day pass. Build DP up to last day."
+986,Interval List Intersections,cc->data_structures->intervals->merge_intervals_method,,"Use two pointers on the two lists, intersect the overlapping intervals, advance the pointer that ends first."
+1004,Max Consecutive Ones III,cc->data_structures->two_pointers->sliding_window;cc->algorithm_design->counting->count_zero,,"Expand window. If zero count exceeds k, shrink from left. Track max window size."
+1011,Capacity To Ship Packages Within D Days,cc->algorithm_design->binary_search->binary_search_on_capacity,,"Check if a mid capacity can ship within D days. If not, increase capacity; otherwise decrease it."
+1060,Missing Element in Sorted Array,cc->algorithm_design->binary_search->binary_search_using_the_missing_counts,,"At index i, check how many are missing up to nums[i]. Compare with k to decide search direction."
+1091,Shortest Path in Binary Matrix,cc->algorithm_design->bfs->bfs_in_8_directions,array,"Start from (0,0), BFS with 8 directions. Track visited cells, find shortest path length."
+1209,Remove All Adjacent Duplicates in String II,cc->data_structures->stack->stack_based_count,stack,"Push characters and track frequency. If freq hits k, pop them."
+1249,Minimum Remove to Make Valid Parentheses,cc->data_structures->stack->stack;cc->algorithm_design->scanning->scanning_mismatches,stack,"Push '(' indices, match with ')' or mark invalid. Remove unmatched parentheses in the end."
+1424,Diagonal Traverse II,cc->data_structures->maps->group_by_i_plus_j_in_a_map,map,"Traverse row-wise, group items by (i+j). Flatten in the correct diagonal order."
+1443,Minimum Time to Collect All Apples in a Tree,cc->algorithm_design->dfs->dfs_subtrees_with_apple_check,tree,"From root, visit children. Include path cost if child subtree contains an apple."
+1570,Dot Product of Two Sparse Vectors,cc->data_structures->sparse_representation->sparse_representation_iteration,,Store non-zero indices and values. Multiply only matching indices.
+1650,Lowest Common Ancestor of a Binary Tree III,cc->data_structures->tree->nodes_have_parent_pointers,tree,Ascend from each node or equalize depths first. Move both up until they meet.
+1762,Buildings With an Ocean View,cc->data_structures->stack->stack;cc->algorithm_design->scanning->scanning_from_the_right,stack,"Traverse from right, track max height. Buildings taller than all to the right have a view."
+1778,Shortest Path in a Hidden Grid,cc->algorithm_design->bfs->interactive_bfs_dfs_concept,array,"We do BFS steps, discovering adjacency dynamically. Keep track of visited for minimal route."
+1868,Product of Two Run-Length Encoded Arrays,cc->data_structures->two_pointers->two_pointers_on_runs,,Multiply each run chunk while adjusting counts. Output in RLE form.
+1070,Product Sales Analysis III,cc->database_fundamentals->sql->sql_grouping_and_joining,,"Combine tables, group by product to get total product sales (SQL)."
+322,Coin Change,cc->algorithm_design->dp->dp_for_the_fewest_coins,,"dp[x] = min(dp[x], dp[x-coin] + 1). Initialize dp[0]=0, otherwise large. If dp[amount] not updated, -1."
+328,Odd Even Linked List,cc->data_structures->linkedlist->linked_list_rearrangement,linkedlist,Rearrange nodes so that all odds precede evens in the list.
+912,Sort an Array,cc->algorithm_design->sorting->implementation_of_standard_sorts,array,"Use quicksort, mergesort, or heapsort. Return the sorted array."
+1344,Angle Between Hands of a Clock,cc->mathematics->math_formula,,"Compute minute hand angle and hour hand angle. Return the absolute difference, mod 360 if needed."
+91,Decode Ways,cc->algorithm_design->dp->dp_on_string_decoding,,dp[i] can come from single-digit or two-digit decode if valid. Summation yields total ways.
+117,Populating Next Right Pointers in Each Node II,cc->data_structures->tree->level_order_bfs_linking,tree,"Traverse level by level, link nodes horizontally. Keep track of next-level head and tail."
+161,One Edit Distance,cc->computer_science_basics->check_single_insert_delete_replace,,Check if exactly one insert/delete/replace transforms s into t.
+1586,Binary Search Tree Iterator II,cc->data_structures->tree->bst_iteration_with_backtracking,tree,Like BST Iterator but store visited nodes for next/prev iteration in sorted order.
+1123,Lowest Common Ancestor of Deepest Leaves,cc->algorithm_design->dfs->dfs_depth;cc->data_structures->tree->lca_logic,tree,"Find max depth, then LCA of all deepest nodes. Recurse subtrees to see if children contain deepest leaves."
+325,Maximum Size Subarray Sum Equals k,cc->algorithm_design->prefix_sum->prefix_sum_map,,"Track running sum. If sum-k in map, check index difference for max length."
+377,Combination Sum IV,cc->algorithm_design->dp->dp_counting_combos,,dp[target]+=dp[target-num] if target>=num. Order matters if we iterate over nums first.
+1810,Minimum Path Cost in a Hidden Grid,cc->algorithm_design->bfs->similar_bfs_with_hidden_adjacency,array,"We query cost of edges on the fly, track minimal path in BFS. Keep visited states or cost."
+237,Delete Node in a Linked List,cc->data_structures->pointer->in_place_pointer_swap,linkedlist,"Copy data from next node into current, then skip the next node. Removes current effectively."
+143,Reorder List,cc->data_structures->linkedlist->linked_list_re_linking,linkedlist,"Find midpoint, reverse second half, then interleave it with the first half."
+82,Remove Duplicates from Sorted List II,cc->data_structures->linkedlist->linked_list_skip_duplicates,linkedlist,"Use dummy head, skip over nodes that appear more than once. Link only distinct nodes."
+179,Largest Number,cc->algorithm_design->sorting->custom_sorting_by_string_comparison,,Sort numbers by comparing xy vs yx. Join them afterward.
+45,Jump Game II,cc->algorithm_design->greedy->greedy_bfs_layering,,"Track current reach and next reach. When i > current reach, increment jumps."
+450,Delete Node in a BST,cc->data_structures->tree->bst_node_manipulation,tree,"Find node. If two children, swap with successor or predecessor. Then remove leaf or single-child node."
+134,Gas Station,cc->algorithm_design->greedy->greedy_solution,,"If total gas < total cost, no solution. Otherwise track deficits and pick start after the last deficit."
+1609,Even Odd Tree,cc->data_structures->tree->tree_bfs;cc->computer_science_basics->constraints,tree,"For each level, nodes must be strictly increasing/decreasing with correct even/odd. Validate BFS layers."
+875,Koko Eating Bananas,cc->algorithm_design->binary_search->binary_search_on_eating_speed,,Check if mid speed can eat all bananas in H hours. Adjust search accordingly.
+230,Kth Smallest Element in a BST,cc->data_structures->tree->inorder_traversal,tree,Traverse the BST in sorted order. The kth visited node is the kth smallest.
+1371,Find the Longest Substring Containing Vowels in Even Counts,cc->algorithm_design->bitmask->bitmask_prefix_approach,,"Track parity for vowels in a bitmask. If mask repeats, substring in between has even counts."
+2419,Longest Subarray With Maximum Bitwise AND,cc->algorithm_design->scanning->scan_for_segments_matching_global_max,,"First find the array's global max, then track the longest consecutive run of that value."
+539,Minimum Time Difference,cc->algorithm_design->time_conversion->convert_times_to_minutes;cc->data_structures->sorting->sort,,"Convert HH:MM to minutes, sort them, check adjacent differences and wrap-around. Return min difference."
+567,Permutation in String,cc->data_structures->two_pointers->sliding_window;cc->algorithm_design->frequency,map,"Keep a frequency count of s1. Slide a window of size |s1| over s2. If freq matches, return true."
+416,Partition Equal Subset Sum,cc->algorithm_design->dp->dp_subset_sum,,"If total sum is odd, no solution. Otherwise check if sum/2 subset is possible via DP."
+122,Best Time to Buy and Sell Stock II,cc->algorithm_design->greedy->greedy_for_multiple_transactions,,Sum all positive differences between consecutive days to get the max profit.
+386,Lexicographical Numbers,cc->algorithm_design->dfs->dfs;cc->computer_science_basics->iterative_approach,,Generate from 1..n in lex order by branching *10. Or transform numbers to strings and sort them.
+340,Longest Substring with At Most K Distinct Characters,cc->data_structures->two_pointers->sliding_window;cc->algorithm_design->character_count->char_count,map,"Expand window while distinct <= k, if distinct>k shrink. Track max length."
+3043,Find the Length of the Longest Common Prefix,cc->algorithm_design->strings->simple_prefix_check_among_strings,,Compare characters across all strings until mismatch. Return length of matched prefix.
+81,Search in Rotated Sorted Array II,cc->algorithm_design->binary_search->binary_search_with_duplicates,,"Similar to #33 but if nums[mid]==nums[left], move left++. Otherwise do pivot logic."
+1367,Linked List in Binary Tree,cc->algorithm_design->dfs->dfs_checking_subpath,tree;linkedlist,Check if the linked list is a downward path in the tree. Recurse each node to match subpath.
+767,Reorganize String,cc->algorithm_design->greedy->greedy_with_a_max_heap;cc->data_structures->sorting->sorting_by_freq,heap,"If any char freq > half the string length, impossible. Else alternate the most frequent chars."
+371,Sum of Two Integers,cc->computer_science_basics->bitwise_ops,,"Use XOR for sum, AND<<1 for carry. Repeat until carry=0."
+1590,Make Sum Divisible by P,cc->algorithm_design->prefix_sum->prefix_sum_remainder_approach,,Let total_sum % p = remain. Remove subarray whose sum % p=remain. Track prefix remainders in a map.
+96,Unique Binary Search Trees,cc->mathematics->catalan_numbers;cc->algorithm_design->dp->dp,,Number of BST(n) is the nth Catalan. G(n)=Σ G(i-1)*G(n-i).
+12,Integer to Roman,cc->algorithm_design->greedy->greedy_from_largest_roman_values,,Keep subtracting the largest possible Roman symbol. Append them until zero.
+1644,Lowest Common Ancestor of a Binary Tree II,cc->data_structures->tree->similar_to_lca_but_confirm_nodes_exist,tree,"If one node not in tree, result is null. Otherwise do normal LCA logic."
+1110,Delete Nodes And Return Forest,cc->algorithm_design->dfs->tree_dfs_cut_approach,tree,"For each node in to_delete, cut it out. Return the remaining subtrees as a forest."
+1497,Check If Array Pairs Are Divisible by k,cc->data_structures->hashing->hash_mod_frequencies,map,Compute each num%k. Must pair with complement (k - r). Check frequency balance.
+2406,Divide Intervals Into Minimum Number of Groups,cc->algorithm_design->intervals->interval_scheduling;cc->data_structures->heap->min_heap,heap,"Sort intervals by start. Use a min-heap of end times, or assign to a new group if overlapping."
+2090,K Radius Subarray Averages,cc->data_structures->two_pointers->sliding_window;cc->algorithm_design->prefix_sum->prefix_sums,,Compute sum over [i-k..i+k]. Use prefix sums for O(1) range queries. Validate boundaries.
+287,Find the Duplicate Number,cc->algorithm_design->cycle_detection->floyds_cycle_detection;cc->algorithm_design->binary_search->binary_search,,Use slow/fast pointer to detect cycle or do a binary search counting <= mid.
+1233,Remove Sub-Folders from the Filesystem,cc->data_structures->sorting->sort;cc->algorithm_design->prefix_check,,Sort folder names. Skip a folder if it’s a subpath of the previous (prefix + '/').
+1545,Find Kth Bit in Nth Binary String,cc->algorithm_design->recursion->recursive_pattern,,Use S(n)=S(n-1)+0+switch(reverse(S(n-1))). Flip bits if needed for the index.
+453,Minimum Moves to Equal Array Elements,cc->algorithm_design->summation->sum_approach_minus_min,,"Equivalent to sum(array) - min(array)*n, as each move increments n-1 elements."
+1593,Split a String Into the Max Number of Unique Substrings,cc->algorithm_design->backtracking->backtracking;cc->data_structures->set->used_set,set,"Try all substring splits, if not used, pick it. Aim for maximum partitions."
+1438,Longest Continuous Subarray With Absolute Diff ≤ Limit,cc->data_structures->two_pointers->sliding_window;cc->algorithm_design->queue->min_max_queue,queue,"Keep track of window’s min and max in O(1). If diff > limit, shrink from left."
+2461,Maximum Sum of Distinct Subarrays With Length K,cc->data_structures->two_pointers->sliding_window;cc->algorithm_design->distinctness->distinct_check,set,"Move a window of size K, ensure elements are distinct. Track sum with a frequency set/map."
+1891,Cutting Ribbons,cc->algorithm_design->binary_search->binary_search_for_max_length,,Check if mid is feasible by summing how many pieces. Adjust range accordingly.
+229,Majority Element II,cc->algorithm_design->majority->boyer_moore_for_two_candidates,,"We can have up to 2 majority elements > n/3. Find potential candidates, then verify them."
+1197,Minimum Knight Moves,cc->algorithm_design->bfs->bfs;cc->mathematics->math_symmetry,,"Use BFS from (0,0) to (x,y), exploit symmetry to reduce the search space by quadrants."
+814,Binary Tree Pruning,cc->algorithm_design->dfs->dfs_postorder,tree,Recursively prune subtrees with no '1'. Return null if an entire subtree has no 1.
+109,Convert Sorted List to Binary Search Tree,cc->algorithm_design->two_pointer->slow_fast_pointer_find_mid,linkedlist;tree,"Mid becomes root, left side builds left subtree, right side builds right subtree. Recurse."
+2501,Longest Square Streak in an Array,cc->algorithm_design->dp->dp;cc->data_structures->set->set_approach_for_squares,set,"If x is in array, check x^2 in set. Chain these squares. Track max chain length."
+435,Non-overlapping Intervals,cc->algorithm_design->greedy->greedy_by_end_time,,"Sort by end time. Pick intervals that finish earliest, skip those overlapping."
+1498,Number of Subsequences That Satisfy the Given Sum Condition,cc->data_structures->sorting->sort;cc->data_structures->two_pointers->two_pointer;cc->algorithm_design->exponential->pow2_usage,,"Sort array, for each left pointer find max right pointer. Count subsets using 2^(right-left)."
+137,Single Number II,cc->computer_science_basics->bit_manipulation->bit_manipulation_counting_bits_mod_3,,Sum bits in each position mod 3. The remainder is the unique number.
+616,Add Bold Tag in String,cc->algorithm_design->intervals->mark_intervals_and_merge,,"Find all occurrences of words, merge intervals, then wrap them with <b> in the final string."
+240,Search a 2D Matrix II,cc->data_structures->matrix->start_top_right_corner;cc->data_structures->matrix->move_left_down,,"If target < current, go left. If target > current, go down. O(m+n) complexity."
+2914,Minimum Number of Changes to Make Binary String Beautiful,cc->algorithm_design->string->check_flips_to_get_alternating_pattern,,Compute cost to match '0101...' vs '1010...' pattern. Take min.
+3011,Find if Array Can Be Sorted,cc->algorithm_design->sorting->likely_checking_partial_swaps_or_some_condition,,Possibly verify if the array can be fully sorted with limited operations.
+1493,Longest Subarray of 1's After Deleting One Element,cc->data_structures->two_pointers->sliding_window;cc->algorithm_design->counting->tracking_zero_count,,"Expand window, if more than one zero, shrink from left. Track max length of consecutive 1s."
+6,Zigzag Conversion,cc->algorithm_design->simulation->simulation_row_by_row,,"Append characters in a zigzag manner across rows, then read rows sequentially."
+3133,Minimum Array End,cc->domain_specific->problem_specific_partial_info,,"Likely a minimal steps or BFS approach, removing from ends or some dynamic strategy."
+2034,Stock Price Fluctuation,cc->software_engineering->design_with_data_structures,map;heap,Keep a map or heaps for max/min. Track current timestamp’s price. Update as new records come in.
+3097,Shortest Subarray With OR at Least K II,cc->data_structures->two_pointers->sliding_window;cc->computer_science_basics->bitwise_or,,"Expand window, accumulate OR. If >= K, shrink from left. Keep track of min length."
+510,Inorder Successor in BST II,cc->data_structures->tree->bst_with_parent_pointer,tree,"If node has right subtree, go left from right child. Otherwise ascend parents until we come from a left branch."
+1845,Seat Reservation Manager,cc->data_structures->heap->min_heap_of_seats,heap,"Keep a min-heap of available seats. On reserve, pop the smallest. On unreserve, push it back."
+1574,Shortest Subarray to be Removed to Make Array Sorted,cc->data_structures->two_pointers->two_pointer_from_ends,,Keep longest sorted prefix/suffix. Remove minimal middle subarray that breaks order.
+451,Sort Characters By Frequency,cc->algorithm_design->frequency->count;cc->data_structures->sorting->sort_desc_frequency,,"Build frequency map, sort by freq descending, construct final string."
+1382,Balance a Binary Search Tree,cc->data_structures->tree->inorder_flatten;cc->algorithm_design->tree->build_balanced,tree,"Inorder traverse to get sorted list, rebuild a balanced BST from that list."
+723,Candy Crush,cc->algorithm_design->simulation->simulation_of_collapses,,"Repeatedly remove matched candy blocks, let candies above fall, continue until stable."
+856,Score of Parentheses,cc->data_structures->stack->stack;cc->algorithm_design->tree->counting_depth,stack,"Push '(' on stack. On ')', if top was '(', it's 1; else 2×score of inner. Sum up the scores."
+1161,Maximum Level Sum of a Binary Tree,cc->algorithm_design->bfs->bfs_level_sums,tree,Compute sum for each level in BFS. Track which level has the maximum sum.
+77,Combinations,cc->algorithm_design->backtracking->backtracking_k_combinations,,Choose elements from 1..n in k-combos. Collect all combinations.
+907,Sum of Subarray Minimums,cc->data_structures->stack->monotonic_stack;cc->algorithm_design->subarray_coverage,stack,"For each element, find how far it extends as the min. Accumulate contributions."
+692,Top K Frequent Words,cc->data_structures->hashmap->frequency;cc->data_structures->heap->min_heap;cc->algorithm_design->sorting,heap,"Count freq, use a min-heap of size k or sort by freq desc + lex ascending."
+918,Maximum Sum Circular Subarray,cc->algorithm_design->dp->kadanes;cc->algorithm_design->dp->invert_approach,,"Compute normal max subarray. Also find min subarray, subtract from total if not all negative."
+678,Valid Parenthesis String,cc->algorithm_design->greedy->greedy_track_min_max_open,,"Track a range [low,high] of possible open parentheses counts. If high < 0 at any point, invalid."
+417,Pacific Atlantic Water Flow,cc->algorithm_design->dfs->dfs_from_edges_inward,array,Start DFS from each ocean boundary. Intersection of reachable cells is the result.
+176,Second Highest Salary,cc->database_fundamentals->sql->sql_ranking_or_subquery,,SELECT max(Salary) where Salary < (SELECT max(Salary)) or use limit offset.
+247,Strobogrammatic Number II,cc->algorithm_design->recursion->recursion_building_symmetrical_pairs,,"Build pairs (1,1),(6,9),(8,8),(9,6),(0,0). Middle can be 0,1,8 if odd length."
+1358,Number of Substrings Containing All Three Characters,cc->data_structures->two_pointers->sliding_window;cc->algorithm_design->sliding_window->sliding_window_and_a_b_c,,"Expand window until 'a','b','c' all present, then shrink. Count new valid substrings."
+2109,Adding Spaces to a String,cc->data_structures->strings->string_building_with_known_indices,,Track positions where spaces go. Rebuild string with inserted spaces.
+1029,Two City Scheduling,cc->algorithm_design->greedy->greedy_sorting_by_cost_difference,,"Sort persons by cost(A)-cost(B). Send half to city A, half to city B."
+1245,Tree Diameter,cc->algorithm_design->dfs->double_dfs_approach,tree,"Pick any node, DFS to find the farthest node. From that node, DFS again. That distance is the diameter."
+1679,Max Number of K-Sum Pairs,cc->data_structures->sorting->sorting;cc->data_structures->two_pointers->two_pointer;cc->algorithm_design->frequency->map_freq,map,Sort and use left/right pointers or a freq map to count pairs that sum to K.
+2337,Move Pieces to Obtain a String,cc->algorithm_design->greedy->greedy_alignment_check_of_l_r,,"Check that L moves left only, R moves right only. Positions must match in order."
+388,Longest Absolute File Path,cc->data_structures->stack->stack;cc->algorithm_design->tree->counting_depth_from_t,stack,"Split input by lines, track current path length in a stack. Update max length for files."
+395,Longest Substring with At Least K Repeating Characters,cc->algorithm_design->divide_and_conquer;cc->data_structures->two_pointers->sliding_window,,"If a char freq < k, split around it. Otherwise entire substring is valid."
+2981,Find Longest Special Substring That Occurs Thrice I,cc->algorithm_design->strings->string_hashing;cc->algorithm_design->suffix_structures->suffix_array_approach,,"Likely do a binary search on substring length, check if it appears 3 times via hash or suffix structure."
+382,Linked List Random Node,cc->algorithm_design->sampling->reservoir_sampling_for_single_item,linkedlist,"Traverse nodes, pick each with probability 1/i. Return final pick."
+2593,Find Score of an Array After Marking All Elements,cc->algorithm_design->greedy->greedy;cc->algorithm_design->dp->dp_approach_problem_specific,,"Pick smallest unmarked, add to score, mark neighbors. Possibly a sorted approach."
+2125,Number of Laser Beams in a Bank,cc->domain_specific->hardware->multiply_device_counts_in_consecutive_non_empty_rows,,"For each row, count '1's. Multiply device counts of consecutive non-empty rows."
+1277,Count Square Submatrices with All Ones,cc->algorithm_design->dp->dp_counting_squares,,"dp[i][j] = 1 + min(top, left, diag) if cell=1. Sum all dp values."
+1094,Car Pooling,cc->algorithm_design->prefix_difference;cc->data_structures->heap->min_heap,heap,"Track passenger changes at start/end, accumulate. Use a min-heap or prefix sums to check capacity."
+503,Next Greater Element II,cc->data_structures->stack->monotonic_stack;cc->data_structures->arrays->circular_array,stack,Traverse array twice mod n. Maintain stack to find next greater element for each index.
+729,My Calendar I,cc->data_structures->intervals->interval_booking_check,,"Keep a data structure of intervals. Before adding, check if it overlaps with existing ones."
+2352,Equal Row and Column Pairs,cc->algorithm_design->strings->compare_row_patterns_with_column_patterns,,"Build row strings in a map. For each column, build a string. Count matches."
+515,Find Largest Value in Each Tree Row,cc->algorithm_design->bfs->bfs_track_max_in_each_level,tree,"Level-order BFS, track the maximum node value in each row."
+1980,Find Unique Binary String,cc->data_structures->matrix->diagonal;cc->algorithm_design->backtracking->backtracking,,Flip the i-th bit of the i-th string to ensure difference. This diagonal-flip trick guarantees uniqueness.
+1014,Best Sightseeing Pair,cc->algorithm_design->dp->dp_track_best_ai_plus_i_while_scanning,,We want max of A[i] + A[j] + (i-j). Keep best(A[i]+i) while scanning.
+155,Min Stack,cc->data_structures->stack->stack_with_a_min_tracker,stack,"Push normal stack. Track min in parallel. On pop, restore min if needed."
+2466,Count Ways To Build Good Strings,cc->algorithm_design->dp->dp_with_steps;cc->computer_science_basics->zero_one_increments,,dp[i] = dp[i-zero] + dp[i-one]. Possibly mod the result.
+1055,Shortest Way to Form String,cc->algorithm_design->greedy->greedy_scanning_of_s_to_build_t,,Repeatedly match a subsequence of S to a chunk of T. Count how many subsequences used.
+310,Minimum Height Trees,cc->algorithm_design->bfs->bfs_from_leaves_inward,tree,Peel off leaf nodes level by level. The last 1–2 nodes are the MHT roots.
+542,01 Matrix,cc->algorithm_design->bfs->multi_source_bfs_from_all_zero_cells,array,"Push all zero cells initially, BFS outward to set distance for 1-cells."
+2270,Number of Ways to Split Array,cc->algorithm_design->prefix_sum->prefix_sums;cc->data_structures->array->vs_suffix_sums,,"We want splits where prefix >= suffix. For each i, check sum(0..i) >= sum(i+1..end)."
+1930,Unique Length-3 Palindromic Subsequences,cc->data_structures->strings->track_positions_of_each_character,,"For each character as an outer pair, gather distinct middle chars."
+438,Find All Anagrams in a String,cc->data_structures->two_pointers->sliding_window;cc->algorithm_design->frequency->freq_compare,map,"Keep a frequency of p. Slide a window of size len(p) over s, compare freq."
+2381,Shifting Letters II,cc->algorithm_design->prefix_sum->prefix_approach_on_shift_ranges,,"Track shift increments in a prefix array, apply cumulative shifts to each char."
+130,Surrounded Regions,cc->algorithm_design->dfs->dfs_bfs_from_board_edges,array,Mark 'O' connected to edges as safe. Flip remaining 'O' to 'X'.
+1769,Minimum Number of Operations to Move All Balls to Each Box,cc->algorithm_design->prefix_sum->prefix_sums;cc->data_structures->arrays->counting_distances,,Compute total distance for each box. Possibly use prefix sums in O(n).
+547,Number of Provinces,cc->data_structures->union_find->union_find;cc->algorithm_design->dfs->dfs_adjacency,unionfind,"If matrix[i][j]==1, union i and j. Count distinct sets in the end."
+393,UTF-8 Validation,cc->computer_science_basics->bit_representation->check_leading_bits_of_each_byte,,"Check how many leading 1 bits for the first byte, then verify subsequent bytes start with '10'."
+402,Remove K Digits,cc->data_structures->stack->monotonic_stack;cc->algorithm_design->selection->keep_smaller_digits,stack,"Pop while the top is larger than current digit and k>0. If leftover k, remove from end."
+916,Word Subsets,cc->algorithm_design->frequency->frequency_requirement_across_b,map,Compute the max freq needed for each letter in B. Check if each A meets those freq counts.
+1400,Construct K Palindrome Strings,cc->algorithm_design->frequency->check_number_of_odd_freq_chars,map,"If the # of odd freq characters > k, not possible. Else rearrange into k palindrome strings."
+2116,Check if a Parentheses String Can Be Valid,cc->algorithm_design->greedy->greedy;cc->computer_science_basics->partial_lock_approach,,"We have locked parentheses. Track min/max open. If feasible final range includes 0, return true."
+1062,Longest Repeating Substring,cc->algorithm_design->binary_search->binary_search;cc->data_structures->string->rolling_hash;cc->algorithm_design->suffix_structures,,"Try mid length, check if substring repeats. If yes, go bigger; else go smaller."
+2348,Number of Zero-Filled Subarrays,cc->algorithm_design->array->count_consecutive_zero_segments,,A run of length L zeroes contributes L*(L+1)/2 subarrays.
+2657,Find the Prefix Common Array of Two Arrays,cc->data_structures->set->set_based;cc->algorithm_design->counting->index_based_counting,set,"At prefix i, count how many elements appear in both arrays. Possibly store visited in a set."
+2013,Detect Squares,cc->algorithm_design->geometry->hash_points_by_x_or_y,map,"For each new point, check potential square corners. Maintain freq in a map."
+2326,Spiral Matrix IV,cc->data_structures->linkedlist->spiral_fill_with_linked_list,linkedlist,"Traverse the matrix in spiral order, placing linked-list values. Stop if list empty or end of spiral."
+3428,Maximum and Minimum Sums of at Most Size K Subsequences,cc->algorithm_design->two_pointers->likely_sliding_window;cc->algorithm_design->selection->choose_subsequences,,We can pick up to K disjoint subsequences. Possibly sort or sliding window strategy.
+92,Reverse Linked List II,cc->data_structures->linkedlist->linked_list_partial_reverse,linkedlist,Reverse a subrange [m..n] in place. Reconnect sublists accordingly.
+271,Encode and Decode Strings,cc->data_structures->strings->delim;cc->algorithm_design->prefix->length_prefix_approach,,"Encode by storing length + a delimiter, decode by reading length then substring."
+39,Combination Sum,cc->algorithm_design->backtracking->backtracking;cc->domain_specific->unlimited_usage,,Pick any candidate multiple times or skip it. Collect all combos summing to target.
+1267,Count Servers that Communicate,cc->data_structures->matrix->row_col_counting_in_a_grid,array,A server is connected if it shares row or column with another. Count such servers.
+802,Find Eventual Safe States,cc->algorithm_design->graph->graph_cycle_detection,graph,A node is safe if it doesn’t lead to a cycle. Use DFS color or topological approach.
+61,Rotate List,cc->data_structures->linkedlist->linked_list_rotate_by_k_steps,linkedlist,"Link tail to head (circular), then break at the new head after length-k steps."
+655,Print Binary Tree,cc->algorithm_design->dfs->dfs_placing_nodes_in_the_correct_position,tree,Find tree height for matrix dims. Recursively place each node in mid of range.
+994,Rotting Oranges,cc->algorithm_design->bfs->multi_source_bfs_from_rotten_oranges,array,"Push all rotten oranges initially, BFS outward. Track time until all fresh become rotten."
+1541,Minimum Insertions to Balance a Parentheses String,cc->algorithm_design->greedy->greedy_to_form_complete_pairs,,We need '(' and ')' in pairs. Insert missing parentheses to fix mismatches.
+2915,Length of the Longest Subsequence That Sums to Target,cc->algorithm_design->dp->likely_dp;cc->algorithm_design->backtracking->backtracking,,We want the max-length subsequence summing to target. Possibly subset-sum with an extra dimension for length.
+2658,Maximum Number of Fish in a Grid,cc->algorithm_design->dfs->dfs_bfs_with_sum_of_fish,array,Similar to max island area but each cell has fish. DFS/BFS to find largest connected sum.
+939,Minimum Area Rectangle,cc->algorithm_design->geometry->use_points_set_to_find_rectangle_corners,set,"For each pair of points in the same row, see if the matching pair in another row exists. Track min area."
+684,Redundant Connection,cc->data_structures->union_find->union_find_in_a_tree,unionfind,"Add edges. If it forms a cycle in union-find, that edge is redundant."
+373,Find K Pairs with Smallest Sums,cc->data_structures->heap->heap;cc->algorithm_design->bfs->k_limited_bfs,heap,"Push the pair sums into a min-heap, pop smallest, push next from row/col if available."
+1448,Count Good Nodes in Binary Tree,cc->algorithm_design->dfs->dfs_track_max_so_far,tree,"If the current node >= max so far, increment result. Update max, recurse children."
+86,Partition List,cc->data_structures->linkedlist->linked_list_partition_by_x,linkedlist,Build two lists: < x and >= x. Concatenate them at the end.
+609,Find Duplicate File in System,cc->data_structures->map->map_file_contents_list_of_paths,map,"Parse each path, store content as key. Multiple paths for the same content => duplicates."
+540,Single Element in a Sorted Array,cc->algorithm_design->binary_search->binary_search_on_pairs,,Every pair is matched except the single. Compare mid with neighbors to pick search side.
+300,Longest Increasing Subsequence,cc->algorithm_design->dp->dp;cc->data_structures->sorting->patience_sorting,,DP O(n^2) or maintain a tails array in O(n log n).
+1838,Frequency of the Most Frequent Element,cc->data_structures->two_pointers->sliding_window;cc->algorithm_design->prefix_sum->prefix_sums,,"Keep a window. If we add a new element, can we make all equal by expansions? If not, shrink window."
+1926,Nearest Exit from Entrance in Maze,cc->algorithm_design->bfs->bfs_from_the_entrance,array,"Traverse in all directions, track steps. If we reach a boundary cell != entrance, return steps."
+516,Longest Palindromic Subsequence,cc->algorithm_design->dp->dp_with_two_indices,,"If s[i]==s[j], dp[i][j] = 2+dp[i+1][j-1]. Else max of dp[i+1][j], dp[i][j-1]."
+1726,Tuple with Same Product,cc->algorithm_design->hashing->hash_product_list_of_pairs,map,"For each pair, compute product. If repeated, update combination counts."
+213,House Robber II,cc->algorithm_design->dp->dp_on_circular_array,,"Compute best for [0..n-2] and [1..n-1]. Return the max, since we can’t rob both ends."
+981,Time Based Key-Value Store,cc->data_structures->map->map_of_key_list_of_timestamp_value,map,"For get(key, timestamp), do a binary search in the list of (timestamp, value) pairs."
+1248,Count Number of Nice Subarrays,cc->data_structures->two_pointers->sliding_window;cc->algorithm_design->counting->counting_odd_numbers,,"Expand window tracking # of odd nums. If exactly k, shift left to find all sub-windows."
+2342,Max Sum of a Pair With Equal Sum of Digits,cc->algorithm_design->mathematics->map_digit_sum_top_two_values,map,"For each number, compute digit_sum. Track top two in that bucket, update global max of their sum."
+1008,Construct Binary Search Tree from Preorder Traversal,cc->programming_basics->recursion->recursively_with_boundaries;cc->data_structures->stack->stack,tree;stack,"Root=first element. Next smaller => left, bigger => right. Or a stack approach for building BST."
+364,Nested List Weight Sum II,cc->data_structures->tree->reverse_depth_weighting,list,"First find max depth, then weight each level by (maxDepth - depth + 1). Sum up."
+3066,Minimum Operations to Exceed Threshold Value II,cc->graph_theory->bfs->problem_specific_possibly_bfs;cc->algorithm_design->dp->dp,,We want to exceed a threshold with minimal steps. Possibly BFS or DP with given increments.
+602,Friend Requests II: Who Has the Most Friends,cc->database_fundamentals->sql->sql_grouping_or_join,,"Count friend relationships, group by user, pick the user with max. Possibly subselect or rank."
+1352,Product of the Last K Numbers,cc->algorithm_design->prefix_product->keep_prefix_product;cc->data_structures->zero_handling->handle_zeros,array,"Maintain prefix product. If zero occurs, reset. For getProduct(k), divide prefix if no zero interruption."
+1254,Number of Closed Islands,cc->graph_traversal->dfs->dfs_from_boundary_to_mark_open_water,array,Mark all reachable '0' from edges as open. Then count islands fully enclosed by '1'.
+1079,Letter Tile Possibilities,cc->algorithm_design->backtracking->backtracking;cc->data_structures->hashmap->frequency_map,map,Generate all permutations of the multiset of letters. Count distinct results.
+277,Find the Celebrity,cc->problem_solving_strategies->elimination->elimination;cc->computer_science_basics->verification->verify,,"If a knows b, a can't be celebrity. Narrow down to one candidate, then verify by checks."
+1415,The k-th Lexicographical String of All Happy Strings of Length n,cc->algorithm_design->backtracking->backtracking;cc->graph_theory->bfs->bfs_in_lex_order,,"Build strings from 'abc', disallow consecutive duplicates. Then pick the k-th in sorted order."
+304,Range Sum Query 2D - Immutable,cc->algorithm_design->prefix_sum->2d_prefix_sum,,"Build sums[x][y] of sub-rectangle (0,0..x,y). Query in O(1) using prefix differences."
+311,Sparse Matrix Multiplication,cc->data_structures->matrix->only_multiply_non_zero_elements,,"For each non-zero in A’s row, multiply by matching B’s col non-zero partial products."
+650,2 Keys Keyboard,cc->algorithm_design->dp->dp;cc->graph_theory->bfs->bfs_for_minimal_steps,,Use copy/paste operations. Possibly factor-based approach or BFS for minimal steps to get n 'A's.
+95,Unique Binary Search Trees II,cc->algorithm_design->recursion->recursive_generation_of_bsts,tree,"For each root i in [1..n], recursively build left subtree (1..i-1) and right subtree (i+1..n)."
+886,Possible Bipartition,cc->data_structures->graph->graph_2_coloring,graph,"Build adjacency from dislike pairs, attempt 2-coloring. If conflict, return false."
+487,Max Consecutive Ones II,cc->data_structures->two_pointers->sliding_window;cc->algorithm_design->sliding_window->allowing_one_zero_flip,,"Expand window, if more than one zero, shrink. Track the longest run of 1s."
+2467,Most Profitable Path in a Tree,cc->algorithm_design->dfs->tree_dfs_with_path_constraints,tree,Likely track distances or father->child routes. Possibly a DP on edges to maximize profit.
+221,Maximal Square,cc->algorithm_design->dp->dp_tracking_squares,,"dp[i][j] = 1 + min(top, left, diagonal) if cell=1. Track max side found."
+740,Delete and Earn,cc->algorithm_design->dp->transform_to_house_robber_on_freq_array,,"Group identical numbers, apply house-robber logic skipping adjacent values."
+621,Task Scheduler,cc->algorithm_design->greedy->greedy_scheduling_based_on_most_frequent_tasks,,"Let max frequency = f. We place them in slots, fill idle with other tasks if possible."
+974,Subarray Sums Divisible by K,cc->algorithm_design->prefix_sum->prefix_sum_mod_technique,,"Compute prefixSum%k. If sum%k repeats, the subarray in between is divisible by k."
+3371,Identify the Largest Outlier in an Array,cc->domain_specific->statistical_analysis->problem_specific_possibly_check_deviation_from_mean,,"Compute mean or median, find data point with largest difference."
+1524,Number of Sub-arrays With Odd Sum,cc->algorithm_design->prefix_sum->prefix_sum_parity_counting,,Track even/odd prefix counts. The subarray sum is odd if start/end parity differs.
+204,Count Primes,cc->mathematics->number_theory->sieve_of_eratosthenes,,Mark multiples of each prime up to sqrt(n). Count how many remain unmarked.
+59,Spiral Matrix II,cc->algorithm_design->matrix->generate_n_by_n_spiral,,Generate an n×n matrix in spiral order with values 1..n*n.
+2579,Count Total Number of Colored Cells,cc->domain_specific->pattern_analysis->problem_statement_possibly_direct_formula_for_pattern,,"Analyze the pattern of coloring at each step, derive a direct formula."
+2523,Closest Prime Numbers in Range,cc->mathematics->number_theory->sieve;cc->algorithm_design->linear_scan_for_minimal_gap,,"Generate primes up to the upper bound, track smallest difference of consecutive primes."
+763,Partition Labels,cc->algorithm_design->greedy->greedy_using_last_occurrences,,Track the last occurrence of each char. Partition so each chunk’s chars don’t appear outside that chunk.

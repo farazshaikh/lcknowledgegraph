@@ -1,0 +1,35 @@
+<script src="https://unpkg.com/cytoscape@3/dist/cytoscape.min.js"></script>
+<style>
+  #cy {
+    width: 100%;
+    height: 600px;
+    display: block;
+    border: 1px solid #ccc;
+    margin: 20px 0;
+  }
+</style>
+<div id="cy"></div>
+<script>
+// Fetch the graph data and initialize Cytoscape
+fetch('graph.json')
+  .then(res => res.json())
+  .then(elements => {
+    const cy = cytoscape({
+      container: document.getElementById('cy'),  // a div in the HTML
+      elements: elements,
+      layout: { name: 'cose' },  // use a force-directed layout for nicely spread nodes
+      style: [
+        { selector: 'node', style: { 'label': 'data(label)', 'background-color': '#6FB1FC', 'text-valign': 'center' } },
+        { selector: 'edge', style: { 'width': 2, 'line-color': '#ccc', 'target-arrow-color': '#ccc', 'target-arrow-shape': 'triangle' } }
+      ]
+    });
+    // On node click, display concept info (e.g., problems list)
+    cy.on('tap', 'node', function(evt) {
+      const nodeData = evt.target.data();
+      const conceptName = nodeData.label;
+      // Assume concept_problems mapping is loaded in conceptProblemsMap variable
+      const problems = conceptProblemsMap[conceptName] || [];
+      alert(conceptName + " Examples:\n - " + problems.join("\n - "));
+    });
+  });
+</script>

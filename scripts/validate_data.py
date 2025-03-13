@@ -50,20 +50,17 @@ def read_csv(file_path: str) -> Dict[str, Any]:
             reader = csv.reader(csvfile)
             for row in reader:
                 if len(row) >= 5:
-                    # Split concepts and datastructures by comma
-                    concepts = [c.strip() for c in row[2].split(',')] if row[2] else []
-                    datastructures = [d.strip() for d in row[3].split(',')] if row[3] else []
 
-                    # Add to unique concepts set
-                    for concept in concepts:
-                        if concept:
-                            unique_concepts.add(concept)
+                    # Split concepts and datastructures by semicolon instead of comma
+                    concept_streams  = [c.strip() for c in row[2].split(';')] if row[2] else []
+                    datastructure_streams = [d.strip() for d in row[3].split(';')] if row[3] else []
+
 
                     problem = {
                         "id": int(row[0]),
                         "description": row[1],
-                        "concepts": concepts,
-                        "datastructure": datastructures,
+                        "concepts": concept_streams,
+                        "datastructure": datastructure_streams,
                         "approach": row[4]
                     }
                     problems.append(problem)
@@ -73,10 +70,8 @@ def read_csv(file_path: str) -> Dict[str, Any]:
         print(f"Error reading CSV file: {e}", file=sys.stderr)
         sys.exit(1)
 
-    return {
-        "problems": problems,
-        "concepts": unique_concepts
-    }
+
+    return problems
 
 def write_json(problems: List[Dict[str, Any]], output_path: Optional[str], pretty: bool = False) -> None:
     """Write the problems list to JSON format."""
@@ -97,31 +92,22 @@ def write_json(problems: List[Dict[str, Any]], output_path: Optional[str], prett
 
 def main() -> None:
     """Main function to convert CSV to JSON."""
-    args = parse_arguments()
 
-    # Validate input file exists
-    input_path = Path(args.input)
-    if not input_path.exists():
-        print(f"Error: Input file '{args.input}' does not exist.", file=sys.stderr)
-        sys.exit(1)
+    version = 0
+    input_dir = Path('data')
 
-    # Read CSV and convert to list of dictionaries
-    data = read_csv(args.input)
+    # Find the highest version number
+    while (input_dir / f"problems_v{version+1}.csv").exists():
+        version += 1
 
-    # Write to JSON
-    write_json(data["problems"], args.problems_json, args.pretty)
-    # Convert concepts set to a list for JSON serialization
-    concepts_list = list(data["concepts"])
-    concepts_list.sort()  # Sort for consistent output
-    # Create a structured object for concepts with monotonic IDs
-    concepts_data = []
-    for i, concept_name in enumerate(concepts_list, 1):  # Start ID from 1
-        concepts_data.append({
-            "id": i,
-            "name": concept_name
-        })
-    write_json(concepts_data, args.concepts_json, args.pretty)
+    # Use the highest version file
+    input_file = str(input_dir / f"problems_v{version}.csv")
+    print(f"Using highest version file: {input_file}")
+    data = read_csv(input_file)
 
+    # Write to JSON with the same version number
+    output_json = f"data/problems_v{version}.json"
+    write_json(data, output_json, pretty=True)
 
 if __name__ == "__main__":
     main()

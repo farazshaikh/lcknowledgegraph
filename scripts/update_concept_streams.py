@@ -26,6 +26,8 @@ def update_concept_streams():
         for row in reader:
             if len(row) >= 3:  # Ensure row has enough columns
                 problem_id = row[0].strip()
+                
+                
                 concepts = row[-1].strip()  # Take the last column (always the latest data)
                 concept_map[problem_id] = concepts
     # Read problems data and update concepts
