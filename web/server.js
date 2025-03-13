@@ -37,6 +37,24 @@ const server = http.createServer((req, res) => {
         return;
     }
     
+    // Special handling for /metrics route
+    if (req.url === '/metrics') {
+        const metricsPath = path.join(__dirname, 'metrics.html');
+        fs.readFile(metricsPath, (err, content) => {
+            if (err) {
+                console.error(`Error reading metrics file: ${err.code}`);
+                res.statusCode = 500;
+                res.end(`Server Error: ${err.code}`);
+            } else {
+                console.log(`Serving metrics page`);
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'text/html');
+                res.end(content, 'utf-8');
+            }
+        });
+        return;
+    }
+    
     // Handle the request for the root path
     let filePath = req.url === '/' 
         ? path.join(__dirname, 'index.html')
