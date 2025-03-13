@@ -34,6 +34,9 @@
             padding: 5px;
             width: 300px;
         }
+        #layout-select {
+            padding: 5px;
+        }
     </style>
 </head>
 <body>
@@ -41,6 +44,15 @@
         <h1>Knowledge Graph</h1>
         <div class="controls">
             <input type="text" id="search" placeholder="Search for a concept...">
+            <select id="layout-select">
+                <option value="dagre">Dagre (Hierarchical)</option>
+                <option value="circle">Circle</option>
+                <option value="grid">Grid</option>
+                <option value="concentric">Concentric</option>
+                <option value="breadthfirst">Breadth First</option>
+                <option value="cose">Force-Directed (CoSE)</option>
+                <option value="random">Random</option>
+            </select>
             <button id="reset">Reset View</button>
         </div>
     </div>
@@ -105,6 +117,37 @@
                         }
                     });
 
+                    // Make cy available globally for the layout selector
+                    window.cy = cy;
+
+                    // Function to apply selected layout
+                    function applyLayout(layoutName) {
+                        let layoutOptions = {
+                            name: layoutName,
+                            padding: 30
+                        };
+
+                        // Add specific options for certain layouts
+                        if (layoutName === 'dagre') {
+                            /*
+                            layoutOptions.rankDir = 'TB';
+                            layoutOptions.nodeSep = 50;
+                            layoutOptions.rankSep = 100;
+                            */
+                        } else if (layoutName === 'breadthfirst') {
+                            layoutOptions.spacingFactor = 1.5;
+                            layoutOptions.animate = true;
+                            layoutOptions.fit = true;
+                            layoutOptions.circle = false;
+                            layoutOptions.grid = true;
+                        } else if (layoutName === 'concentric') {
+                            layoutOptions.minNodeSpacing = 50;
+                        } else if (layoutName === 'cose') {
+                            layoutOptions.idealEdgeLength = 100;
+                        }
+                        cy.layout(layoutOptions).run();
+                    }
+
                     // Add search functionality
                     const searchInput = document.getElementById('search');
                     searchInput.addEventListener('input', function() {
@@ -127,20 +170,23 @@
                         }
                     });
 
+                    // Layout selection change event
+                    const layoutSelect = document.getElementById('layout-select');
+                    layoutSelect.addEventListener('change', function() {
+                        applyLayout(this.value);
+                    });
+
                     // Reset button
                     document.getElementById('reset').addEventListener('click', function() {
                         cy.elements().removeClass('highlighted');
                         searchInput.value = '';
                         cy.fit();
 
+                        // Reset layout selector to dagre
+                        layoutSelect.value = 'dagre';
+                        
                         // Apply dagre layout
-                        cy.layout({
-                            name: 'dagre',
-                            rankDir: 'TB',
-                            nodeSep: 50,
-                            rankSep: 100,
-                            padding: 30
-                        }).run();
+                        applyLayout('dagre');
                     });
 
                     // Double-click to focus on a node
@@ -160,13 +206,7 @@
 
                     // Apply dagre layout after initial rendering
                     setTimeout(() => {
-                        cy.layout({
-                            name: 'dagre',
-                            rankDir: 'TB',
-                            nodeSep: 50,
-                            rankSep: 100,
-                            padding: 30
-                        }).run();
+                        applyLayout('dagre');
                     }, 100);
                 })
                 .catch(error => {
