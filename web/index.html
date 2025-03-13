@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Knowledge Graph Visualization</title>
-    <script src="https://unpkg.com/cytoscape@3.23.0/dist/cytoscape.min.js"></script>
-    <script src="https://unpkg.com/cytoscape-dagre@2.5.0/cytoscape-dagre.js"></script>
+    <!-- Load Cytoscape first -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.23.0/cytoscape.min.js"></script>
+    <!-- Load Dagre separately -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dagre/0.8.5/dagre.min.js"></script>
+    <!-- Load Cytoscape-Dagre extension -->
+    <script src="https://cdn.jsdelivr.net/npm/cytoscape-dagre@2.5.0/cytoscape-dagre.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -45,13 +49,13 @@
         <div class="controls">
             <input type="text" id="search" placeholder="Search for a concept...">
             <select id="layout-select">
-                <option value="dagre">Dagre (Hierarchical)</option>
                 <option value="circle">Circle</option>
                 <option value="grid">Grid</option>
                 <option value="concentric">Concentric</option>
                 <option value="breadthfirst">Breadth First</option>
                 <option value="cose">Force-Directed (CoSE)</option>
                 <option value="random">Random</option>
+                <option value="dagre">Dagre (Hierarchical)</option>
             </select>
             <button id="reset">Reset View</button>
         </div>
@@ -59,6 +63,18 @@
     <div id="cy"></div>
 
     <script>
+        // Register the Dagre extension with Cytoscape
+        if (typeof cytoscape !== 'undefined' && typeof cytoscapeDagre !== 'undefined') {
+            try {
+                cytoscapeDagre(cytoscape); // This is the correct way to register the extension
+                console.log('Registered Dagre extension with Cytoscape');
+            } catch (error) {
+                console.error('Failed to register Dagre extension:', error);
+            }
+        } else {
+            console.error('Cytoscape or cytoscapeDagre is not loaded');
+        }
+
         window.onload = function() {
             console.log('Page loaded, fetching graph data...');
 
@@ -69,9 +85,6 @@
                 })
                 .then(data => {
                     console.log('Graph data loaded:', data);
-
-                    // Register the dagre layout
-                    cytoscape.use(cytoscapeDagre);
 
                     // Initialize cytoscape
                     const cy = cytoscape({
@@ -122,22 +135,44 @@
 
                     // Function to apply selected layout
                     function applyLayout(layoutName) {
+                        console.log(`Applying layout: ${layoutName}`);
+                        
                         let layoutOptions = {
                             name: layoutName,
-                            padding: 30
+                            padding: 30,
+                            animate: true,
+                            fit: true
                         };
 
                         // Add specific options for certain layouts
                         if (layoutName === 'dagre') {
-                            /*
-                            layoutOptions.rankDir = 'TB';
-                            layoutOptions.nodeSep = 50;
-                            layoutOptions.rankSep = 100;
-                            */
+                            // Check if dagre layout is available
+                            if (typeof cytoscapeDagre === 'undefined') {
+                                console.error('Dagre layout is not available!');
+                                // Fall back to breadthfirst layout
+                                layoutName = 'breadthfirst';
+                                layoutOptions = {
+                                    name: 'breadthfirst',
+                                    directed: true,
+                                    padding: 30,
+                                    spacingFactor: 1.5,
+                                    animate: true,
+                                    fit: true
+                                };
+                            } else {
+                                layoutOptions = {
+                                    name: 'dagre',
+                                    rankDir: 'TB',
+                                    nodeSep: 50,
+                                    rankSep: 100,
+                                    padding: 30,
+                                    fit: true,
+                                    animate: true,
+                                    animationDuration: 500
+                                };
+                            }
                         } else if (layoutName === 'breadthfirst') {
                             layoutOptions.spacingFactor = 1.5;
-                            layoutOptions.animate = true;
-                            layoutOptions.fit = true;
                             layoutOptions.circle = false;
                             layoutOptions.grid = true;
                         } else if (layoutName === 'concentric') {
@@ -145,7 +180,22 @@
                         } else if (layoutName === 'cose') {
                             layoutOptions.idealEdgeLength = 100;
                         }
-                        cy.layout(layoutOptions).run();
+                        
+                        try {
+                            console.log(`Creating layout with options:`, layoutOptions);
+                            const layout = cy.layout(layoutOptions);
+                            layout.run();
+                            console.log(`Layout ${layoutName} applied successfully`);
+                        } catch (error) {
+                            console.error(`Error applying layout ${layoutName}:`, error);
+                            // Fall back to circle layout
+                            try {
+                                cy.layout({ name: 'circle', padding: 30 }).run();
+                                console.log('Fallback to circle layout applied');
+                            } catch (fallbackError) {
+                                console.error('Error applying fallback layout:', fallbackError);
+                            }
+                        }
                     }
 
                     // Add search functionality
@@ -182,11 +232,9 @@
                         searchInput.value = '';
                         cy.fit();
 
-                        // Reset layout selector to dagre
-                        layoutSelect.value = 'dagre';
-                        
-                        // Apply dagre layout
-                        applyLayout('dagre');
+                        // Apply circle layout
+                        layoutSelect.value = 'circle';
+                        applyLayout('circle');
                     });
 
                     // Double-click to focus on a node
@@ -204,10 +252,15 @@
                         });
                     });
 
-                    // Apply dagre layout after initial rendering
+                    // Apply circle layout first
                     setTimeout(() => {
-                        applyLayout('dagre');
-                    }, 100);
+                        try {
+                            applyLayout('circle');
+                            console.log('Initial circle layout applied');
+                        } catch (error) {
+                            console.error('Error applying initial layout:', error);
+                        }
+                    }, 500);
                 })
                 .catch(error => {
                     console.error('Error loading graph data:', error);

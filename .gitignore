@@ -11,10 +11,4 @@ web/graph.json
 
 # Python cache
 __pycache__/
-*.py[cod]
-*$py.class
-
-# Logs
-*.log
-npm-debug.log*
 .venv/
