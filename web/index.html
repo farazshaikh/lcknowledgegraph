@@ -14,15 +14,50 @@
 fetch('graph.json')
   .then(res => res.json())
   .then(elements => {
+    // Create layout selection menu
+    const layoutMenu = document.createElement('select');
+    layoutMenu.id = 'layout-select';
+    layoutMenu.style.margin = '10px 0';
+
+    // Available layouts
+    const layouts = [
+      { name: 'cose', displayName: 'Force-directed (CoSE)' },
+      { name: 'breadthfirst', displayName: 'Breadth-first' },
+      { name: 'circle', displayName: 'Circle' },
+      { name: 'grid', displayName: 'Grid' },
+      { name: 'concentric', displayName: 'Concentric' },
+      { name: 'dagre', displayName: 'Dagre (Hierarchical)' }
+    ];
+
+    // Add options to select menu
+    layouts.forEach(layout => {
+      const option = document.createElement('option');
+      option.value = layout.name;
+      option.textContent = layout.displayName;
+      layoutMenu.appendChild(option);
+    });
+
+    // Insert menu before the graph
+    const cyElement = document.getElementById('cy');
+    cyElement.parentNode.insertBefore(layoutMenu, cyElement);
+
+    // Initialize Cytoscape
     const cy = cytoscape({
-      container: document.getElementById('cy'),  // a div in the HTML
+      container: document.getElementById('cy'),
       elements: elements,
-      layout: { name: 'cose' },  // use a force-directed layout for nicely spread nodes
+      layout: { name: 'cose' },  // default layout
       style: [
         { selector: 'node', style: { 'label': 'data(label)', 'background-color': '#6FB1FC', 'text-valign': 'center' } },
         { selector: 'edge', style: { 'width': 2, 'line-color': '#ccc', 'target-arrow-color': '#ccc', 'target-arrow-shape': 'triangle' } }
       ]
     });
+
+    // Handle layout changes
+    layoutMenu.addEventListener('change', function() {
+      const selectedLayout = this.value;
+      cy.layout({ name: selectedLayout }).run();
+    });
+
     // On node click, display concept info (e.g., problems list)
     cy.on('tap', 'node', function(evt) {
       const nodeData = evt.target.data();
