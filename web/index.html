@@ -213,6 +213,13 @@
             </div>
             
             <div class="header-column">
+                <div class="theme-toggle">
+                    <label for="dark-mode-toggle" class="control-label">Dark Mode</label>
+                    <label class="switch">
+                        <input type="checkbox" id="dark-mode-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
                 <button id="reset">Reset View</button>
             </div>
         </div>
@@ -274,6 +281,99 @@
         window.onload = function() {
             console.log('Page loaded, fetching graph data...');
 
+            // Dark mode toggle functionality
+            const darkModeToggle = document.getElementById('dark-mode-toggle');
+            const body = document.body;
+            
+            // Add dark mode styles to document head
+            const darkModeStyles = document.createElement('style');
+            darkModeStyles.textContent = `
+                body.dark-mode {
+                    background-color: #222;
+                    color: #f5f5f5;
+                }
+                body.dark-mode #header {
+                    background-color: #333;
+                    border-color: #444;
+                }
+                body.dark-mode .control-label {
+                    color: #f5f5f5;
+                }
+                body.dark-mode #search,
+                body.dark-mode #problem-search,
+                body.dark-mode #layout-select {
+                    background-color: #444;
+                    color: #f5f5f5;
+                    border-color: #555;
+                }
+                body.dark-mode #autocomplete-list div,
+                body.dark-mode #problem-autocomplete-list div {
+                    background-color: #444;
+                    color: #f5f5f5;
+                    border-color: #555;
+                }
+                body.dark-mode #autocomplete-list div:hover,
+                body.dark-mode #problem-autocomplete-list div:hover,
+                body.dark-mode #autocomplete-list .autocomplete-active,
+                body.dark-mode #problem-autocomplete-list .autocomplete-active {
+                    background-color: #555;
+                }
+                body.dark-mode button {
+                    background-color: #444;
+                    color: #f5f5f5;
+                    border-color: #555;
+                }
+                body.dark-mode button:hover {
+                    background-color: #555;
+                }
+            `;
+            document.head.appendChild(darkModeStyles);
+            
+            // Check for saved preference
+            const isDarkMode = localStorage.getItem('darkMode') === 'true';
+            
+            // Apply saved preference
+            if (isDarkMode) {
+                body.classList.add('dark-mode');
+                darkModeToggle.checked = true;
+            }
+            
+            // Toggle dark mode when checkbox is clicked
+            darkModeToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    body.classList.add('dark-mode');
+                    localStorage.setItem('darkMode', 'true');
+                } else {
+                    body.classList.remove('dark-mode');
+                    localStorage.setItem('darkMode', 'false');
+                }
+                
+                // Update graph styles if it's already loaded
+                if (window.cy) {
+                    updateGraphStyles();
+                }
+            });
+            
+            // Function to update graph styles based on dark mode
+            function updateGraphStyles() {
+                const isDark = body.classList.contains('dark-mode');
+                
+                // Update node and edge styles based on dark mode
+                cy.style()
+                    .selector('node')
+                    .style({
+                        'background-color': '#6FB1FC',
+                        'text-outline-color': isDark ? '#333' : '#fff',
+                        'color': isDark ? '#fff' : '#000'
+                    })
+                    .selector('edge')
+                    .style({
+                        'line-color': isDark ? '#888' : '#ccc',
+                        'target-arrow-color': isDark ? '#888' : '#ccc'
+                    })
+                    .update();
+            }
+
             fetch('./graph.json')
                 .then(response => {
                     console.log('Response status:', response.status);
@@ -295,16 +395,16 @@
                                     'text-halign': 'center',
                                     'background-color': '#6FB1FC',
                                     'text-outline-width': 2,
-                                    'text-outline-color': '#fff',
-                                    'color': '#000'
+                                    'text-outline-color': body.classList.contains('dark-mode') ? '#333' : '#fff',
+                                    'color': body.classList.contains('dark-mode') ? '#fff' : '#000'
                                 }
                             },
                             {
                                 selector: 'edge',
                                 style: {
                                     'width': 2,
-                                    'line-color': '#ccc',
-                                    'target-arrow-color': '#ccc',
+                                    'line-color': body.classList.contains('dark-mode') ? '#888' : '#ccc',
+                                    'target-arrow-color': body.classList.contains('dark-mode') ? '#888' : '#ccc',
                                     'target-arrow-shape': 'triangle',
                                     'curve-style': 'bezier'
                                 }
