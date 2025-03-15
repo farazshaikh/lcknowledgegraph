@@ -160,9 +160,18 @@
                     <a href="/metrics">Metrics</a>
                 </div>
             </div>
-            
+
             <div class="header-column">
                 <div style="display: flex; gap: 20px; justify-content: flex-start;">
+                    <div class="control-group">
+                        <label for="problem-search" class="control-label">Problem:</label>
+                        <div class="autocomplete-container">
+                            <input type="text" id="problem-search" placeholder="Type to search problems (LC_)...">
+                            <div id="problem-autocomplete-list" class="autocomplete-items" style="display: none;"></div>
+                        </div>
+                    </div>
+
+
                     <div class="control-group">
                         <label for="search" class="control-label">Concept:</label>
                         <div class="autocomplete-container">
@@ -170,6 +179,7 @@
                             <div id="autocomplete-list" class="autocomplete-items" style="display: none;"></div>
                         </div>
                     </div>
+
 
                     <div class="control-group">
                         <label for="layout-select" class="control-label">Layout:</label>
@@ -184,16 +194,16 @@
                         </select>
                     </div>
                 </div>
-                
+
                 <div class="highlight-options">
                     <span class="control-label">Highlight:</span>
                     <label>
-                        <input type="radio" name="highlight-mode" value="direct" checked>
-                        Direct
-                    </label>
-                    <label>
                         <input type="radio" name="highlight-mode" value="reachable">
                         Reachable
+                    </label>
+                    <label>
+                        <input type="radio" name="highlight-mode" value="direct" checked>
+                        Direct
                     </label>
                     <label>
                         <input type="radio" name="highlight-mode" value="prerequisites">
@@ -336,6 +346,12 @@
                                     'transition-property': 'opacity',
                                     'transition-duration': '0.5s'
                                 }
+                            },
+                            {
+                                selector: '.hidden',
+                                style: {
+                                    'display': 'none'
+                                }
                             }
                         ],
                         layout: {
@@ -377,22 +393,56 @@
                                 layoutOptions = {
                                     name: 'dagre',
                                     rankDir: 'TB',
-                                    nodeSep: 50,
-                                    rankSep: 100,
+                                    nodeSep: 80,
+                                    rankSep: 120,
                                     padding: 30,
                                     fit: true,
                                     animate: true,
-                                    animationDuration: 500
+                                    animationDuration: 500,
+                                    // Optimize for edge crossings
+                                    edgeWeight: edge => 1,
+                                    // Increase iterations for better layout
+                                    maxIterations: 2000
                                 };
                             }
                         } else if (layoutName === 'breadthfirst') {
-                            layoutOptions.spacingFactor = 1.5;
+                            layoutOptions.spacingFactor = 1.8;
                             layoutOptions.circle = false;
                             layoutOptions.grid = true;
+                            layoutOptions.directed = true;
+                            layoutOptions.avoidOverlap = true;
+                            layoutOptions.roots = cy.nodes().roots();
                         } else if (layoutName === 'concentric') {
-                            layoutOptions.minNodeSpacing = 50;
+                            layoutOptions.minNodeSpacing = 80;
+                            layoutOptions.avoidOverlap = true;
+                            layoutOptions.startAngle = 3 / 2 * Math.PI; // Start from top
+                            layoutOptions.sweep = 2 * Math.PI; // Full 360 degrees
+                            layoutOptions.equidistant = true; // Equal distance between levels
+                            // Use node degree for concentric layout ordering
+                            layoutOptions.concentric = function(node) {
+                                return node.indegree();
+                            };
                         } else if (layoutName === 'cose') {
-                            layoutOptions.idealEdgeLength = 100;
+                            layoutOptions.idealEdgeLength = 150;
+                            layoutOptions.nodeOverlap = 20;
+                            layoutOptions.refresh = 20;
+                            layoutOptions.fit = true;
+                            layoutOptions.padding = 30;
+                            layoutOptions.randomize = false;
+                            layoutOptions.componentSpacing = 100;
+                            layoutOptions.nodeRepulsion = 4500;
+                            layoutOptions.edgeElasticity = 100;
+                            layoutOptions.nestingFactor = 1.2;
+                            layoutOptions.gravity = 80;
+                            layoutOptions.numIter = 1000;
+                            layoutOptions.initialTemp = 200;
+                            layoutOptions.coolingFactor = 0.95;
+                            layoutOptions.minTemp = 1.0;
+                        } else if (layoutName === 'circle') {
+                            layoutOptions.avoidOverlap = true;
+                            layoutOptions.radius = 250;
+                            layoutOptions.startAngle = 3 / 2 * Math.PI; // Start from top
+                            layoutOptions.sweep = 2 * Math.PI; // Full 360 degrees
                         }
                         
                         try {
@@ -404,7 +454,11 @@
                             console.error(`Error applying layout ${layoutName}:`, error);
                             // Fall back to circle layout
                             try {
-                                cy.layout({ name: 'circle', padding: 30 }).run();
+                                cy.layout({ 
+                                    name: 'circle', 
+                                    padding: 30,
+                                    avoidOverlap: true
+                                }).run();
                                 console.log('Fallback to circle layout applied');
                             } catch (fallbackError) {
                                 console.error('Error applying fallback layout:', fallbackError);
@@ -413,15 +467,192 @@
                     }
 
                     // Add search functionality
+                    // Add problem search functionality
+                    const problemSearchInput = document.getElementById('problem-search');
+                    const problemAutocompleteList = document.getElementById('problem-autocomplete-list');
+
+                    // Function to update problem autocomplete list
+                    function updateProblemAutocompleteList(query) {
+                        // Clear previous autocomplete list
+                        problemAutocompleteList.innerHTML = '';
+
+                        if (!query || query.length < 1) {
+                            // If empty query, show all problems (limited to first 20)
+                            const allProblems = problemLabels.slice(0, 20);
+
+                            if (allProblems.length > 0) {
+                                problemAutocompleteList.style.display = 'block';
+
+                                allProblems.forEach(problem => {
+                                    const div = document.createElement('div');
+                                    div.textContent = problem;
+                                    div.addEventListener('click', function() {
+                                        problemSearchInput.value = problem;
+                                        problemAutocompleteList.style.display = 'none';
+                                        // Clear the concept search input when selecting a problem
+                                        searchInput.value = '';
+                                        autocompleteList.style.display = 'none';
+                                        highlightMatchingNodes(problem);
+                                    });
+                                    problemAutocompleteList.appendChild(div);
+                                });
+                            }
+                        } else {
+                            // Filter problems that match the query
+                            const matches = problemLabels.filter(label =>
+                                label.toLowerCase().includes(query.toLowerCase())
+                            );
+
+                            if (matches.length > 0) {
+                                problemAutocompleteList.style.display = 'block';
+
+                                // Sort matches by relevance (exact match first, then starts with, then includes)
+                                matches.sort((a, b) => {
+                                    const aLower = a.toLowerCase();
+                                    const bLower = b.toLowerCase();
+                                    const queryLower = query.toLowerCase();
+
+                                    if (aLower === queryLower) return -1;
+                                    if (bLower === queryLower) return 1;
+                                    if (aLower.startsWith(queryLower) && !bLower.startsWith(queryLower)) return -1;
+                                    if (bLower.startsWith(queryLower) && !aLower.startsWith(queryLower)) return 1;
+                                    return a.localeCompare(b);
+                                });
+
+                                // Limit to 20 suggestions
+                                const limitedMatches = matches.slice(0, 20);
+
+                                // Create suggestion items
+                                limitedMatches.forEach(match => {
+                                    const div = document.createElement('div');
+                                    div.textContent = match;
+                                    div.addEventListener('click', function() {
+                                        problemSearchInput.value = match;
+                                        problemAutocompleteList.style.display = 'none';
+                                        // Clear the concept search input when selecting a problem
+                                        searchInput.value = '';
+                                        autocompleteList.style.display = 'none';
+                                        highlightMatchingNodes(match);
+                                    });
+                                    problemAutocompleteList.appendChild(div);
+                                });
+                            } else {
+                                problemAutocompleteList.style.display = 'none';
+                            }
+                        }
+                    }
+
+                    // Show problem autocomplete dropdown when input is focused
+                    problemSearchInput.addEventListener('focus', function() {
+                        updateProblemAutocompleteList(this.value);
+                    });
+
+                    // Update problem autocomplete list as user types
+                    problemSearchInput.addEventListener('input', function() {
+                        const query = this.value;
+                        // Clear the concept search input when typing in problem search
+                        if (query.trim() !== '' && searchInput.value.trim() !== '') {
+                            searchInput.value = '';
+                            autocompleteList.style.display = 'none';
+                        }
+                        updateProblemAutocompleteList(query);
+
+                        // Also highlight matching nodes as user types
+                        highlightMatchingNodes(query);
+                    });
+
+                    // Hide problem autocomplete list when clicking outside
+                    document.addEventListener('click', function(e) {
+                        if (e.target !== problemSearchInput && !problemAutocompleteList.contains(e.target)) {
+                            problemAutocompleteList.style.display = 'none';
+                        }
+                    });
+
+                    // Keyboard navigation for problem autocomplete
+                    problemSearchInput.addEventListener('keydown', function(e) {
+                        const items = problemAutocompleteList.getElementsByTagName('div');
+                        if (items.length === 0) return;
+
+                        let activeItem = problemAutocompleteList.querySelector('.autocomplete-active');
+                        const activeIndex = Array.from(items).indexOf(activeItem);
+
+                        if (e.key === 'ArrowDown') {
+                            e.preventDefault();
+                            if (activeItem) {
+                                activeItem.classList.remove('autocomplete-active');
+                                const nextIndex = (activeIndex + 1) % items.length;
+                                items[nextIndex].classList.add('autocomplete-active');
+                                items[nextIndex].scrollIntoView({ block: 'nearest' });
+                                
+                                // Update search input and highlight in real-time
+                                problemSearchInput.value = items[nextIndex].textContent;
+                                // Clear the concept search input
+                                searchInput.value = '';
+                                autocompleteList.style.display = 'none';
+                                highlightMatchingNodes(items[nextIndex].textContent);
+                            } else {
+                                items[0].classList.add('autocomplete-active');
+                                items[0].scrollIntoView({ block: 'nearest' });
+                                
+                                // Update search input and highlight in real-time
+                                problemSearchInput.value = items[0].textContent;
+                                // Clear the concept search input
+                                searchInput.value = '';
+                                autocompleteList.style.display = 'none';
+                                highlightMatchingNodes(items[0].textContent);
+                            }
+                        } else if (e.key === 'ArrowUp') {
+                            e.preventDefault();
+                            if (activeItem) {
+                                activeItem.classList.remove('autocomplete-active');
+                                const prevIndex = (activeIndex - 1 + items.length) % items.length;
+                                items[prevIndex].classList.add('autocomplete-active');
+                                items[prevIndex].scrollIntoView({ block: 'nearest' });
+                                
+                                // Update search input and highlight in real-time
+                                problemSearchInput.value = items[prevIndex].textContent;
+                                // Clear the concept search input
+                                searchInput.value = '';
+                                autocompleteList.style.display = 'none';
+                                highlightMatchingNodes(items[prevIndex].textContent);
+                            } else {
+                                items[items.length - 1].classList.add('autocomplete-active');
+                                items[items.length - 1].scrollIntoView({ block: 'nearest' });
+                                
+                                // Update search input and highlight in real-time
+                                problemSearchInput.value = items[items.length - 1].textContent;
+                                // Clear the concept search input
+                                searchInput.value = '';
+                                autocompleteList.style.display = 'none';
+                                highlightMatchingNodes(items[items.length - 1].textContent);
+                            }
+                        } else if (e.key === 'Enter') {
+                            e.preventDefault();
+                            if (activeItem) {
+                                problemSearchInput.value = activeItem.textContent;
+                                problemAutocompleteList.style.display = 'none';
+                                // Clear the concept search input
+                                searchInput.value = '';
+                                autocompleteList.style.display = 'none';
+                                highlightMatchingNodes(activeItem.textContent);
+                            }
+                        }
+                    });
+
+                    
                     const searchInput = document.getElementById('search');
                     const autocompleteList = document.getElementById('autocomplete-list');
-                    
-                    // Get all concept labels for autocomplete
-                    const conceptLabels = cy.nodes().map(node => node.data('label'));
-                    
+
+                    // Get all concept labels for autocomplete (only nodes with type 'concept')
+                    const conceptLabels = cy.nodes().filter(node => node.data('type') === 'concept').map(node => node.data('label'));
                     // Sort concept labels alphabetically for easier browsing
-                    conceptLabels.sort((a, b) => a.localeCompare(b));
-                    
+                    conceptLabels.sort((a, b) => a.localeCompare(b));                    // Get all concept labels for autocomplete (only nodes with type 'concept')
+                    const problemLabels = cy.nodes().filter(node => node.data('type') === 'problem').map(node => node.data('label'));
+                    // Sort concept labels alphabetically for easier browsing
+                    problemLabels.sort((a, b) => a.localeCompare(b));
+
+
+
                     // Autocomplete functionality
                     function highlightMatchingNodes(query) {
                         // Reset all styles
@@ -451,6 +682,146 @@
                             } else {
                                 // If multiple nodes match, just highlight them directly
                                 matchingNodes.addClass('highlighted');
+                                
+                                // Hide all other nodes
+                                cy.nodes().difference(matchingNodes).addClass('hidden');
+                                cy.edges().addClass('hidden');
+                            }
+                            
+                            // Rearrange the graph to focus only on visible nodes
+                            rearrangeVisibleNodes();
+                        }
+                    }
+                    
+                    // Function to rearrange the graph to focus only on visible nodes
+                    function rearrangeVisibleNodes() {
+                        // Get all visible nodes
+                        const visibleNodes = cy.nodes().filter(node => !node.hasClass('hidden'));
+                        const visibleEdges = cy.edges().filter(edge => 
+                            !edge.hasClass('hidden') && 
+                            !edge.source().hasClass('hidden') && 
+                            !edge.target().hasClass('hidden')
+                        );
+                        
+                        if (visibleNodes.length > 0) {
+                            // Create a new layout with only visible nodes
+                            const layoutName = document.getElementById('layout-select').value;
+                            
+                            let layoutOptions = {
+                                name: layoutName,
+                                padding: 50,
+                                animate: true,
+                                fit: true,
+                                // Only include visible elements in the layout
+                                eles: visibleNodes.union(visibleEdges)
+                            };
+                            
+                            // Add specific options for certain layouts
+                            if (layoutName === 'dagre') {
+                                if (typeof cytoscapeDagre !== 'undefined') {
+                                    layoutOptions = {
+                                        name: 'dagre',
+                                        rankDir: 'TB',
+                                        nodeSep: 80,
+                                        rankSep: 120,
+                                        padding: 50,
+                                        fit: true,
+                                        animate: true,
+                                        animationDuration: 500,
+                                        eles: visibleNodes.union(visibleEdges),
+                                        // Optimize for edge crossings
+                                        edgeWeight: edge => 1,
+                                        // Increase iterations for better layout
+                                        maxIterations: 2000
+                                    };
+                                } else {
+                                    layoutOptions = {
+                                        name: 'breadthfirst',
+                                        directed: true,
+                                        padding: 50,
+                                        spacingFactor: 1.8,
+                                        animate: true,
+                                        fit: true,
+                                        eles: visibleNodes.union(visibleEdges),
+                                        avoidOverlap: true
+                                    };
+                                }
+                            } else if (layoutName === 'breadthfirst') {
+                                layoutOptions.spacingFactor = 1.8;
+                                layoutOptions.circle = false;
+                                layoutOptions.grid = true;
+                                layoutOptions.directed = true;
+                                layoutOptions.avoidOverlap = true;
+                                
+                                // Try to find root nodes (nodes with no incoming edges)
+                                const roots = visibleNodes.filter(node => 
+                                    node.incomers('edge').filter(e => !e.hasClass('hidden')).size() === 0
+                                );
+                                
+                                if (roots.length > 0) {
+                                    layoutOptions.roots = roots;
+                                }
+                            } else if (layoutName === 'concentric') {
+                                layoutOptions.minNodeSpacing = 80;
+                                layoutOptions.avoidOverlap = true;
+                                layoutOptions.startAngle = 3 / 2 * Math.PI; // Start from top
+                                layoutOptions.sweep = 2 * Math.PI; // Full 360 degrees
+                                layoutOptions.equidistant = true; // Equal distance between levels
+                                // Use node degree for concentric layout ordering
+                                layoutOptions.concentric = function(node) {
+                                    return node.indegree();
+                                };
+                            } else if (layoutName === 'cose') {
+                                layoutOptions.idealEdgeLength = 100;
+                                layoutOptions.nodeOverlap = 10;
+                                layoutOptions.refresh = 20;
+                                layoutOptions.fit = true;
+                                layoutOptions.padding = 30;
+                                layoutOptions.randomize = false;
+                                layoutOptions.componentSpacing = 60;
+                                layoutOptions.nodeRepulsion = 2500;
+                                layoutOptions.edgeElasticity = 100;
+                                layoutOptions.nestingFactor = 1.0;
+                                layoutOptions.gravity = 50;
+                                layoutOptions.numIter = 1000;
+                                layoutOptions.initialTemp = 200;
+                                layoutOptions.coolingFactor = 0.95;
+                                layoutOptions.minTemp = 1.0;
+                            } else if (layoutName === 'circle') {
+                                layoutOptions.avoidOverlap = true;
+                                layoutOptions.radius = Math.max(150, visibleNodes.length * 10);
+                                layoutOptions.startAngle = 3 / 2 * Math.PI; // Start from top
+                                layoutOptions.sweep = 2 * Math.PI; // Full 360 degrees
+                            }
+                            
+                            try {
+                                console.log(`Rearranging visible nodes with layout: ${layoutName}`);
+                                const layout = cy.layout(layoutOptions);
+                                layout.run();
+                                
+                                // Fit the view to show all visible nodes
+                                setTimeout(() => {
+                                    cy.fit(visibleNodes, 50);
+                                }, 600);
+                            } catch (error) {
+                                console.error(`Error rearranging visible nodes:`, error);
+                                // Fall back to circle layout
+                                try {
+                                    cy.layout({ 
+                                        name: 'circle', 
+                                        padding: 50,
+                                        eles: visibleNodes,
+                                        avoidOverlap: true,
+                                        radius: Math.max(150, visibleNodes.length * 10)
+                                    }).run();
+                                    
+                                    // Fit the view to show all visible nodes
+                                    setTimeout(() => {
+                                        cy.fit(visibleNodes, 50);
+                                    }, 600);
+                                } catch (fallbackError) {
+                                    console.error('Error applying fallback layout:', fallbackError);
+                                }
                             }
                         }
                     }
@@ -476,6 +847,9 @@
                             // Update search input with the node's label
                             searchInput.value = node.data('label');
                             
+                            // Rearrange the graph to focus only on visible nodes
+                            rearrangeVisibleNodes();
+                            
                             console.log(`Focused on node: ${nodeId} (${node.data('label')})`);
                             return true;
                         } else {
@@ -486,7 +860,7 @@
                     
                     // Function to reset all styles
                     function resetStyles() {
-                        cy.elements().removeClass('highlighted reachable prerequisite faded');
+                        cy.elements().removeClass('highlighted reachable prerequisite faded hidden');
                     }
                     
                     // Function to apply the selected highlight mode
@@ -494,10 +868,13 @@
                         if (mode === 'direct') {
                             // Highlight the node and its direct connections
                             node.addClass('highlighted');
-                            node.connectedEdges().addClass('highlighted');
+                            const connectedEdges = node.connectedEdges();
+                            connectedEdges.addClass('highlighted');
+                            const connectedNodes = connectedEdges.connectedNodes();
                             
-                            // Optional: fade other elements
-                            cy.elements().not(node).not(node.connectedEdges()).addClass('faded');
+                            // Hide all other nodes and edges
+                            cy.nodes().difference(node).difference(connectedNodes).addClass('hidden');
+                            cy.edges().difference(connectedEdges).addClass('hidden');
                         } 
                         else if (mode === 'reachable') {
                             // Highlight the node
@@ -532,12 +909,9 @@
                             cy.collection(reachableNodes).addClass('reachable');
                             cy.collection(reachableEdges).addClass('reachable');
                             
-                            // Optional: fade other elements
-                            cy.elements()
-                                .not(node)
-                                .not(cy.collection(reachableNodes))
-                                .not(cy.collection(reachableEdges))
-                                .addClass('faded');
+                            // Hide all other nodes and edges
+                            cy.nodes().difference(node).difference(cy.collection(reachableNodes)).addClass('hidden');
+                            cy.edges().difference(cy.collection(reachableEdges)).addClass('hidden');
                         }
                         else if (mode === 'prerequisites') {
                             // Highlight the node
@@ -572,12 +946,9 @@
                             cy.collection(prerequisiteNodes).addClass('prerequisite');
                             cy.collection(prerequisiteEdges).addClass('prerequisite');
                             
-                            // Optional: fade other elements
-                            cy.elements()
-                                .not(node)
-                                .not(cy.collection(prerequisiteNodes))
-                                .not(cy.collection(prerequisiteEdges))
-                                .addClass('faded');
+                            // Hide all other nodes and edges
+                            cy.nodes().difference(node).difference(cy.collection(prerequisiteNodes)).addClass('hidden');
+                            cy.edges().difference(cy.collection(prerequisiteEdges)).addClass('hidden');
                         }
                     }
                     
@@ -599,6 +970,9 @@
                                     div.addEventListener('click', function() {
                                         searchInput.value = concept;
                                         autocompleteList.style.display = 'none';
+                                        // Clear the problem search input when selecting a concept
+                                        problemSearchInput.value = '';
+                                        problemAutocompleteList.style.display = 'none';
                                         highlightMatchingNodes(concept);
                                     });
                                     autocompleteList.appendChild(div);
@@ -682,9 +1056,17 @@
                                 const nextIndex = (activeIndex + 1) % items.length;
                                 items[nextIndex].classList.add('autocomplete-active');
                                 items[nextIndex].scrollIntoView({ block: 'nearest' });
+                                
+                                // Update search input and highlight in real-time
+                                searchInput.value = items[nextIndex].textContent;
+                                highlightMatchingNodes(items[nextIndex].textContent);
                             } else {
                                 items[0].classList.add('autocomplete-active');
                                 items[0].scrollIntoView({ block: 'nearest' });
+                                
+                                // Update search input and highlight in real-time
+                                searchInput.value = items[0].textContent;
+                                highlightMatchingNodes(items[0].textContent);
                             }
                         } else if (e.key === 'ArrowUp') {
                             e.preventDefault();
@@ -693,9 +1075,17 @@
                                 const prevIndex = (activeIndex - 1 + items.length) % items.length;
                                 items[prevIndex].classList.add('autocomplete-active');
                                 items[prevIndex].scrollIntoView({ block: 'nearest' });
+                                
+                                // Update search input and highlight in real-time
+                                searchInput.value = items[prevIndex].textContent;
+                                highlightMatchingNodes(items[prevIndex].textContent);
                             } else {
                                 items[items.length - 1].classList.add('autocomplete-active');
                                 items[items.length - 1].scrollIntoView({ block: 'nearest' });
+                                
+                                // Update search input and highlight in real-time
+                                searchInput.value = items[items.length - 1].textContent;
+                                highlightMatchingNodes(items[items.length - 1].textContent);
                             }
                         } else if (e.key === 'Enter') {
                             e.preventDefault();
@@ -750,6 +1140,9 @@
 
                         // Update search input with the selected node's label
                         searchInput.value = node.data('label');
+                        
+                        // Rearrange the graph to focus only on visible nodes
+                        rearrangeVisibleNodes();
                     });
                     
                     // Add event listener for highlight mode change
