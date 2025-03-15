@@ -150,52 +150,95 @@
 </head>
 <body>
     <div id="header">
-        <h1>Knowledge Graph</h1>
-        <div class="controls">
-            <div class="control-group">
-                <label for="search" class="control-label">Select Concept:</label>
-                <div class="autocomplete-container">
-                    <input type="text" id="search" placeholder="Type to search concepts...">
-                    <div id="autocomplete-list" class="autocomplete-items" style="display: none;"></div>
+        <div class="header-content">
+            <div class="header-title">
+                <h1>Knowledge Graph</h1>
+                <div class="nav-links">
+                    <a href="/metrics">View Graph Metrics</a>
                 </div>
             </div>
+            
+            <div class="header-controls">
+                <div class="control-group">
+                    <label for="search" class="control-label">Select Concept:</label>
+                    <div class="autocomplete-container">
+                        <input type="text" id="search" placeholder="Type to search concepts...">
+                        <div id="autocomplete-list" class="autocomplete-items" style="display: none;"></div>
+                    </div>
+                </div>
 
-            <div class="control-group">
-                <label for="layout-select" class="control-label">Layout:</label>
-                <select id="layout-select">
-                    <option value="circle">Circle</option>
-                    <option value="grid">Grid</option>
-                    <option value="concentric">Concentric</option>
-                    <option value="breadthfirst">Breadth First</option>
-                    <option value="cose">Force-Directed (CoSE)</option>
-                    <option value="random">Random</option>
-                    <option value="dagre">Dagre (Hierarchical)</option>
-                </select>
+                <div class="control-group">
+                    <label for="layout-select" class="control-label">Layout:</label>
+                    <select id="layout-select">
+                        <option value="circle">Circle</option>
+                        <option value="grid">Grid</option>
+                        <option value="concentric">Concentric</option>
+                        <option value="breadthfirst">Breadth First</option>
+                        <option value="cose">Force-Directed (CoSE)</option>
+                        <option value="random">Random</option>
+                        <option value="dagre">Dagre (Hierarchical)</option>
+                    </select>
+                </div>
+
+                <div class="highlight-options">
+                    <span class="control-label">Highlight:</span>
+                    <label>
+                        <input type="radio" name="highlight-mode" value="direct" checked>
+                        Direct
+                    </label>
+                    <label>
+                        <input type="radio" name="highlight-mode" value="reachable">
+                        Reachable
+                    </label>
+                    <label>
+                        <input type="radio" name="highlight-mode" value="prerequisites">
+                        Prerequisites
+                    </label>
+                </div>
+
+                <button id="reset">Reset View</button>
             </div>
-
-            <button id="reset">Reset View</button>
-        </div>
-        
-        <div class="highlight-options">
-            <span class="control-label">Highlight Mode:</span>
-            <label>
-                <input type="radio" name="highlight-mode" value="direct" checked>
-                Direct Connections
-            </label>
-            <label>
-                <input type="radio" name="highlight-mode" value="reachable">
-                Reachable Nodes
-            </label>
-            <label>
-                <input type="radio" name="highlight-mode" value="prerequisites">
-                Prerequisites
-            </label>
-        </div>
-        
-        <div class="nav-links">
-            <a href="/metrics">View Graph Metrics</a>
         </div>
     </div>
+    <style>
+        #header {
+            padding: 10px 15px;
+            background-color: #f5f5f5;
+            border-bottom: 1px solid #ddd;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .header-title h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        .header-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .nav-links {
+            font-size: 0.9rem;
+        }
+        .highlight-options {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            margin-top: 0;
+        }
+        .highlight-options label {
+            font-size: 0.85rem;
+        }
+    </style>
+
     <div id="cy"></div>
 
     <script>
