@@ -37,15 +37,6 @@ jobs:
         run: |
           ./run.sh --buildonly
 
-      - name: Copy graph.json to web directory
-        run: |
-          if [ -f graph/output/graph.json ]; then
-            mkdir -p web
-            cp graph/output/graph.json web/
-          else
-            echo "Error: graph.json not generated"
-            exit 1
-          fi
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
