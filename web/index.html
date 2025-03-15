@@ -151,35 +151,40 @@
 <body>
     <div id="header">
         <div class="header-content">
-            <div class="header-title">
-                <h1>Knowledge Graph</h1>
+            <div class="header-column">
+                <div class="header-title">
+                    <h1>Knowledge Graph</h1>
+                </div>
                 <div class="nav-links">
-                    <a href="/metrics">View Graph Metrics</a>
+                    <a href="/">Home</a>
+                    <a href="/metrics">Metrics</a>
                 </div>
             </div>
             
-            <div class="header-controls">
-                <div class="control-group">
-                    <label for="search" class="control-label">Select Concept:</label>
-                    <div class="autocomplete-container">
-                        <input type="text" id="search" placeholder="Type to search concepts...">
-                        <div id="autocomplete-list" class="autocomplete-items" style="display: none;"></div>
+            <div class="header-column">
+                <div style="display: flex; gap: 20px; justify-content: flex-start;">
+                    <div class="control-group">
+                        <label for="search" class="control-label">Concept:</label>
+                        <div class="autocomplete-container">
+                            <input type="text" id="search" placeholder="Type to search concepts...">
+                            <div id="autocomplete-list" class="autocomplete-items" style="display: none;"></div>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="layout-select" class="control-label">Layout:</label>
+                        <select id="layout-select">
+                            <option value="circle">Circle</option>
+                            <option value="grid">Grid</option>
+                            <option value="concentric">Concentric</option>
+                            <option value="breadthfirst">Breadth First</option>
+                            <option value="cose">Force-Directed (CoSE)</option>
+                            <option value="random">Random</option>
+                            <option value="dagre">Dagre (Hierarchical)</option>
+                        </select>
                     </div>
                 </div>
-
-                <div class="control-group">
-                    <label for="layout-select" class="control-label">Layout:</label>
-                    <select id="layout-select">
-                        <option value="circle">Circle</option>
-                        <option value="grid">Grid</option>
-                        <option value="concentric">Concentric</option>
-                        <option value="breadthfirst">Breadth First</option>
-                        <option value="cose">Force-Directed (CoSE)</option>
-                        <option value="random">Random</option>
-                        <option value="dagre">Dagre (Hierarchical)</option>
-                    </select>
-                </div>
-
+                
                 <div class="highlight-options">
                     <span class="control-label">Highlight:</span>
                     <label>
@@ -195,7 +200,9 @@
                         Prerequisites
                     </label>
                 </div>
-
+            </div>
+            
+            <div class="header-column">
                 <button id="reset">Reset View</button>
             </div>
         </div>
