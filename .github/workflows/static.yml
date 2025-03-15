@@ -1,17 +1,32 @@
-# Deploy to GitHub Pages
-# This workflow is triggered in two ways:
-# 1. When pushing a tag that starts with 'rc-' (e.g., rc-v1.0.0)
-# 2. Manually via the GitHub Actions interface (workflow_dispatch)
-name: Deploy to GitHub Pages
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
 
 on:
+  # Runs on pushes targeting the default branch
   push:
-    tags:
-      - 'rc-**'
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
-  build-and-deploy:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -24,23 +39,22 @@ jobs:
 
       - name: Install Python dependencies
         run: |
+          cd graph/
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
-      - name: Debug Directory Structure
-        run: |
-          pwd
-          ls -la
-          find . -type f -name "*.py" | sort
 
       - name: Generate Graph
         run: |
           ./run.sh --buildonly
 
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages
           folder: web
-          clean: true
+          branch: gh-pages
+          token: ${{ secrets.GITHUB_TOKEN }}
