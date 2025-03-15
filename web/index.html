@@ -326,6 +326,70 @@
                 body.dark-mode button:hover {
                     background-color: #555;
                 }
+                .problem-tooltip {
+                    position: absolute;
+                    background-color: #fff;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                    padding: 10px;
+                    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                    z-index: 10;
+                    max-width: 300px;
+                    font-size: 12px;
+                    pointer-events: none;
+                }
+                body.dark-mode .problem-tooltip {
+                    background-color: #333;
+                    border-color: #444;
+                    color: #f5f5f5;
+                }
+                .problem-tooltip .title {
+                    font-weight: bold;
+                    margin-bottom: 5px;
+                    font-size: 14px;
+                }
+                .problem-tooltip .difficulty {
+                    display: inline-block;
+                    padding: 2px 6px;
+                    border-radius: 3px;
+                    margin-bottom: 5px;
+                    font-size: 11px;
+                }
+                .problem-tooltip .difficulty.Easy {
+                    background-color: #5cb85c;
+                    color: white;
+                }
+                .problem-tooltip .difficulty.Medium {
+                    background-color: #f0ad4e;
+                    color: white;
+                }
+                .problem-tooltip .difficulty.Hard {
+                    background-color: #d9534f;
+                    color: white;
+                }
+                .problem-tooltip .stats {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 5px;
+                    font-size: 11px;
+                }
+                .problem-tooltip .tags {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 4px;
+                    margin-top: 5px;
+                }
+                .problem-tooltip .tag {
+                    background-color: #e9ecef;
+                    color: #495057;
+                    padding: 1px 5px;
+                    border-radius: 3px;
+                    font-size: 10px;
+                }
+                body.dark-mode .problem-tooltip .tag {
+                    background-color: #444;
+                    color: #ddd;
+                }
             `;
             document.head.appendChild(darkModeStyles);
             
@@ -372,6 +436,68 @@
                         'target-arrow-color': isDark ? '#888' : '#ccc'
                     })
                     .update();
+            }
+
+            // Create tooltip element
+            const tooltip = document.createElement('div');
+            tooltip.className = 'problem-tooltip';
+            tooltip.style.display = 'none';
+            document.body.appendChild(tooltip);
+
+            // Function to fetch problem info
+            async function fetchProblemInfo(problemId) {
+                try {
+                    const response = await fetch(`https://lcid.cc/info/${problemId}`);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return await response.json();
+                } catch (error) {
+                    console.error(`Error fetching problem info for ${problemId}:`, error);
+                    return null;
+                }
+            }
+
+            // Function to show problem tooltip
+            async function showProblemTooltip(node, event) {
+                const label = node.data('label');
+                
+                // Check if this is a LeetCode problem node (starts with LC_)
+                if (label.startsWith('LC_')) {
+                    const problemId = label.substring(3); // Extract the number after LC_
+                    
+                    // Position tooltip near the cursor
+                    tooltip.style.left = `${event.renderedPosition.x + 10}px`;
+                    tooltip.style.top = `${event.renderedPosition.y + 10}px`;
+                    tooltip.style.display = 'block';
+                    tooltip.innerHTML = 'Loading problem info...';
+                    
+                    // Fetch problem info
+                    const problemInfo = await fetchProblemInfo(problemId);
+                    
+                    if (problemInfo) {
+                        // Format the tooltip content
+                        tooltip.innerHTML = `
+                            <div class="title">${problemInfo.title}</div>
+                            <div class="difficulty ${problemInfo.difficulty}">${problemInfo.difficulty}</div>
+                            <div class="stats">
+                                <span>Acceptance: ${problemInfo.acRate.toFixed(1)}%</span>
+                                <span>👍 ${problemInfo.likes} 👎 ${problemInfo.dislikes}</span>
+                            </div>
+                            <div>LeetCode #${problemInfo.frontendQuestionId}</div>
+                            <div class="tags">
+                                ${problemInfo.topicTags.map(tag => `<span class="tag">${tag.name}</span>`).join('')}
+                            </div>
+                        `;
+                    } else {
+                        tooltip.innerHTML = `<div>Problem information not available</div>`;
+                    }
+                }
+            }
+
+            // Function to hide problem tooltip
+            function hideProblemTooltip() {
+                tooltip.style.display = 'none';
             }
 
             fetch('./graph.json')
@@ -462,6 +588,16 @@
 
                     // Make cy available globally for the layout selector
                     window.cy = cy;
+
+                    // Add event listeners for problem tooltips
+                    cy.on('mouseover', 'node', function(event) {
+                        const node = event.target;
+                        showProblemTooltip(node, event);
+                    });
+
+                    cy.on('mouseout', 'node', function() {
+                        hideProblemTooltip();
+                    });
 
                     // Function to apply selected layout
                     function applyLayout(layoutName) {
