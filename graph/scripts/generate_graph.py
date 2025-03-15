@@ -2,6 +2,20 @@ import json
 import os
 import argparse
 import networkx as nx
+from collections import defaultdict
+from typing import Dict, Tuple, Set, List, NamedTuple
+from enum import Enum
+
+
+class ConceptType(Enum):
+    CONCEPT = "concept"
+    PROBLEM = "problem"
+
+class ConceptInfo(NamedTuple):
+    id: int # id of the concept
+    type: ConceptType # type of the concept
+    prereqs: Set[int] # ids of the concepts that are prereqs for this concept
+
 
 def generate_cytoscape_json(G, web_dir: str):
     elements = {"nodes": [], "edges": []}
@@ -11,7 +25,8 @@ def generate_cytoscape_json(G, web_dir: str):
         elements['nodes'].append({
             "data": {
                 "id": str(node),  # Ensure ID is a string
-                "label": str(node)
+                "label": str(node),
+                "type": node.type.value
             }
         })
 
@@ -37,19 +52,19 @@ def generate_cytoscape_json(G, web_dir: str):
 
 
 
-def generate_graph(concept_map):
+def generate_graph(concept_map: Dict[str, ConceptInfo]) -> nx.DiGraph:
     G = nx.DiGraph()
     # req, (id, [prereq])
 
     # create a id to concept name mapping
-    id_to_concept = dict();
-    for req, v in concept_map.items():
-        id_to_concept[v[0]] = req
-        print(f"Adding node {req} with id {v[0]}")
-        G.add_node(req, id=v[0])
+    id_to_concept: Dict[int, str] = defaultdict(lambda: "")
+    for req, concept_info in concept_map.items():
+        id_to_concept[concept_info.id] = req
+        print(f"Adding node {req} with id {concept_info.id}")
+        G.add_node(req, info=concept_info)
 
-    for req, v in concept_map.items():
-        for prereq in v[1]:
+    for req, concept_info in concept_map.items():
+        for prereq in concept_info.prereqs:
             print(f"Adding edge {req} -> {id_to_concept[prereq]}")
             G.add_edge(req, id_to_concept[prereq])
 
@@ -62,12 +77,12 @@ def save_graph_to_file(G, filename):
 
 
 
-def process_concept_streams(problems):
+def process_concept_streams(problems, add_problem_ids: bool = False) -> Dict[str, ConceptInfo]:
     # Extract concept streams from problems
-    concept_map = {}
+    concept_map: Dict[str, ConceptInfo] = defaultdict(lambda: ConceptInfo(len(concept_map), ConceptType.CONCEPT, set([])))
     for problem in problems:
-        problem_id = problem['id']
-        concepts_streams = problem.get('concepts', [])
+        problem_id: int = problem['id']
+        concepts_streams: List[str] = problem.get('concepts', [])
 
         #"cc->data_structures->arrays->linkedlist->linkedlist_addition",
         #"cc->mathematics->addition->carry"
@@ -77,14 +92,22 @@ def process_concept_streams(problems):
             for concept in concept_stream:
                 if concept not in concept_map:
                     # Initialize concept in map with empty list of dependent IDs
-                    concept_map[concept] = (len(concept_map), set([]))
+                    concept_map[concept] = ConceptInfo(len(concept_map), ConceptType.CONCEPT, set([]))
 
             for i in range(len(concept_stream) - 1):
                 req = concept_stream[i]
                 prereq = concept_stream[i + 1]
-                concept_map[req][1].add(concept_map[prereq][0])
+                concept_map[req].prereqs.add(concept_map[prereq].id)
 
-    print(concept_map)
+            # Add problem ID to the first concept in the stream
+            if add_problem_ids:
+                problem_id_str = "LC_" + str(problem_id)
+                if problem_id_str not in concept_map:
+                    concept_map[problem_id_str] = ConceptInfo (len(concept_map), ConceptType.PROBLEM, set([]))
+                # add tail of the concept stream as a prereq to the problem
+                concept_map[problem_id_str].prereqs.add(concept_map[concept_stream[0]].id)
+
+    #print(concept_map)
     return concept_map
 
 
@@ -107,7 +130,7 @@ def load_graph(data_dir: str):
     # Load the latest problems JSON file
     problems = load_latest_problems_json(data_dir)
     # Process concept streams
-    concept_map = process_concept_streams(problems)
+    concept_map = process_concept_streams(problems, add_problem_ids=True)
     return concept_map
 
 if __name__ == "__main__":
@@ -118,5 +141,5 @@ if __name__ == "__main__":
 
     concept_map = load_graph(args.data_dir)
     g = generate_graph(concept_map)
-    save_graph_to_file(g, args.out_dir + "/graph.graphml")
+   # save_graph_to_file(g, args.out_dir + "/graph.graphml")
     generate_cytoscape_json(g, args.out_dir)
