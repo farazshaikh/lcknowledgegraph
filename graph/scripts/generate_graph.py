@@ -26,7 +26,7 @@ def generate_cytoscape_json(G, web_dir: str):
             "data": {
                 "id": str(node),  # Ensure ID is a string
                 "label": str(node),
-                "type": node.type.value
+                "type": G.nodes[node]['info'].type.value
             }
         })
 
