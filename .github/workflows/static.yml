@@ -35,16 +35,7 @@ jobs:
 
       - name: Generate Graph
         run: |
-          mkdir -p output
-          # Check if the script exists before running it
-          if [ -f scripts/generate_graph.py ]; then
-            python scripts/generate_graph.py
-          elif [ -f generate_graph.py ]; then
-            python generate_graph.py
-          else
-            echo "Error: generate_graph.py not found"
-            exit 1
-          fi
+          ./run.sh --buildonly
 
       - name: Copy graph.json to web directory
         run: |

@@ -21,7 +21,7 @@ def generate_cytoscape_json(G, web_dir: str):
     elements = {"nodes": [], "edges": []}
     # Add nodes
     for node in G.nodes:
-        print(f"Adding node to Cytoscape: {node}")
+        #print(f"Adding node to Cytoscape: {node}")
         elements['nodes'].append({
             "data": {
                 "id": str(node),  # Ensure ID is a string
@@ -60,12 +60,12 @@ def generate_graph(concept_map: Dict[str, ConceptInfo]) -> nx.DiGraph:
     id_to_concept: Dict[int, str] = defaultdict(lambda: "")
     for req, concept_info in concept_map.items():
         id_to_concept[concept_info.id] = req
-        print(f"Adding node {req} with id {concept_info.id}")
+        #print(f"Adding node {req} with id {concept_info.id}")
         G.add_node(req, info=concept_info)
 
     for req, concept_info in concept_map.items():
         for prereq in concept_info.prereqs:
-            print(f"Adding edge {req} -> {id_to_concept[prereq]}")
+            #print(f"Adding edge {req} -> {id_to_concept[prereq]}")
             G.add_edge(req, id_to_concept[prereq])
 
     # Return the graph object
