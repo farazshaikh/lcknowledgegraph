@@ -1,8 +1,13 @@
+# Deploy to GitHub Pages
+# This workflow is triggered in two ways:
+# 1. When pushing a tag that starts with 'rc-' (e.g., rc-v1.0.0)
+# 2. Manually via the GitHub Actions interface (workflow_dispatch)
 name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    tags:
+      - 'rc-**'
   workflow_dispatch:
 
 jobs:
@@ -16,7 +21,7 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
-          
+
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
@@ -26,11 +31,11 @@ jobs:
         run: |
           mkdir -p output
           python scripts/generate_graph.py
-          
+
       - name: Copy graph.json to web directory
         run: |
           cp output/graph.json web/
-          
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
