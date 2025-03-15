@@ -1,8 +1,7 @@
 import json
 import os
-import csv
-import networkx as nx
 import argparse
+import networkx as nx
 
 def generate_cytoscape_json(G, web_dir: str):
     elements = {"nodes": [], "edges": []}
