@@ -1,25 +1,27 @@
-
 #!/bin/bash
+set -e
+
 # Parse command line arguments
 BUILD_ONLY=false
 
 for arg in "$@"; do
   case $arg in
-    --buildonly)
-      BUILD_ONLY=true
-      shift
-      ;;
+  --buildonly)
+    BUILD_ONLY=true
+    shift
+    ;;
   esac
 done
 
 # Function to build the graph and link the output
 build_and_link_graph() {
   echo "Building graph..."
-  python graph/scripts/generate_graph.py --data_dir `pwd`/graph/data --out-dir `pwd`/graph/output
+  python graph/scripts/generate_graph.py --data_dir $(pwd)/graph/data --out-dir $(pwd)/graph/output
   echo "Linking graph.json to web directory..."
   rm -f ./web/graph.json
-  ln -s `pwd`/graph/output/graph.json ./web/graph.json
-  echo "Graph built and linked successfully."
+  # gh-pages doens't like symlinks so just copy over the file for now
+  cp $(pwd)/graph/output/graph.json ./web/graph.json
+  echo "Graph built and deployed successfully."
 }
 
 # Initial build
