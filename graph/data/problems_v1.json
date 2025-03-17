@@ -1,0 +1,3345 @@
+[
+    {
+        "id": 2,
+        "description": "Add Two Numbers",
+        "concepts": [
+            "cc->data_structures->arrays->linkedlist->linkedlist_addition",
+            "cc->mathematics->addition->carry"
+        ],
+        "datastructure": [
+            "linkedlist"
+        ],
+        "approach": "Add digits node by node with carry, build a new result list. Keep track of carry for any leftover."
+    },
+    {
+        "id": 3,
+        "description": "Longest Substring Without Repeating Characters",
+        "concepts": [
+            "cc->data_structures->two_pointers->sliding_window",
+            "cc->computer_science_basics->hashing"
+        ],
+        "datastructure": [
+            "map"
+        ],
+        "approach": "Use two pointers and a set/map to track used chars. Move the start pointer when a char repeats, and record the max length."
+    },
+    {
+        "id": 5,
+        "description": "Longest Palindromic Substring",
+        "concepts": [
+            "cc->data_structures->strings->expand_around_center",
+            "cc->algorithm_design->dp"
+        ],
+        "datastructure": [],
+        "approach": "For each center (character or gap), expand outwards to find palindromes. Keep track of the max length found."
+    },
+    {
+        "id": 7,
+        "description": "Reverse Integer",
+        "concepts": [
+            "cc->mathematics->math_manipulations",
+            "cc->computer_arithmetic->handle_overflow"
+        ],
+        "datastructure": [],
+        "approach": "Reverse digits by mod/div operations and build the result. Watch for overflow bounds."
+    },
+    {
+        "id": 8,
+        "description": "String to Integer (atoi)",
+        "concepts": [
+            "cc->data_structures->strings->string_parsing",
+            "cc->computer_science_basics->edge_cases"
+        ],
+        "datastructure": [],
+        "approach": "Strip spaces, handle sign, parse digits until non-digit. Clamp to integer bounds if overflow occurs."
+    },
+    {
+        "id": 11,
+        "description": "Container With Most Water",
+        "concepts": [
+            "cc->data_structures->two_pointers->two_pointer_approach"
+        ],
+        "datastructure": [],
+        "approach": "Start with left=0, right=n-1, compute area. Move the pointer with the smaller height inward, tracking max area."
+    },
+    {
+        "id": 15,
+        "description": "3Sum",
+        "concepts": [
+            "cc->data_structures->sorting->sorting",
+            "cc->data_structures->two_pointers->two_pointer"
+        ],
+        "datastructure": [],
+        "approach": "Sort the array, fix one number, then use two-pointer on the remainder. Skip duplicates and record valid triplets."
+    },
+    {
+        "id": 16,
+        "description": "3Sum Closest",
+        "concepts": [
+            "cc->data_structures->sorting->sorting",
+            "cc->data_structures->two_pointers->two_pointer"
+        ],
+        "datastructure": [],
+        "approach": "Sort, then fix one number and use two-pointer to find the sum closest to target. Track minimum difference."
+    },
+    {
+        "id": 17,
+        "description": "Letter Combinations of a Phone Number",
+        "concepts": [
+            "cc->algorithm_design->backtracking->backtracking",
+            "cc->data_structures->mappings->phone_keypad_mapping"
+        ],
+        "datastructure": [],
+        "approach": "Map each digit to letters, then recursively build possible strings. Collect all valid letter combinations."
+    },
+    {
+        "id": 18,
+        "description": "4Sum",
+        "concepts": [
+            "cc->data_structures->sorting->sorting",
+            "cc->data_structures->two_pointers->two_pointer"
+        ],
+        "datastructure": [],
+        "approach": "Sort the array, fix two numbers, then two-pointer the remaining part. Carefully skip duplicates."
+    },
+    {
+        "id": 19,
+        "description": "Remove Nth Node From End of List",
+        "concepts": [
+            "cc->data_structures->arrays->linkedlist",
+            "cc->algorithm_design->fast_slow_pointer"
+        ],
+        "datastructure": [
+            "linkedlist"
+        ],
+        "approach": "Move fast pointer n steps, then move both until fast hits null. Remove the slow pointer\u2019s next node."
+    },
+    {
+        "id": 22,
+        "description": "Generate Parentheses",
+        "concepts": [
+            "cc->algorithm_design->backtracking->backtracking_with_constraints"
+        ],
+        "datastructure": [],
+        "approach": "Recursively build parentheses strings, tracking '(' and ')' usage. Only add ')' when valid."
+    },
+    {
+        "id": 24,
+        "description": "Swap Nodes in Pairs",
+        "concepts": [
+            "cc->data_structures->linkedlist->linked_list_node_swaps"
+        ],
+        "datastructure": [
+            "linkedlist"
+        ],
+        "approach": "Swap every two adjacent nodes in the list. Update pointers carefully to maintain linkage."
+    },
+    {
+        "id": 29,
+        "description": "Divide Two Integers",
+        "concepts": [
+            "cc->mathematics->math",
+            "cc->computer_arithmetic->bit_manipulation"
+        ],
+        "datastructure": [],
+        "approach": "Simulate division by repeated subtraction or shifting. Handle overflow and sign properly."
+    },
+    {
+        "id": 31,
+        "description": "Next Permutation",
+        "concepts": [
+            "cc->algorithm_basics->permutation_rearrangement"
+        ],
+        "datastructure": [],
+        "approach": "From the end, find the first decreasing pair. Swap with next larger element and reverse the suffix."
+    },
+    {
+        "id": 33,
+        "description": "Search in Rotated Sorted Array",
+        "concepts": [
+            "cc->algorithm_design->binary_search->binary_search_variant"
+        ],
+        "datastructure": [],
+        "approach": "Identify which half is sorted based on mid vs boundaries. Narrow the search range accordingly."
+    },
+    {
+        "id": 34,
+        "description": "Find First and Last Position of Element in Sorted Array",
+        "concepts": [
+            "cc->algorithm_design->binary_search->binary_search_boundaries"
+        ],
+        "datastructure": [],
+        "approach": "Use binary search to find the leftmost occurrence, then another to find the rightmost. Return [-1,-1] if not found."
+    },
+    {
+        "id": 36,
+        "description": "Valid Sudoku",
+        "concepts": [
+            "cc->data_structures->hash_set->hash_sets_for_row_col_box"
+        ],
+        "datastructure": [
+            "set"
+        ],
+        "approach": "For each row, column, and sub-box, ensure no duplicate digits. Use sets or direct boolean checks."
+    },
+    {
+        "id": 38,
+        "description": "Count and Say",
+        "concepts": [
+            "cc->algorithm_basics->string_generation_pattern"
+        ],
+        "datastructure": [],
+        "approach": "Iteratively build the next sequence by describing the previous term\u2019s consecutive digits."
+    },
+    {
+        "id": 40,
+        "description": "Combination Sum II",
+        "concepts": [
+            "cc->algorithm_design->backtracking->backtracking_with_sorted_input"
+        ],
+        "datastructure": [],
+        "approach": "Sort, then backtrack while skipping duplicates. Only take each candidate once at a given level."
+    },
+    {
+        "id": 43,
+        "description": "Multiply Strings",
+        "concepts": [
+            "cc->algorithm_basics->string_multiplication_simulation"
+        ],
+        "datastructure": [],
+        "approach": "Multiply each digit of one string by each digit of the other, summing partial products. Handle carry and leading zeros."
+    },
+    {
+        "id": 46,
+        "description": "Permutations",
+        "concepts": [
+            "cc->algorithm_design->backtracking->backtracking",
+            "cc->data_structures->swapping"
+        ],
+        "datastructure": [],
+        "approach": "Recursively choose each element as the first, swap, and generate permutations of the remainder."
+    },
+    {
+        "id": 48,
+        "description": "Rotate Image",
+        "concepts": [
+            "cc->data_structures->matrix->matrix_transpose",
+            "cc->data_structures->matrix->reverse"
+        ],
+        "datastructure": [],
+        "approach": "Transpose the matrix, then reverse each row to rotate 90 degrees in-place."
+    },
+    {
+        "id": 49,
+        "description": "Group Anagrams",
+        "concepts": [
+            "cc->data_structures->hash_set->hashing_by_sorted_key_or_char_count"
+        ],
+        "datastructure": [
+            "map"
+        ],
+        "approach": "Sort each string or build a frequency key, store in a map from key to group of anagrams."
+    },
+    {
+        "id": 50,
+        "description": "Pow(x, n)",
+        "concepts": [
+            "cc->mathematics->exponentiation->fast_exponentiation"
+        ],
+        "datastructure": [],
+        "approach": "Recursively divide n by 2, square the result. Handle odd exponents separately."
+    },
+    {
+        "id": 53,
+        "description": "Maximum Subarray",
+        "concepts": [
+            "cc->algorithm_design->dp->kadanes_algorithm"
+        ],
+        "datastructure": [],
+        "approach": "Iterate while keeping track of the current sum, reset if it drops below zero. Maintain max sum encountered."
+    },
+    {
+        "id": 54,
+        "description": "Spiral Matrix",
+        "concepts": [
+            "cc->algorithm_basics->simulation->simulation_of_boundary_loops"
+        ],
+        "datastructure": [],
+        "approach": "Peel the matrix layer by layer in a spiral. Update boundaries after each loop."
+    },
+    {
+        "id": 55,
+        "description": "Jump Game",
+        "concepts": [
+            "cc->algorithm_design->greedy->greedy_max_reach"
+        ],
+        "datastructure": [],
+        "approach": "Track the furthest index reachable. If you cannot move forward, return false."
+    },
+    {
+        "id": 56,
+        "description": "Merge Intervals",
+        "concepts": [
+            "cc->data_structures->sorting->sorting",
+            "cc->algorithm_basics->merging"
+        ],
+        "datastructure": [],
+        "approach": "Sort intervals by start. Merge overlapping intervals by taking the max end."
+    },
+    {
+        "id": 57,
+        "description": "Insert Interval",
+        "concepts": [
+            "cc->data_structures->intervals->intervals",
+            "cc->algorithm_design->merging"
+        ],
+        "datastructure": [],
+        "approach": "Locate insertion point, merge overlapping intervals, then insert the final merged result."
+    },
+    {
+        "id": 62,
+        "description": "Unique Paths",
+        "concepts": [
+            "cc->mathematics->combinatorics",
+            "cc->algorithm_design->dp"
+        ],
+        "datastructure": [],
+        "approach": "Use either combinatorial formula or DP grid to count ways."
+    },
+    {
+        "id": 63,
+        "description": "Unique Paths II",
+        "concepts": [
+            "cc->algorithm_design->dp->dp_with_obstacle_handling"
+        ],
+        "datastructure": [],
+        "approach": "Same DP approach, but cells with obstacles get dp=0."
+    },
+    {
+        "id": 71,
+        "description": "Simplify Path",
+        "concepts": [
+            "cc->data_structures->stack->stack_for_directories"
+        ],
+        "datastructure": [
+            "stack"
+        ],
+        "approach": "Split on '/', push valid dirs to stack, pop on '..', ignore '.' or empty segments."
+    },
+    {
+        "id": 72,
+        "description": "Edit Distance",
+        "concepts": [
+            "cc->algorithm_design->dp->dp_for_string_transformations"
+        ],
+        "datastructure": [],
+        "approach": "dp[i][j] = 1 + min(replace/delete/insert), or dp[i-1][j-1] if chars match."
+    },
+    {
+        "id": 73,
+        "description": "Set Matrix Zeroes",
+        "concepts": [
+            "cc->data_structures->matrix->matrix_marking_approach"
+        ],
+        "datastructure": [],
+        "approach": "Track which rows/cols need zero; set them in a second pass."
+    },
+    {
+        "id": 75,
+        "description": "Sort Colors",
+        "concepts": [
+            "cc->algorithm_basics->dutch_national_flag_algorithm"
+        ],
+        "datastructure": [],
+        "approach": "Use three pointers to partition 0,1,2 in one pass."
+    },
+    {
+        "id": 78,
+        "description": "Subsets",
+        "concepts": [
+            "cc->algorithm_design->backtracking->backtracking",
+            "cc->data_structures->bitmask"
+        ],
+        "datastructure": [],
+        "approach": "Generate all subsets via recursion or bitwise enumeration."
+    },
+    {
+        "id": 79,
+        "description": "Word Search",
+        "concepts": [
+            "cc->algorithm_design->dfs->dfs_backtracking_on_board"
+        ],
+        "datastructure": [],
+        "approach": "For each cell, DFS to match the word. Mark visited to avoid reuse."
+    },
+    {
+        "id": 80,
+        "description": "Remove Duplicates from Sorted Array II",
+        "concepts": [
+            "cc->data_structures->arrays->array_manipulation",
+            "cc->programming_basics->pointer_approach"
+        ],
+        "datastructure": [
+            "array"
+        ],
+        "approach": "Allow each element up to two occurrences. Overwrite beyond that limit in-place."
+    },
+    {
+        "id": 74,
+        "description": "Search a 2D Matrix",
+        "concepts": [
+            "cc->algorithm_design->binary_search->binary_search"
+        ],
+        "datastructure": [],
+        "approach": "Either flatten conceptually and do 1D binary search, or do row-col approach. Compare mid value with target."
+    },
+    {
+        "id": 93,
+        "description": "Restore IP Addresses",
+        "concepts": [
+            "cc->algorithm_design->backtracking->backtracking",
+            "cc->data_structures->segment_validation"
+        ],
+        "datastructure": [],
+        "approach": "Partition string into 4 segments (0\u2013255). Collect valid addresses."
+    },
+    {
+        "id": 98,
+        "description": "Validate Binary Search Tree",
+        "concepts": [
+            "cc->algorithm_design->recursion->recursion_with_range_bounds"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Check each node\u2019s value is within min/max, recurse left/right. Return false if out of bounds."
+    },
+    {
+        "id": 102,
+        "description": "Binary Tree Level Order Traversal",
+        "concepts": [
+            "cc->algorithm_design->bfs->bfs_by_levels"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Queue the root, pop level nodes, push children. Collect levels in a list of lists."
+    },
+    {
+        "id": 103,
+        "description": "Binary Tree Zigzag Level Order Traversal",
+        "concepts": [
+            "cc->algorithm_design->bfs->bfs_with_direction_toggle"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Same as level order, but reverse the list on alternate levels."
+    },
+    {
+        "id": 105,
+        "description": "Construct Binary Tree from Preorder and Inorder Traversal",
+        "concepts": [
+            "cc->data_structures->tree->tree_construction_with_index_lookups"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Root is preorder[0]. Find it in inorder, recurse left and right."
+    },
+    {
+        "id": 113,
+        "description": "Path Sum II",
+        "concepts": [
+            "cc->algorithm_design->dfs->dfs_path_building"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Track running sum down each path. If leaf sum equals target, add path to result."
+    },
+    {
+        "id": 114,
+        "description": "Flatten Binary Tree to Linked List",
+        "concepts": [
+            "cc->algorithm_design->dfs->dfs",
+            "cc->data_structures->pointer_re_linking"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Flatten left subtree, attach it, then link to right. Update pointers carefully."
+    },
+    {
+        "id": 116,
+        "description": "Populating Next Right Pointers in Each Node",
+        "concepts": [
+            "cc->algorithm_design->bfs->tree_bfs",
+            "cc->recursion->perfect_tree_recursion"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Use level order or connect children as you go. Each node\u2019s next = right sibling."
+    },
+    {
+        "id": 128,
+        "description": "Longest Consecutive Sequence",
+        "concepts": [
+            "cc->data_structures->set->set",
+            "cc->data_structures->union_find"
+        ],
+        "datastructure": [
+            "set",
+            "unionfind"
+        ],
+        "approach": "Use a set or union-find to track consecutive runs. Keep longest streak."
+    },
+    {
+        "id": 129,
+        "description": "Sum Root to Leaf Numbers",
+        "concepts": [
+            "cc->algorithm_design->dfs->dfs_building_integer"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Pass the current value*10 + node.val down. Sum at leaves."
+    },
+    {
+        "id": 131,
+        "description": "Palindrome Partitioning",
+        "concepts": [
+            "cc->algorithm_design->backtracking->backtracking",
+            "cc->data_structures->palindrome_check"
+        ],
+        "datastructure": [],
+        "approach": "Partition string and check each substring is palindrome. Collect all valid ways."
+    },
+    {
+        "id": 133,
+        "description": "Clone Graph",
+        "concepts": [
+            "cc->data_structures->graph->graph_bfs_dfs_cloning"
+        ],
+        "datastructure": [
+            "graph"
+        ],
+        "approach": "Keep a map old->new node. Traverse, creating cloned neighbors recursively or iteratively."
+    },
+    {
+        "id": 138,
+        "description": "Copy List with Random Pointer",
+        "concepts": [
+            "cc->data_structures->linkedlist->linked_list_mapping",
+            "cc->data_structures->linkedlist->weaving"
+        ],
+        "datastructure": [
+            "linkedlist"
+        ],
+        "approach": "Either store old->new in a hash map, or weave cloned nodes in the original, then fix random links."
+    },
+    {
+        "id": 139,
+        "description": "Word Break",
+        "concepts": [
+            "cc->algorithm_design->dp->dp_substring_checks"
+        ],
+        "datastructure": [],
+        "approach": "dp[i] is true if substring(0..i) can be broken into dictionary words. Check all j < i for substring in set."
+    },
+    {
+        "id": 146,
+        "description": "LRU Cache",
+        "concepts": [
+            "cc->data_structures->linkedlist->design_with_doubly_linked_list",
+            "cc->data_structures->hashmap->hash"
+        ],
+        "datastructure": [
+            "linkedlist",
+            "map"
+        ],
+        "approach": "Use a hash map for O(1) access. A linked list tracks recency, moving recently accessed to the front."
+    },
+    {
+        "id": 150,
+        "description": "Evaluate Reverse Polish Notation",
+        "concepts": [
+            "cc->data_structures->stack->stack_for_rpn"
+        ],
+        "datastructure": [
+            "stack"
+        ],
+        "approach": "Iterate tokens, push numbers, pop top two on operator, compute, push result. Return final stack top."
+    },
+    {
+        "id": 152,
+        "description": "Maximum Product Subarray",
+        "concepts": [
+            "cc->algorithm_design->dp->dp_tracking_min_max_up_to_current"
+        ],
+        "datastructure": [],
+        "approach": "Negative flips min and max. Keep track of global maximum."
+    },
+    {
+        "id": 153,
+        "description": "Find Minimum in Rotated Sorted Array",
+        "concepts": [
+            "cc->algorithm_design->binary_search->binary_search_pivot"
+        ],
+        "datastructure": [],
+        "approach": "Compare mid to edges. Narrow down to the segment where min lies."
+    },
+    {
+        "id": 151,
+        "description": "Reverse Words in a String",
+        "concepts": [
+            "cc->data_structures->strings->string_manipulation"
+        ],
+        "datastructure": [],
+        "approach": "Split by spaces, reverse the words, and rejoin. Trim extra spaces."
+    },
+    {
+        "id": 162,
+        "description": "Find Peak Element",
+        "concepts": [
+            "cc->algorithm_design->binary_search->binary_search",
+            "cc->computer_science_basics->linear_check"
+        ],
+        "datastructure": [],
+        "approach": "In O(log n), compare mid with mid+1 to decide which half to search. Or linearly check neighbors."
+    },
+    {
+        "id": 167,
+        "description": "Two Sum II - Input Array Is Sorted",
+        "concepts": [
+            "cc->data_structures->two_pointers->two_pointer_in_sorted_array"
+        ],
+        "datastructure": [],
+        "approach": "Start left=0, right=n-1, compare sum to target, adjust pointers inward."
+    },
+    {
+        "id": 173,
+        "description": "Binary Search Tree Iterator",
+        "concepts": [
+            "cc->data_structures->stack->inorder_stack_approach"
+        ],
+        "datastructure": [
+            "tree",
+            "stack"
+        ],
+        "approach": "Push left nodes, pop top as next. After pop, push the node\u2019s right subtree left path."
+    },
+    {
+        "id": 189,
+        "description": "Rotate Array",
+        "concepts": [
+            "cc->data_structures->arrays->reverse_array",
+            "cc->data_structures->arrays->auxiliary_array"
+        ],
+        "datastructure": [
+            "array"
+        ],
+        "approach": "Reverse entire array, then reverse the two parts. Or shift elements using temp array."
+    },
+    {
+        "id": 198,
+        "description": "House Robber",
+        "concepts": [
+            "cc->algorithm_design->dp->dp_on_linear_houses"
+        ],
+        "datastructure": [],
+        "approach": "dp[i] = max of dp[i-1] or nums[i] + dp[i-2]. Final dp[n-1] is the answer."
+    },
+    {
+        "id": 199,
+        "description": "Binary Tree Right Side View",
+        "concepts": [
+            "cc->algorithm_design->bfs->bfs",
+            "cc->algorithm_design->dfs->dfs_with_right_first"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "At each level, record the rightmost node. Or do a DFS with level track and store first visit."
+    },
+    {
+        "id": 200,
+        "description": "Number of Islands",
+        "concepts": [
+            "cc->algorithm_design->dfs->dfs_bfs_on_grid"
+        ],
+        "datastructure": [
+            "array"
+        ],
+        "approach": "Traverse the grid, for each unvisited land, run DFS/BFS to mark the connected region, increment count."
+    },
+    {
+        "id": 207,
+        "description": "Course Schedule",
+        "concepts": [
+            "cc->data_structures->graph->graph_cycle_detection",
+            "cc->data_structures->graph->topological_sort"
+        ],
+        "datastructure": [
+            "graph"
+        ],
+        "approach": "Create adjacency list. If there's a cycle, no solution. Otherwise, can finish courses."
+    },
+    {
+        "id": 209,
+        "description": "Minimum Size Subarray Sum",
+        "concepts": [
+            "cc->data_structures->two_pointers->sliding_window",
+            "cc->algorithm_design->subarray_sum->sliding_window_and_subarray_sum"
+        ],
+        "datastructure": [],
+        "approach": "Move end pointer, accumulate sum, shrink from start if sum >= target. Track min length."
+    },
+    {
+        "id": 210,
+        "description": "Course Schedule II",
+        "concepts": [
+            "cc->data_structures->graph->topological_sort"
+        ],
+        "datastructure": [
+            "graph"
+        ],
+        "approach": "Use Kahn\u2019s or DFS to produce a valid course order. If cycle, return empty array."
+    },
+    {
+        "id": 215,
+        "description": "Kth Largest Element in an Array",
+        "concepts": [
+            "cc->data_structures->heap->heap",
+            "cc->algorithm_design->selection->quickselect"
+        ],
+        "datastructure": [
+            "heap"
+        ],
+        "approach": "Use a min-heap of size k or partition approach. Return the k-th largest after partial sort."
+    },
+    {
+        "id": 227,
+        "description": "Basic Calculator II",
+        "concepts": [
+            "cc->data_structures->stack->stack",
+            "cc->programming_basics->direct_parse"
+        ],
+        "datastructure": [
+            "stack"
+        ],
+        "approach": "Parse expression tokens. Use stack to store numbers, handle * / immediately. Compute + - at the end."
+    },
+    {
+        "id": 235,
+        "description": "Lowest Common Ancestor of a Binary Search Tree",
+        "concepts": [
+            "cc->data_structures->tree->bst_property_compare_values"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Traverse from root. If both nodes < root, go left; if both > root, go right; else root is LCA."
+    },
+    {
+        "id": 236,
+        "description": "Lowest Common Ancestor of a Binary Tree",
+        "concepts": [
+            "cc->algorithm_design->recursion->tree_recursion"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Recurse down; if we find p or q, bubble up. If both sides non-null, current node is LCA."
+    },
+    {
+        "id": 238,
+        "description": "Product of Array Except Self",
+        "concepts": [
+            "cc->algorithm_basics->prefix_suffix_multiplication"
+        ],
+        "datastructure": [
+            "array"
+        ],
+        "approach": "Compute prefix products, then multiply with suffix product in second pass. O(1) extra space aside from output."
+    },
+    {
+        "id": 249,
+        "description": "Group Shifted Strings",
+        "concepts": [
+            "cc->data_structures->hashing->hash_pattern_differences"
+        ],
+        "datastructure": [
+            "map"
+        ],
+        "approach": "For each string, build a relative shift signature. Group strings with identical shift signatures."
+    },
+    {
+        "id": 253,
+        "description": "Meeting Rooms II",
+        "concepts": [
+            "cc->data_structures->heap->min_heap",
+            "cc->algorithm_design->timeline->timeline_approach"
+        ],
+        "datastructure": [
+            "heap"
+        ],
+        "approach": "Sort intervals by start, use a min-heap to track end times. Or separate start/end arrays and track usage."
+    },
+    {
+        "id": 286,
+        "description": "Walls and Gates",
+        "concepts": [
+            "cc->algorithm_design->bfs->multi_source_bfs"
+        ],
+        "datastructure": [
+            "array"
+        ],
+        "approach": "Put all gates (distance=0) in queue initially. BFS outward to fill distances to the nearest gate."
+    },
+    {
+        "id": 2265,
+        "description": "Count Nodes Equal to Average of Subtree",
+        "concepts": [
+            "cc->algorithm_design->dfs->tree_dfs_for_sum_count"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Compute subtree sum and count. If node\u2019s val == (sum/count), increment result."
+    },
+    {
+        "id": 314,
+        "description": "Binary Tree Vertical Order Traversal",
+        "concepts": [
+            "cc->algorithm_design->bfs->bfs_with_column_indices"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Use a queue storing (node,col). Collect values in a map col->list, then output col-sorted lists."
+    },
+    {
+        "id": 333,
+        "description": "Largest BST Subtree",
+        "concepts": [
+            "cc->algorithm_design->recursion->tree_recursion_with_subtree_info"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Return subtree size, min, max, isBST. If node is BST, update global max size."
+    },
+    {
+        "id": 334,
+        "description": "Increasing Triplet Subsequence",
+        "concepts": [
+            "cc->algorithm_design->greedy->greedy_track_two_smallest"
+        ],
+        "datastructure": [],
+        "approach": "Maintain two pointers for smallest and mid. If we find a bigger number than mid, triplet exists."
+    },
+    {
+        "id": 339,
+        "description": "Nested List Weight Sum",
+        "concepts": [
+            "cc->algorithm_design->dfs->dfs",
+            "cc->algorithm_design->bfs->bfs_of_nested_structure"
+        ],
+        "datastructure": [
+            "list"
+        ],
+        "approach": "At each level, multiply integer by depth. Recursively add or BFS with a queue tracking depth."
+    },
+    {
+        "id": 341,
+        "description": "Flatten Nested List Iterator",
+        "concepts": [
+            "cc->data_structures->stack->stack_based_flatten"
+        ],
+        "datastructure": [
+            "stack"
+        ],
+        "approach": "Repeatedly expand top if it's a list. If it's an integer, that's our next element."
+    },
+    {
+        "id": 347,
+        "description": "Top K Frequent Elements",
+        "concepts": [
+            "cc->data_structures->heap->heap",
+            "cc->algorithm_design->bucket_sort"
+        ],
+        "datastructure": [
+            "heap"
+        ],
+        "approach": "Count frequencies, push to a min-heap or use bucket by frequency. Extract top K frequent."
+    },
+    {
+        "id": 348,
+        "description": "Design Tic-Tac-Toe",
+        "concepts": [
+            "cc->data_structures->matrix->rows",
+            "cc->data_structures->matrix->cols",
+            "cc->data_structures->matrix->diag_counters"
+        ],
+        "datastructure": [],
+        "approach": "For each player, increment row/col/diag counts. If absolute value hits n, that player wins."
+    },
+    {
+        "id": 378,
+        "description": "Kth Smallest Element in a Sorted Matrix",
+        "concepts": [
+            "cc->data_structures->heap->heap",
+            "cc->algorithm_design->binary_search->binary_searching_by_value"
+        ],
+        "datastructure": [
+            "heap"
+        ],
+        "approach": "Use a min-heap or binary search in the value range. Count how many elements <= mid to narrow search."
+    },
+    {
+        "id": 380,
+        "description": "Insert Delete GetRandom O(1)",
+        "concepts": [
+            "cc->data_structures->hashmap->hashmap",
+            "cc->data_structures->array->dynamic_array"
+        ],
+        "datastructure": [
+            "map",
+            "array"
+        ],
+        "approach": "For O(1) insert/delete, store values in an array and map their index. For random, pick a random array index."
+    },
+    {
+        "id": 394,
+        "description": "Decode String",
+        "concepts": [
+            "cc->data_structures->stack->stack",
+            "cc->algorithm_design->recursion->recursion"
+        ],
+        "datastructure": [
+            "stack"
+        ],
+        "approach": "Push current string and number on stack when encountering '['. On ']', pop and build repeated substring."
+    },
+    {
+        "id": 398,
+        "description": "Random Pick Index",
+        "concepts": [
+            "cc->algorithm_design->sampling->reservoir_sampling",
+            "cc->data_structures->list->storing_indices"
+        ],
+        "datastructure": [],
+        "approach": "Maintain a list of indices per value, then pick random. Or do reservoir sampling as you traverse."
+    },
+    {
+        "id": 419,
+        "description": "Battleships in a Board",
+        "concepts": [
+            "cc->data_structures->grid->grid_scanning"
+        ],
+        "datastructure": [
+            "array"
+        ],
+        "approach": "Count a battleship when you see 'X' that isn\u2019t a continuation (above/left). Mark visited or just check adjacency."
+    },
+    {
+        "id": 424,
+        "description": "Longest Repeating Character Replacement",
+        "concepts": [
+            "cc->data_structures->two_pointers->sliding_window",
+            "cc->algorithm_design->frequency"
+        ],
+        "datastructure": [
+            "map"
+        ],
+        "approach": "Grow the window, track count of the top char. If window size - max_freq > k, shrink from left."
+    },
+    {
+        "id": 443,
+        "description": "String Compression",
+        "concepts": [
+            "cc->data_structures->two_pointers->two_pointer_in_place"
+        ],
+        "datastructure": [],
+        "approach": "Track runs of the same character. Store the count digits and move on, returning final length."
+    },
+    {
+        "id": 468,
+        "description": "Validate IP Address",
+        "concepts": [
+            "cc->data_structures->strings->string_split_and_format_checks"
+        ],
+        "datastructure": [],
+        "approach": "Split by '.' or ':', check valid range or hex length. Distinguish IPv4, IPv6, or neither."
+    },
+    {
+        "id": 490,
+        "description": "The Maze",
+        "concepts": [
+            "cc->algorithm_design->dfs->dfs_bfs_rolling_approach"
+        ],
+        "datastructure": [
+            "array"
+        ],
+        "approach": "Roll the ball in each direction until hitting a wall. Mark visited states, check if you can reach the goal."
+    },
+    {
+        "id": 494,
+        "description": "Target Sum",
+        "concepts": [
+            "cc->algorithm_design->dfs->dfs",
+            "cc->algorithm_design->dp->subset_sum_dp"
+        ],
+        "datastructure": [],
+        "approach": "We want ways to assign +/- to reach target. Transform to subset sum or backtrack all possibilities."
+    },
+    {
+        "id": 498,
+        "description": "Diagonal Traverse",
+        "concepts": [
+            "cc->algorithm_basics->simulation->simulation_of_diagonals"
+        ],
+        "datastructure": [],
+        "approach": "Traverse diagonals by sum of indices. Reverse direction every alternate diagonal."
+    },
+    {
+        "id": 523,
+        "description": "Continuous Subarray Sum",
+        "concepts": [
+            "cc->algorithm_design->prefix_sum->prefix_sum_mod_k"
+        ],
+        "datastructure": [],
+        "approach": "Compute prefix sum % k, store in a map. If the same mod reappears with distance > 1, subarray sum is multiple of k."
+    },
+    {
+        "id": 525,
+        "description": "Contiguous Array",
+        "concepts": [
+            "cc->algorithm_design->prefix_sum->prefix_sum_0_neg1_1_pos1"
+        ],
+        "datastructure": [],
+        "approach": "Map prefix sums to index. If sum repeats, subarray in between has equal 0 and 1."
+    },
+    {
+        "id": 529,
+        "description": "Minesweeper",
+        "concepts": [
+            "cc->algorithm_design->dfs->dfs_bfs_reveal_squares"
+        ],
+        "datastructure": [
+            "array"
+        ],
+        "approach": "If a revealed cell has 0 adjacent mines, recursively reveal neighbors. Stop if you hit a mine."
+    },
+    {
+        "id": 536,
+        "description": "Construct Binary Tree from String",
+        "concepts": [
+            "cc->algorithm_design->recursion->recursion_with_parentheses_parse"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Parse the string: first number is root, parentheses sections represent left/right subtrees."
+    },
+    {
+        "id": 545,
+        "description": "Boundary of Binary Tree",
+        "concepts": [
+            "cc->data_structures->tree->tree_traversal_boundary"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Collect left boundary, leaves, and right boundary in reverse. Avoid double counting corners."
+    },
+    {
+        "id": 556,
+        "description": "Next Greater Element III",
+        "concepts": [
+            "cc->algorithm_design->permutation->permutation_next_greater_logic"
+        ],
+        "datastructure": [],
+        "approach": "Treat digits like next_permutation. If not possible, return -1."
+    },
+    {
+        "id": 560,
+        "description": "Subarray Sum Equals K",
+        "concepts": [
+            "cc->algorithm_design->prefix_sum->prefix_sum",
+            "cc->data_structures->hashing->hashing"
+        ],
+        "datastructure": [
+            "map"
+        ],
+        "approach": "Keep running sum in a map. If sum - k exists, increment count by how many times that remainder appeared."
+    },
+    {
+        "id": 636,
+        "description": "Exclusive Time of Functions",
+        "concepts": [
+            "cc->data_structures->stack->stack_of_function_calls",
+            "cc->computer_science_basics->timestamps"
+        ],
+        "datastructure": [
+            "stack"
+        ],
+        "approach": "On 'start', push function id. On 'end', pop and accumulate intervals. Subtract nested time from parent."
+    },
+    {
+        "id": 647,
+        "description": "Palindromic Substrings",
+        "concepts": [
+            "cc->data_structures->strings->expand_around_center",
+            "cc->algorithm_design->dp->dp"
+        ],
+        "datastructure": [],
+        "approach": "For each center, expand outwards while it\u2019s a palindrome. Or DP with dp[i][j] if s[i]==s[j]."
+    },
+    {
+        "id": 658,
+        "description": "Find K Closest Elements",
+        "concepts": [
+            "cc->algorithm_design->binary_search->binary_search",
+            "cc->data_structures->two_pointers->two_pointer"
+        ],
+        "datastructure": [],
+        "approach": "Locate position of x, then expand outwards or do a left boundary search for size k. Return slice."
+    },
+    {
+        "id": 670,
+        "description": "Maximum Swap",
+        "concepts": [
+            "cc->algorithm_design->greedy->greedy_digit_swap_from_left"
+        ],
+        "datastructure": [],
+        "approach": "Scan from left, find a bigger digit on the right that can be swapped. Perform once for max number."
+    },
+    {
+        "id": 695,
+        "description": "Max Area of Island",
+        "concepts": [
+            "cc->algorithm_design->dfs->dfs_bfs_in_grid"
+        ],
+        "datastructure": [
+            "array"
+        ],
+        "approach": "For each unvisited '1', explore the entire connected region. Track the maximum area found."
+    },
+    {
+        "id": 721,
+        "description": "Accounts Merge",
+        "concepts": [
+            "cc->data_structures->union_find->union_find",
+            "cc->algorithm_design->dfs->dfs_on_email_lists"
+        ],
+        "datastructure": [
+            "unionfind"
+        ],
+        "approach": "Merge accounts with shared emails. Collect final results sorted by name/email."
+    },
+    {
+        "id": 735,
+        "description": "Asteroid Collision",
+        "concepts": [
+            "cc->data_structures->stack->stack_approach"
+        ],
+        "datastructure": [
+            "stack"
+        ],
+        "approach": "Push new asteroid. If collision occurs with top of stack, pop smaller or break if stack top is bigger."
+    },
+    {
+        "id": 739,
+        "description": "Daily Temperatures",
+        "concepts": [
+            "cc->data_structures->stack->monotonic_stack"
+        ],
+        "datastructure": [
+            "stack"
+        ],
+        "approach": "Traverse from right or keep a stack of indices. Pop while top is cooler, the difference is the answer."
+    },
+    {
+        "id": 426,
+        "description": "Convert Binary Search Tree to Sorted Doubly Linked List",
+        "concepts": [
+            "cc->data_structures->tree->inorder_traversal_link"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Perform an inorder DFS, link previous node to current. Finally link head and tail to make it circular."
+    },
+    {
+        "id": 787,
+        "description": "Cheapest Flights Within K Stops",
+        "concepts": [
+            "cc->algorithm_design->graph->shortest_path_with_limited_stops",
+            "cc->algorithm_design->graph->bellman_ford",
+            "cc->algorithm_design->bfs->bfs"
+        ],
+        "datastructure": [
+            "graph"
+        ],
+        "approach": "Track cost to each node up to K edges. Update in BFS or Bellman-Ford style."
+    },
+    {
+        "id": 791,
+        "description": "Custom Sort String",
+        "concepts": [
+            "cc->data_structures->sorting->custom_priority_sort"
+        ],
+        "datastructure": [],
+        "approach": "Store order in a dict of char->rank. Sort the input string\u2019s characters by that rank, append leftover."
+    },
+    {
+        "id": 708,
+        "description": "Insert into a Sorted Circular Linked List",
+        "concepts": [
+            "cc->data_structures->linkedlist->linked_list_insertion_logic"
+        ],
+        "datastructure": [
+            "linkedlist"
+        ],
+        "approach": "Traverse until insertion point or wrap around. Insert new node maintaining sorted order."
+    },
+    {
+        "id": 825,
+        "description": "Friends Of Appropriate Ages",
+        "concepts": [
+            "cc->data_structures->sorting->sorting",
+            "cc->data_structures->two_pointers->two_pointer_on_age_constraints"
+        ],
+        "datastructure": [],
+        "approach": "Sort ages, for each age find valid range. Possibly use prefix sums or two-pointer approach."
+    },
+    {
+        "id": 622,
+        "description": "Design Circular Queue",
+        "concepts": [
+            "cc->data_structures->arrays->array_with_front_rear_indices"
+        ],
+        "datastructure": [
+            "array"
+        ],
+        "approach": "Implement a fixed-size ring buffer with front, rear, and count. Wrap around on boundary."
+    },
+    {
+        "id": 852,
+        "description": "Peak Index in a Mountain Array",
+        "concepts": [
+            "cc->algorithm_design->binary_search->binary_search_for_peak"
+        ],
+        "datastructure": [],
+        "approach": "Compare mid with mid+1. If ascending, go right; else go left until peak found."
+    },
+    {
+        "id": 863,
+        "description": "All Nodes Distance K in Binary Tree",
+        "concepts": [
+            "cc->algorithm_design->bfs->bfs_dfs_from_target_node"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "First store parent references, then BFS from target to find nodes at distance K."
+    },
+    {
+        "id": 865,
+        "description": "Smallest Subtree with all the Deepest Nodes",
+        "concepts": [
+            "cc->algorithm_design->dfs->tree_dfs",
+            "cc->data_structures->tree->depth_tracking"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Identify deepest level, find the subtree containing all deepest nodes. Essentially LCA of deepest leaves."
+    },
+    {
+        "id": 528,
+        "description": "Random Pick with Weight",
+        "concepts": [
+            "cc->algorithm_design->prefix_sum->prefix_sums",
+            "cc->probabilistic_methods->random_selection"
+        ],
+        "datastructure": [],
+        "approach": "Compute prefix sums of weights, pick a random in [0,total). Binary search for the correct segment."
+    },
+    {
+        "id": 921,
+        "description": "Minimum Add to Make Parentheses Valid",
+        "concepts": [
+            "cc->computer_science_basics->balance_counters"
+        ],
+        "datastructure": [],
+        "approach": "Track needed '(' or ')'. Each unmatched ')' increments needed. Return total needed."
+    },
+    {
+        "id": 930,
+        "description": "Binary Subarrays With Sum",
+        "concepts": [
+            "cc->algorithm_design->prefix_sum->prefix_sum_in_0_1_array"
+        ],
+        "datastructure": [],
+        "approach": "Similar to subarray-sum = k approach. Map prefix sums, subarray if current_sum - target in map."
+    },
+    {
+        "id": 934,
+        "description": "Shortest Bridge",
+        "concepts": [
+            "cc->algorithm_design->dfs->dfs",
+            "cc->algorithm_design->bfs->bfs_across_islands"
+        ],
+        "datastructure": [
+            "array"
+        ],
+        "approach": "Find the first island via DFS, then BFS outward to reach the second island in min steps."
+    },
+    {
+        "id": 958,
+        "description": "Check Completeness of a Binary Tree",
+        "concepts": [
+            "cc->algorithm_design->bfs->bfs_level_order_checking"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Traverse level by level; once a null is found, ensure no more non-null nodes appear."
+    },
+    {
+        "id": 973,
+        "description": "K Closest Points to Origin",
+        "concepts": [
+            "cc->data_structures->heap->heap",
+            "cc->algorithm_design->selection->quickselect"
+        ],
+        "datastructure": [
+            "heap"
+        ],
+        "approach": "Compute distance squared, keep a max-heap of size k or do partition-based quickselect."
+    },
+    {
+        "id": 983,
+        "description": "Minimum Cost For Tickets",
+        "concepts": [
+            "cc->algorithm_design->dp->dp_with_intervals"
+        ],
+        "datastructure": [],
+        "approach": "For each travel day, cost = min of day pass, 7-day pass, 30-day pass. Build DP up to last day."
+    },
+    {
+        "id": 986,
+        "description": "Interval List Intersections",
+        "concepts": [
+            "cc->data_structures->intervals->merge_intervals_method"
+        ],
+        "datastructure": [],
+        "approach": "Use two pointers on the two lists, intersect the overlapping intervals, advance the pointer that ends first."
+    },
+    {
+        "id": 1004,
+        "description": "Max Consecutive Ones III",
+        "concepts": [
+            "cc->data_structures->two_pointers->sliding_window",
+            "cc->algorithm_design->counting->count_zero"
+        ],
+        "datastructure": [],
+        "approach": "Expand window. If zero count exceeds k, shrink from left. Track max window size."
+    },
+    {
+        "id": 1011,
+        "description": "Capacity To Ship Packages Within D Days",
+        "concepts": [
+            "cc->algorithm_design->binary_search->binary_search_on_capacity"
+        ],
+        "datastructure": [],
+        "approach": "Check if a mid capacity can ship within D days. If not, increase capacity; otherwise decrease it."
+    },
+    {
+        "id": 1060,
+        "description": "Missing Element in Sorted Array",
+        "concepts": [
+            "cc->algorithm_design->binary_search->binary_search_using_the_missing_counts"
+        ],
+        "datastructure": [],
+        "approach": "At index i, check how many are missing up to nums[i]. Compare with k to decide search direction."
+    },
+    {
+        "id": 1091,
+        "description": "Shortest Path in Binary Matrix",
+        "concepts": [
+            "cc->algorithm_design->bfs->bfs_in_8_directions"
+        ],
+        "datastructure": [
+            "array"
+        ],
+        "approach": "Start from (0,0), BFS with 8 directions. Track visited cells, find shortest path length."
+    },
+    {
+        "id": 1209,
+        "description": "Remove All Adjacent Duplicates in String II",
+        "concepts": [
+            "cc->data_structures->stack->stack_based_count"
+        ],
+        "datastructure": [
+            "stack"
+        ],
+        "approach": "Push characters and track frequency. If freq hits k, pop them."
+    },
+    {
+        "id": 1249,
+        "description": "Minimum Remove to Make Valid Parentheses",
+        "concepts": [
+            "cc->data_structures->stack->stack",
+            "cc->algorithm_design->scanning->scanning_mismatches"
+        ],
+        "datastructure": [
+            "stack"
+        ],
+        "approach": "Push '(' indices, match with ')' or mark invalid. Remove unmatched parentheses in the end."
+    },
+    {
+        "id": 1424,
+        "description": "Diagonal Traverse II",
+        "concepts": [
+            "cc->data_structures->maps->group_by_i_plus_j_in_a_map"
+        ],
+        "datastructure": [
+            "map"
+        ],
+        "approach": "Traverse row-wise, group items by (i+j). Flatten in the correct diagonal order."
+    },
+    {
+        "id": 1443,
+        "description": "Minimum Time to Collect All Apples in a Tree",
+        "concepts": [
+            "cc->algorithm_design->dfs->dfs_subtrees_with_apple_check"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "From root, visit children. Include path cost if child subtree contains an apple."
+    },
+    {
+        "id": 1570,
+        "description": "Dot Product of Two Sparse Vectors",
+        "concepts": [
+            "cc->data_structures->sparse_representation->sparse_representation_iteration"
+        ],
+        "datastructure": [],
+        "approach": "Store non-zero indices and values. Multiply only matching indices."
+    },
+    {
+        "id": 1650,
+        "description": "Lowest Common Ancestor of a Binary Tree III",
+        "concepts": [
+            "cc->data_structures->tree->nodes_have_parent_pointers"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Ascend from each node or equalize depths first. Move both up until they meet."
+    },
+    {
+        "id": 1762,
+        "description": "Buildings With an Ocean View",
+        "concepts": [
+            "cc->data_structures->stack->stack",
+            "cc->algorithm_design->scanning->scanning_from_the_right"
+        ],
+        "datastructure": [
+            "stack"
+        ],
+        "approach": "Traverse from right, track max height. Buildings taller than all to the right have a view."
+    },
+    {
+        "id": 1778,
+        "description": "Shortest Path in a Hidden Grid",
+        "concepts": [
+            "cc->algorithm_design->bfs->interactive_bfs_dfs_concept"
+        ],
+        "datastructure": [
+            "array"
+        ],
+        "approach": "We do BFS steps, discovering adjacency dynamically. Keep track of visited for minimal route."
+    },
+    {
+        "id": 1868,
+        "description": "Product of Two Run-Length Encoded Arrays",
+        "concepts": [
+            "cc->data_structures->two_pointers->two_pointers_on_runs"
+        ],
+        "datastructure": [],
+        "approach": "Multiply each run chunk while adjusting counts. Output in RLE form."
+    },
+    {
+        "id": 1070,
+        "description": "Product Sales Analysis III",
+        "concepts": [
+            "cc->database_fundamentals->sql->sql_grouping_and_joining"
+        ],
+        "datastructure": [],
+        "approach": "Combine tables, group by product to get total product sales (SQL)."
+    },
+    {
+        "id": 322,
+        "description": "Coin Change",
+        "concepts": [
+            "cc->algorithm_design->dp->dp_for_the_fewest_coins"
+        ],
+        "datastructure": [],
+        "approach": "dp[x] = min(dp[x], dp[x-coin] + 1). Initialize dp[0]=0, otherwise large. If dp[amount] not updated, -1."
+    },
+    {
+        "id": 328,
+        "description": "Odd Even Linked List",
+        "concepts": [
+            "cc->data_structures->linkedlist->linked_list_rearrangement"
+        ],
+        "datastructure": [
+            "linkedlist"
+        ],
+        "approach": "Rearrange nodes so that all odds precede evens in the list."
+    },
+    {
+        "id": 912,
+        "description": "Sort an Array",
+        "concepts": [
+            "cc->algorithm_design->sorting->implementation_of_standard_sorts"
+        ],
+        "datastructure": [
+            "array"
+        ],
+        "approach": "Use quicksort, mergesort, or heapsort. Return the sorted array."
+    },
+    {
+        "id": 1344,
+        "description": "Angle Between Hands of a Clock",
+        "concepts": [
+            "cc->mathematics->math_formula"
+        ],
+        "datastructure": [],
+        "approach": "Compute minute hand angle and hour hand angle. Return the absolute difference, mod 360 if needed."
+    },
+    {
+        "id": 91,
+        "description": "Decode Ways",
+        "concepts": [
+            "cc->algorithm_design->dp->dp_on_string_decoding"
+        ],
+        "datastructure": [],
+        "approach": "dp[i] can come from single-digit or two-digit decode if valid. Summation yields total ways."
+    },
+    {
+        "id": 117,
+        "description": "Populating Next Right Pointers in Each Node II",
+        "concepts": [
+            "cc->data_structures->tree->level_order_bfs_linking"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Traverse level by level, link nodes horizontally. Keep track of next-level head and tail."
+    },
+    {
+        "id": 161,
+        "description": "One Edit Distance",
+        "concepts": [
+            "cc->computer_science_basics->check_single_insert_delete_replace"
+        ],
+        "datastructure": [],
+        "approach": "Check if exactly one insert/delete/replace transforms s into t."
+    },
+    {
+        "id": 1586,
+        "description": "Binary Search Tree Iterator II",
+        "concepts": [
+            "cc->data_structures->tree->bst_iteration_with_backtracking"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Like BST Iterator but store visited nodes for next/prev iteration in sorted order."
+    },
+    {
+        "id": 1123,
+        "description": "Lowest Common Ancestor of Deepest Leaves",
+        "concepts": [
+            "cc->algorithm_design->dfs->dfs_depth",
+            "cc->data_structures->tree->lca_logic"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Find max depth, then LCA of all deepest nodes. Recurse subtrees to see if children contain deepest leaves."
+    },
+    {
+        "id": 325,
+        "description": "Maximum Size Subarray Sum Equals k",
+        "concepts": [
+            "cc->algorithm_design->prefix_sum->prefix_sum_map"
+        ],
+        "datastructure": [],
+        "approach": "Track running sum. If sum-k in map, check index difference for max length."
+    },
+    {
+        "id": 377,
+        "description": "Combination Sum IV",
+        "concepts": [
+            "cc->algorithm_design->dp->dp_counting_combos"
+        ],
+        "datastructure": [],
+        "approach": "dp[target]+=dp[target-num] if target>=num. Order matters if we iterate over nums first."
+    },
+    {
+        "id": 1810,
+        "description": "Minimum Path Cost in a Hidden Grid",
+        "concepts": [
+            "cc->algorithm_design->bfs->similar_bfs_with_hidden_adjacency"
+        ],
+        "datastructure": [
+            "array"
+        ],
+        "approach": "We query cost of edges on the fly, track minimal path in BFS. Keep visited states or cost."
+    },
+    {
+        "id": 237,
+        "description": "Delete Node in a Linked List",
+        "concepts": [
+            "cc->data_structures->pointer->in_place_pointer_swap"
+        ],
+        "datastructure": [
+            "linkedlist"
+        ],
+        "approach": "Copy data from next node into current, then skip the next node. Removes current effectively."
+    },
+    {
+        "id": 143,
+        "description": "Reorder List",
+        "concepts": [
+            "cc->data_structures->linkedlist->linked_list_re_linking"
+        ],
+        "datastructure": [
+            "linkedlist"
+        ],
+        "approach": "Find midpoint, reverse second half, then interleave it with the first half."
+    },
+    {
+        "id": 82,
+        "description": "Remove Duplicates from Sorted List II",
+        "concepts": [
+            "cc->data_structures->linkedlist->linked_list_skip_duplicates"
+        ],
+        "datastructure": [
+            "linkedlist"
+        ],
+        "approach": "Use dummy head, skip over nodes that appear more than once. Link only distinct nodes."
+    },
+    {
+        "id": 179,
+        "description": "Largest Number",
+        "concepts": [
+            "cc->algorithm_design->sorting->custom_sorting_by_string_comparison"
+        ],
+        "datastructure": [],
+        "approach": "Sort numbers by comparing xy vs yx. Join them afterward."
+    },
+    {
+        "id": 45,
+        "description": "Jump Game II",
+        "concepts": [
+            "cc->algorithm_design->greedy->greedy_bfs_layering"
+        ],
+        "datastructure": [],
+        "approach": "Track current reach and next reach. When i > current reach, increment jumps."
+    },
+    {
+        "id": 450,
+        "description": "Delete Node in a BST",
+        "concepts": [
+            "cc->data_structures->tree->bst_node_manipulation"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Find node. If two children, swap with successor or predecessor. Then remove leaf or single-child node."
+    },
+    {
+        "id": 134,
+        "description": "Gas Station",
+        "concepts": [
+            "cc->algorithm_design->greedy->greedy_solution"
+        ],
+        "datastructure": [],
+        "approach": "If total gas < total cost, no solution. Otherwise track deficits and pick start after the last deficit."
+    },
+    {
+        "id": 1609,
+        "description": "Even Odd Tree",
+        "concepts": [
+            "cc->data_structures->tree->tree_bfs",
+            "cc->computer_science_basics->constraints"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "For each level, nodes must be strictly increasing/decreasing with correct even/odd. Validate BFS layers."
+    },
+    {
+        "id": 875,
+        "description": "Koko Eating Bananas",
+        "concepts": [
+            "cc->algorithm_design->binary_search->binary_search_on_eating_speed"
+        ],
+        "datastructure": [],
+        "approach": "Check if mid speed can eat all bananas in H hours. Adjust search accordingly."
+    },
+    {
+        "id": 230,
+        "description": "Kth Smallest Element in a BST",
+        "concepts": [
+            "cc->data_structures->tree->inorder_traversal"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Traverse the BST in sorted order. The kth visited node is the kth smallest."
+    },
+    {
+        "id": 1371,
+        "description": "Find the Longest Substring Containing Vowels in Even Counts",
+        "concepts": [
+            "cc->algorithm_design->bitmask->bitmask_prefix_approach"
+        ],
+        "datastructure": [],
+        "approach": "Track parity for vowels in a bitmask. If mask repeats, substring in between has even counts."
+    },
+    {
+        "id": 2419,
+        "description": "Longest Subarray With Maximum Bitwise AND",
+        "concepts": [
+            "cc->algorithm_design->scanning->scan_for_segments_matching_global_max"
+        ],
+        "datastructure": [],
+        "approach": "First find the array's global max, then track the longest consecutive run of that value."
+    },
+    {
+        "id": 539,
+        "description": "Minimum Time Difference",
+        "concepts": [
+            "cc->algorithm_design->time_conversion->convert_times_to_minutes",
+            "cc->data_structures->sorting->sort"
+        ],
+        "datastructure": [],
+        "approach": "Convert HH:MM to minutes, sort them, check adjacent differences and wrap-around. Return min difference."
+    },
+    {
+        "id": 567,
+        "description": "Permutation in String",
+        "concepts": [
+            "cc->data_structures->two_pointers->sliding_window",
+            "cc->algorithm_design->frequency"
+        ],
+        "datastructure": [
+            "map"
+        ],
+        "approach": "Keep a frequency count of s1. Slide a window of size |s1| over s2. If freq matches, return true."
+    },
+    {
+        "id": 416,
+        "description": "Partition Equal Subset Sum",
+        "concepts": [
+            "cc->algorithm_design->dp->dp_subset_sum"
+        ],
+        "datastructure": [],
+        "approach": "If total sum is odd, no solution. Otherwise check if sum/2 subset is possible via DP."
+    },
+    {
+        "id": 122,
+        "description": "Best Time to Buy and Sell Stock II",
+        "concepts": [
+            "cc->algorithm_design->greedy->greedy_for_multiple_transactions"
+        ],
+        "datastructure": [],
+        "approach": "Sum all positive differences between consecutive days to get the max profit."
+    },
+    {
+        "id": 386,
+        "description": "Lexicographical Numbers",
+        "concepts": [
+            "cc->algorithm_design->dfs->dfs",
+            "cc->computer_science_basics->iterative_approach"
+        ],
+        "datastructure": [],
+        "approach": "Generate from 1..n in lex order by branching *10. Or transform numbers to strings and sort them."
+    },
+    {
+        "id": 340,
+        "description": "Longest Substring with At Most K Distinct Characters",
+        "concepts": [
+            "cc->data_structures->two_pointers->sliding_window",
+            "cc->algorithm_design->character_count->char_count"
+        ],
+        "datastructure": [
+            "map"
+        ],
+        "approach": "Expand window while distinct <= k, if distinct>k shrink. Track max length."
+    },
+    {
+        "id": 3043,
+        "description": "Find the Length of the Longest Common Prefix",
+        "concepts": [
+            "cc->algorithm_design->strings->simple_prefix_check_among_strings"
+        ],
+        "datastructure": [],
+        "approach": "Compare characters across all strings until mismatch. Return length of matched prefix."
+    },
+    {
+        "id": 81,
+        "description": "Search in Rotated Sorted Array II",
+        "concepts": [
+            "cc->algorithm_design->binary_search->binary_search_with_duplicates"
+        ],
+        "datastructure": [],
+        "approach": "Similar to #33 but if nums[mid]==nums[left], move left++. Otherwise do pivot logic."
+    },
+    {
+        "id": 1367,
+        "description": "Linked List in Binary Tree",
+        "concepts": [
+            "cc->algorithm_design->dfs->dfs_checking_subpath"
+        ],
+        "datastructure": [
+            "tree",
+            "linkedlist"
+        ],
+        "approach": "Check if the linked list is a downward path in the tree. Recurse each node to match subpath."
+    },
+    {
+        "id": 767,
+        "description": "Reorganize String",
+        "concepts": [
+            "cc->algorithm_design->greedy->greedy_with_a_max_heap",
+            "cc->data_structures->sorting->sorting_by_freq"
+        ],
+        "datastructure": [
+            "heap"
+        ],
+        "approach": "If any char freq > half the string length, impossible. Else alternate the most frequent chars."
+    },
+    {
+        "id": 371,
+        "description": "Sum of Two Integers",
+        "concepts": [
+            "cc->computer_science_basics->bitwise_ops"
+        ],
+        "datastructure": [],
+        "approach": "Use XOR for sum, AND<<1 for carry. Repeat until carry=0."
+    },
+    {
+        "id": 1590,
+        "description": "Make Sum Divisible by P",
+        "concepts": [
+            "cc->algorithm_design->prefix_sum->prefix_sum_remainder_approach"
+        ],
+        "datastructure": [],
+        "approach": "Let total_sum % p = remain. Remove subarray whose sum % p=remain. Track prefix remainders in a map."
+    },
+    {
+        "id": 96,
+        "description": "Unique Binary Search Trees",
+        "concepts": [
+            "cc->mathematics->catalan_numbers",
+            "cc->algorithm_design->dp->dp"
+        ],
+        "datastructure": [],
+        "approach": "Number of BST(n) is the nth Catalan. G(n)=\u03a3 G(i-1)*G(n-i)."
+    },
+    {
+        "id": 12,
+        "description": "Integer to Roman",
+        "concepts": [
+            "cc->algorithm_design->greedy->greedy_from_largest_roman_values"
+        ],
+        "datastructure": [],
+        "approach": "Keep subtracting the largest possible Roman symbol. Append them until zero."
+    },
+    {
+        "id": 1644,
+        "description": "Lowest Common Ancestor of a Binary Tree II",
+        "concepts": [
+            "cc->data_structures->tree->similar_to_lca_but_confirm_nodes_exist"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "If one node not in tree, result is null. Otherwise do normal LCA logic."
+    },
+    {
+        "id": 1110,
+        "description": "Delete Nodes And Return Forest",
+        "concepts": [
+            "cc->algorithm_design->dfs->tree_dfs_cut_approach"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "For each node in to_delete, cut it out. Return the remaining subtrees as a forest."
+    },
+    {
+        "id": 1497,
+        "description": "Check If Array Pairs Are Divisible by k",
+        "concepts": [
+            "cc->data_structures->hashing->hash_mod_frequencies"
+        ],
+        "datastructure": [
+            "map"
+        ],
+        "approach": "Compute each num%k. Must pair with complement (k - r). Check frequency balance."
+    },
+    {
+        "id": 2406,
+        "description": "Divide Intervals Into Minimum Number of Groups",
+        "concepts": [
+            "cc->algorithm_design->intervals->interval_scheduling",
+            "cc->data_structures->heap->min_heap"
+        ],
+        "datastructure": [
+            "heap"
+        ],
+        "approach": "Sort intervals by start. Use a min-heap of end times, or assign to a new group if overlapping."
+    },
+    {
+        "id": 2090,
+        "description": "K Radius Subarray Averages",
+        "concepts": [
+            "cc->data_structures->two_pointers->sliding_window",
+            "cc->algorithm_design->prefix_sum->prefix_sums"
+        ],
+        "datastructure": [],
+        "approach": "Compute sum over [i-k..i+k]. Use prefix sums for O(1) range queries. Validate boundaries."
+    },
+    {
+        "id": 287,
+        "description": "Find the Duplicate Number",
+        "concepts": [
+            "cc->algorithm_design->cycle_detection->floyds_cycle_detection",
+            "cc->algorithm_design->binary_search->binary_search"
+        ],
+        "datastructure": [],
+        "approach": "Use slow/fast pointer to detect cycle or do a binary search counting <= mid."
+    },
+    {
+        "id": 1233,
+        "description": "Remove Sub-Folders from the Filesystem",
+        "concepts": [
+            "cc->data_structures->sorting->sort",
+            "cc->algorithm_design->prefix_check"
+        ],
+        "datastructure": [],
+        "approach": "Sort folder names. Skip a folder if it\u2019s a subpath of the previous (prefix + '/')."
+    },
+    {
+        "id": 1545,
+        "description": "Find Kth Bit in Nth Binary String",
+        "concepts": [
+            "cc->algorithm_design->recursion->recursive_pattern"
+        ],
+        "datastructure": [],
+        "approach": "Use S(n)=S(n-1)+0+switch(reverse(S(n-1))). Flip bits if needed for the index."
+    },
+    {
+        "id": 453,
+        "description": "Minimum Moves to Equal Array Elements",
+        "concepts": [
+            "cc->algorithm_design->summation->sum_approach_minus_min"
+        ],
+        "datastructure": [],
+        "approach": "Equivalent to sum(array) - min(array)*n, as each move increments n-1 elements."
+    },
+    {
+        "id": 1593,
+        "description": "Split a String Into the Max Number of Unique Substrings",
+        "concepts": [
+            "cc->algorithm_design->backtracking->backtracking",
+            "cc->data_structures->set->used_set"
+        ],
+        "datastructure": [
+            "set"
+        ],
+        "approach": "Try all substring splits, if not used, pick it. Aim for maximum partitions."
+    },
+    {
+        "id": 1438,
+        "description": "Longest Continuous Subarray With Absolute Diff \u2264 Limit",
+        "concepts": [
+            "cc->data_structures->two_pointers->sliding_window",
+            "cc->algorithm_design->queue->min_max_queue"
+        ],
+        "datastructure": [
+            "queue"
+        ],
+        "approach": "Keep track of window\u2019s min and max in O(1). If diff > limit, shrink from left."
+    },
+    {
+        "id": 2461,
+        "description": "Maximum Sum of Distinct Subarrays With Length K",
+        "concepts": [
+            "cc->data_structures->two_pointers->sliding_window",
+            "cc->algorithm_design->distinctness->distinct_check"
+        ],
+        "datastructure": [
+            "set"
+        ],
+        "approach": "Move a window of size K, ensure elements are distinct. Track sum with a frequency set/map."
+    },
+    {
+        "id": 1891,
+        "description": "Cutting Ribbons",
+        "concepts": [
+            "cc->algorithm_design->binary_search->binary_search_for_max_length"
+        ],
+        "datastructure": [],
+        "approach": "Check if mid is feasible by summing how many pieces. Adjust range accordingly."
+    },
+    {
+        "id": 229,
+        "description": "Majority Element II",
+        "concepts": [
+            "cc->algorithm_design->majority->boyer_moore_for_two_candidates"
+        ],
+        "datastructure": [],
+        "approach": "We can have up to 2 majority elements > n/3. Find potential candidates, then verify them."
+    },
+    {
+        "id": 1197,
+        "description": "Minimum Knight Moves",
+        "concepts": [
+            "cc->algorithm_design->bfs->bfs",
+            "cc->mathematics->math_symmetry"
+        ],
+        "datastructure": [],
+        "approach": "Use BFS from (0,0) to (x,y), exploit symmetry to reduce the search space by quadrants."
+    },
+    {
+        "id": 814,
+        "description": "Binary Tree Pruning",
+        "concepts": [
+            "cc->algorithm_design->dfs->dfs_postorder"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Recursively prune subtrees with no '1'. Return null if an entire subtree has no 1."
+    },
+    {
+        "id": 109,
+        "description": "Convert Sorted List to Binary Search Tree",
+        "concepts": [
+            "cc->algorithm_design->two_pointer->slow_fast_pointer_find_mid"
+        ],
+        "datastructure": [
+            "linkedlist",
+            "tree"
+        ],
+        "approach": "Mid becomes root, left side builds left subtree, right side builds right subtree. Recurse."
+    },
+    {
+        "id": 2501,
+        "description": "Longest Square Streak in an Array",
+        "concepts": [
+            "cc->algorithm_design->dp->dp",
+            "cc->data_structures->set->set_approach_for_squares"
+        ],
+        "datastructure": [
+            "set"
+        ],
+        "approach": "If x is in array, check x^2 in set. Chain these squares. Track max chain length."
+    },
+    {
+        "id": 435,
+        "description": "Non-overlapping Intervals",
+        "concepts": [
+            "cc->algorithm_design->greedy->greedy_by_end_time"
+        ],
+        "datastructure": [],
+        "approach": "Sort by end time. Pick intervals that finish earliest, skip those overlapping."
+    },
+    {
+        "id": 1498,
+        "description": "Number of Subsequences That Satisfy the Given Sum Condition",
+        "concepts": [
+            "cc->data_structures->sorting->sort",
+            "cc->data_structures->two_pointers->two_pointer",
+            "cc->algorithm_design->exponential->pow2_usage"
+        ],
+        "datastructure": [],
+        "approach": "Sort array, for each left pointer find max right pointer. Count subsets using 2^(right-left)."
+    },
+    {
+        "id": 137,
+        "description": "Single Number II",
+        "concepts": [
+            "cc->computer_science_basics->bit_manipulation->bit_manipulation_counting_bits_mod_3"
+        ],
+        "datastructure": [],
+        "approach": "Sum bits in each position mod 3. The remainder is the unique number."
+    },
+    {
+        "id": 616,
+        "description": "Add Bold Tag in String",
+        "concepts": [
+            "cc->algorithm_design->intervals->mark_intervals_and_merge"
+        ],
+        "datastructure": [],
+        "approach": "Find all occurrences of words, merge intervals, then wrap them with <b> in the final string."
+    },
+    {
+        "id": 240,
+        "description": "Search a 2D Matrix II",
+        "concepts": [
+            "cc->data_structures->matrix->start_top_right_corner",
+            "cc->data_structures->matrix->move_left_down"
+        ],
+        "datastructure": [],
+        "approach": "If target < current, go left. If target > current, go down. O(m+n) complexity."
+    },
+    {
+        "id": 2914,
+        "description": "Minimum Number of Changes to Make Binary String Beautiful",
+        "concepts": [
+            "cc->algorithm_design->string->check_flips_to_get_alternating_pattern"
+        ],
+        "datastructure": [],
+        "approach": "Compute cost to match '0101...' vs '1010...' pattern. Take min."
+    },
+    {
+        "id": 3011,
+        "description": "Find if Array Can Be Sorted",
+        "concepts": [
+            "cc->algorithm_design->sorting->likely_checking_partial_swaps_or_some_condition"
+        ],
+        "datastructure": [],
+        "approach": "Possibly verify if the array can be fully sorted with limited operations."
+    },
+    {
+        "id": 1493,
+        "description": "Longest Subarray of 1's After Deleting One Element",
+        "concepts": [
+            "cc->data_structures->two_pointers->sliding_window",
+            "cc->algorithm_design->counting->tracking_zero_count"
+        ],
+        "datastructure": [],
+        "approach": "Expand window, if more than one zero, shrink from left. Track max length of consecutive 1s."
+    },
+    {
+        "id": 6,
+        "description": "Zigzag Conversion",
+        "concepts": [
+            "cc->algorithm_design->simulation->simulation_row_by_row"
+        ],
+        "datastructure": [],
+        "approach": "Append characters in a zigzag manner across rows, then read rows sequentially."
+    },
+    {
+        "id": 3133,
+        "description": "Minimum Array End",
+        "concepts": [
+            "cc->domain_specific->problem_specific_partial_info"
+        ],
+        "datastructure": [],
+        "approach": "Likely a minimal steps or BFS approach, removing from ends or some dynamic strategy."
+    },
+    {
+        "id": 2034,
+        "description": "Stock Price Fluctuation",
+        "concepts": [
+            "cc->software_engineering->design_with_data_structures"
+        ],
+        "datastructure": [
+            "map",
+            "heap"
+        ],
+        "approach": "Keep a map or heaps for max/min. Track current timestamp\u2019s price. Update as new records come in."
+    },
+    {
+        "id": 3097,
+        "description": "Shortest Subarray With OR at Least K II",
+        "concepts": [
+            "cc->data_structures->two_pointers->sliding_window",
+            "cc->computer_science_basics->bitwise_or"
+        ],
+        "datastructure": [],
+        "approach": "Expand window, accumulate OR. If >= K, shrink from left. Keep track of min length."
+    },
+    {
+        "id": 510,
+        "description": "Inorder Successor in BST II",
+        "concepts": [
+            "cc->data_structures->tree->bst_with_parent_pointer"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "If node has right subtree, go left from right child. Otherwise ascend parents until we come from a left branch."
+    },
+    {
+        "id": 1845,
+        "description": "Seat Reservation Manager",
+        "concepts": [
+            "cc->data_structures->heap->min_heap_of_seats"
+        ],
+        "datastructure": [
+            "heap"
+        ],
+        "approach": "Keep a min-heap of available seats. On reserve, pop the smallest. On unreserve, push it back."
+    },
+    {
+        "id": 1574,
+        "description": "Shortest Subarray to be Removed to Make Array Sorted",
+        "concepts": [
+            "cc->data_structures->two_pointers->two_pointer_from_ends"
+        ],
+        "datastructure": [],
+        "approach": "Keep longest sorted prefix/suffix. Remove minimal middle subarray that breaks order."
+    },
+    {
+        "id": 451,
+        "description": "Sort Characters By Frequency",
+        "concepts": [
+            "cc->algorithm_design->frequency->count",
+            "cc->data_structures->sorting->sort_desc_frequency"
+        ],
+        "datastructure": [],
+        "approach": "Build frequency map, sort by freq descending, construct final string."
+    },
+    {
+        "id": 1382,
+        "description": "Balance a Binary Search Tree",
+        "concepts": [
+            "cc->data_structures->tree->inorder_flatten",
+            "cc->algorithm_design->tree->build_balanced"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Inorder traverse to get sorted list, rebuild a balanced BST from that list."
+    },
+    {
+        "id": 723,
+        "description": "Candy Crush",
+        "concepts": [
+            "cc->algorithm_design->simulation->simulation_of_collapses"
+        ],
+        "datastructure": [],
+        "approach": "Repeatedly remove matched candy blocks, let candies above fall, continue until stable."
+    },
+    {
+        "id": 856,
+        "description": "Score of Parentheses",
+        "concepts": [
+            "cc->data_structures->stack->stack",
+            "cc->algorithm_design->tree->counting_depth"
+        ],
+        "datastructure": [
+            "stack"
+        ],
+        "approach": "Push '(' on stack. On ')', if top was '(', it's 1; else 2\u00d7score of inner. Sum up the scores."
+    },
+    {
+        "id": 1161,
+        "description": "Maximum Level Sum of a Binary Tree",
+        "concepts": [
+            "cc->algorithm_design->bfs->bfs_level_sums"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Compute sum for each level in BFS. Track which level has the maximum sum."
+    },
+    {
+        "id": 77,
+        "description": "Combinations",
+        "concepts": [
+            "cc->algorithm_design->backtracking->backtracking_k_combinations"
+        ],
+        "datastructure": [],
+        "approach": "Choose elements from 1..n in k-combos. Collect all combinations."
+    },
+    {
+        "id": 907,
+        "description": "Sum of Subarray Minimums",
+        "concepts": [
+            "cc->data_structures->stack->monotonic_stack",
+            "cc->algorithm_design->subarray_coverage"
+        ],
+        "datastructure": [
+            "stack"
+        ],
+        "approach": "For each element, find how far it extends as the min. Accumulate contributions."
+    },
+    {
+        "id": 692,
+        "description": "Top K Frequent Words",
+        "concepts": [
+            "cc->data_structures->hashmap->frequency",
+            "cc->data_structures->heap->min_heap",
+            "cc->algorithm_design->sorting"
+        ],
+        "datastructure": [
+            "heap"
+        ],
+        "approach": "Count freq, use a min-heap of size k or sort by freq desc + lex ascending."
+    },
+    {
+        "id": 918,
+        "description": "Maximum Sum Circular Subarray",
+        "concepts": [
+            "cc->algorithm_design->dp->kadanes",
+            "cc->algorithm_design->dp->invert_approach"
+        ],
+        "datastructure": [],
+        "approach": "Compute normal max subarray. Also find min subarray, subtract from total if not all negative."
+    },
+    {
+        "id": 678,
+        "description": "Valid Parenthesis String",
+        "concepts": [
+            "cc->algorithm_design->greedy->greedy_track_min_max_open"
+        ],
+        "datastructure": [],
+        "approach": "Track a range [low,high] of possible open parentheses counts. If high < 0 at any point, invalid."
+    },
+    {
+        "id": 417,
+        "description": "Pacific Atlantic Water Flow",
+        "concepts": [
+            "cc->algorithm_design->dfs->dfs_from_edges_inward"
+        ],
+        "datastructure": [
+            "array"
+        ],
+        "approach": "Start DFS from each ocean boundary. Intersection of reachable cells is the result."
+    },
+    {
+        "id": 176,
+        "description": "Second Highest Salary",
+        "concepts": [
+            "cc->database_fundamentals->sql->sql_ranking_or_subquery"
+        ],
+        "datastructure": [],
+        "approach": "SELECT max(Salary) where Salary < (SELECT max(Salary)) or use limit offset."
+    },
+    {
+        "id": 247,
+        "description": "Strobogrammatic Number II",
+        "concepts": [
+            "cc->algorithm_design->recursion->recursion_building_symmetrical_pairs"
+        ],
+        "datastructure": [],
+        "approach": "Build pairs (1,1),(6,9),(8,8),(9,6),(0,0). Middle can be 0,1,8 if odd length."
+    },
+    {
+        "id": 1358,
+        "description": "Number of Substrings Containing All Three Characters",
+        "concepts": [
+            "cc->data_structures->two_pointers->sliding_window",
+            "cc->algorithm_design->sliding_window->sliding_window_and_a_b_c"
+        ],
+        "datastructure": [],
+        "approach": "Expand window until 'a','b','c' all present, then shrink. Count new valid substrings."
+    },
+    {
+        "id": 2109,
+        "description": "Adding Spaces to a String",
+        "concepts": [
+            "cc->data_structures->strings->string_building_with_known_indices"
+        ],
+        "datastructure": [],
+        "approach": "Track positions where spaces go. Rebuild string with inserted spaces."
+    },
+    {
+        "id": 1029,
+        "description": "Two City Scheduling",
+        "concepts": [
+            "cc->algorithm_design->greedy->greedy_sorting_by_cost_difference"
+        ],
+        "datastructure": [],
+        "approach": "Sort persons by cost(A)-cost(B). Send half to city A, half to city B."
+    },
+    {
+        "id": 1245,
+        "description": "Tree Diameter",
+        "concepts": [
+            "cc->algorithm_design->dfs->double_dfs_approach"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Pick any node, DFS to find the farthest node. From that node, DFS again. That distance is the diameter."
+    },
+    {
+        "id": 1679,
+        "description": "Max Number of K-Sum Pairs",
+        "concepts": [
+            "cc->data_structures->sorting->sorting",
+            "cc->data_structures->two_pointers->two_pointer",
+            "cc->algorithm_design->frequency->map_freq"
+        ],
+        "datastructure": [
+            "map"
+        ],
+        "approach": "Sort and use left/right pointers or a freq map to count pairs that sum to K."
+    },
+    {
+        "id": 2337,
+        "description": "Move Pieces to Obtain a String",
+        "concepts": [
+            "cc->algorithm_design->greedy->greedy_alignment_check_of_l_r"
+        ],
+        "datastructure": [],
+        "approach": "Check that L moves left only, R moves right only. Positions must match in order."
+    },
+    {
+        "id": 388,
+        "description": "Longest Absolute File Path",
+        "concepts": [
+            "cc->data_structures->stack->stack",
+            "cc->algorithm_design->tree->counting_depth_from_t"
+        ],
+        "datastructure": [
+            "stack"
+        ],
+        "approach": "Split input by lines, track current path length in a stack. Update max length for files."
+    },
+    {
+        "id": 395,
+        "description": "Longest Substring with At Least K Repeating Characters",
+        "concepts": [
+            "cc->algorithm_design->divide_and_conquer",
+            "cc->data_structures->two_pointers->sliding_window"
+        ],
+        "datastructure": [],
+        "approach": "If a char freq < k, split around it. Otherwise entire substring is valid."
+    },
+    {
+        "id": 2981,
+        "description": "Find Longest Special Substring That Occurs Thrice I",
+        "concepts": [
+            "cc->algorithm_design->strings->string_hashing",
+            "cc->algorithm_design->suffix_structures->suffix_array_approach"
+        ],
+        "datastructure": [],
+        "approach": "Likely do a binary search on substring length, check if it appears 3 times via hash or suffix structure."
+    },
+    {
+        "id": 382,
+        "description": "Linked List Random Node",
+        "concepts": [
+            "cc->algorithm_design->sampling->reservoir_sampling_for_single_item"
+        ],
+        "datastructure": [
+            "linkedlist"
+        ],
+        "approach": "Traverse nodes, pick each with probability 1/i. Return final pick."
+    },
+    {
+        "id": 2593,
+        "description": "Find Score of an Array After Marking All Elements",
+        "concepts": [
+            "cc->algorithm_design->greedy->greedy",
+            "cc->algorithm_design->dp->dp_approach_problem_specific"
+        ],
+        "datastructure": [],
+        "approach": "Pick smallest unmarked, add to score, mark neighbors. Possibly a sorted approach."
+    },
+    {
+        "id": 2125,
+        "description": "Number of Laser Beams in a Bank",
+        "concepts": [
+            "cc->domain_specific->hardware->multiply_device_counts_in_consecutive_non_empty_rows"
+        ],
+        "datastructure": [],
+        "approach": "For each row, count '1's. Multiply device counts of consecutive non-empty rows."
+    },
+    {
+        "id": 1277,
+        "description": "Count Square Submatrices with All Ones",
+        "concepts": [
+            "cc->algorithm_design->dp->dp_counting_squares"
+        ],
+        "datastructure": [],
+        "approach": "dp[i][j] = 1 + min(top, left, diag) if cell=1. Sum all dp values."
+    },
+    {
+        "id": 1094,
+        "description": "Car Pooling",
+        "concepts": [
+            "cc->algorithm_design->prefix_difference",
+            "cc->data_structures->heap->min_heap"
+        ],
+        "datastructure": [
+            "heap"
+        ],
+        "approach": "Track passenger changes at start/end, accumulate. Use a min-heap or prefix sums to check capacity."
+    },
+    {
+        "id": 503,
+        "description": "Next Greater Element II",
+        "concepts": [
+            "cc->data_structures->stack->monotonic_stack",
+            "cc->data_structures->arrays->circular_array"
+        ],
+        "datastructure": [
+            "stack"
+        ],
+        "approach": "Traverse array twice mod n. Maintain stack to find next greater element for each index."
+    },
+    {
+        "id": 729,
+        "description": "My Calendar I",
+        "concepts": [
+            "cc->data_structures->intervals->interval_booking_check"
+        ],
+        "datastructure": [],
+        "approach": "Keep a data structure of intervals. Before adding, check if it overlaps with existing ones."
+    },
+    {
+        "id": 2352,
+        "description": "Equal Row and Column Pairs",
+        "concepts": [
+            "cc->algorithm_design->strings->compare_row_patterns_with_column_patterns"
+        ],
+        "datastructure": [],
+        "approach": "Build row strings in a map. For each column, build a string. Count matches."
+    },
+    {
+        "id": 515,
+        "description": "Find Largest Value in Each Tree Row",
+        "concepts": [
+            "cc->algorithm_design->bfs->bfs_track_max_in_each_level"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Level-order BFS, track the maximum node value in each row."
+    },
+    {
+        "id": 1980,
+        "description": "Find Unique Binary String",
+        "concepts": [
+            "cc->data_structures->matrix->diagonal",
+            "cc->algorithm_design->backtracking->backtracking"
+        ],
+        "datastructure": [],
+        "approach": "Flip the i-th bit of the i-th string to ensure difference. This diagonal-flip trick guarantees uniqueness."
+    },
+    {
+        "id": 1014,
+        "description": "Best Sightseeing Pair",
+        "concepts": [
+            "cc->algorithm_design->dp->dp_track_best_ai_plus_i_while_scanning"
+        ],
+        "datastructure": [],
+        "approach": "We want max of A[i] + A[j] + (i-j). Keep best(A[i]+i) while scanning."
+    },
+    {
+        "id": 155,
+        "description": "Min Stack",
+        "concepts": [
+            "cc->data_structures->stack->stack_with_a_min_tracker"
+        ],
+        "datastructure": [
+            "stack"
+        ],
+        "approach": "Push normal stack. Track min in parallel. On pop, restore min if needed."
+    },
+    {
+        "id": 2466,
+        "description": "Count Ways To Build Good Strings",
+        "concepts": [
+            "cc->algorithm_design->dp->dp_with_steps",
+            "cc->computer_science_basics->zero_one_increments"
+        ],
+        "datastructure": [],
+        "approach": "dp[i] = dp[i-zero] + dp[i-one]. Possibly mod the result."
+    },
+    {
+        "id": 1055,
+        "description": "Shortest Way to Form String",
+        "concepts": [
+            "cc->algorithm_design->greedy->greedy_scanning_of_s_to_build_t"
+        ],
+        "datastructure": [],
+        "approach": "Repeatedly match a subsequence of S to a chunk of T. Count how many subsequences used."
+    },
+    {
+        "id": 310,
+        "description": "Minimum Height Trees",
+        "concepts": [
+            "cc->algorithm_design->bfs->bfs_from_leaves_inward"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Peel off leaf nodes level by level. The last 1\u20132 nodes are the MHT roots."
+    },
+    {
+        "id": 542,
+        "description": "01 Matrix",
+        "concepts": [
+            "cc->algorithm_design->bfs->multi_source_bfs_from_all_zero_cells"
+        ],
+        "datastructure": [
+            "array"
+        ],
+        "approach": "Push all zero cells initially, BFS outward to set distance for 1-cells."
+    },
+    {
+        "id": 2270,
+        "description": "Number of Ways to Split Array",
+        "concepts": [
+            "cc->algorithm_design->prefix_sum->prefix_sums",
+            "cc->data_structures->array->vs_suffix_sums"
+        ],
+        "datastructure": [],
+        "approach": "We want splits where prefix >= suffix. For each i, check sum(0..i) >= sum(i+1..end)."
+    },
+    {
+        "id": 1930,
+        "description": "Unique Length-3 Palindromic Subsequences",
+        "concepts": [
+            "cc->data_structures->strings->track_positions_of_each_character"
+        ],
+        "datastructure": [],
+        "approach": "For each character as an outer pair, gather distinct middle chars."
+    },
+    {
+        "id": 438,
+        "description": "Find All Anagrams in a String",
+        "concepts": [
+            "cc->data_structures->two_pointers->sliding_window",
+            "cc->algorithm_design->frequency->freq_compare"
+        ],
+        "datastructure": [
+            "map"
+        ],
+        "approach": "Keep a frequency of p. Slide a window of size len(p) over s, compare freq."
+    },
+    {
+        "id": 2381,
+        "description": "Shifting Letters II",
+        "concepts": [
+            "cc->algorithm_design->prefix_sum->prefix_approach_on_shift_ranges"
+        ],
+        "datastructure": [],
+        "approach": "Track shift increments in a prefix array, apply cumulative shifts to each char."
+    },
+    {
+        "id": 130,
+        "description": "Surrounded Regions",
+        "concepts": [
+            "cc->algorithm_design->dfs->dfs_bfs_from_board_edges"
+        ],
+        "datastructure": [
+            "array"
+        ],
+        "approach": "Mark 'O' connected to edges as safe. Flip remaining 'O' to 'X'."
+    },
+    {
+        "id": 1769,
+        "description": "Minimum Number of Operations to Move All Balls to Each Box",
+        "concepts": [
+            "cc->algorithm_design->prefix_sum->prefix_sums",
+            "cc->data_structures->arrays->counting_distances"
+        ],
+        "datastructure": [],
+        "approach": "Compute total distance for each box. Possibly use prefix sums in O(n)."
+    },
+    {
+        "id": 547,
+        "description": "Number of Provinces",
+        "concepts": [
+            "cc->data_structures->union_find->union_find",
+            "cc->algorithm_design->dfs->dfs_adjacency"
+        ],
+        "datastructure": [
+            "unionfind"
+        ],
+        "approach": "If matrix[i][j]==1, union i and j. Count distinct sets in the end."
+    },
+    {
+        "id": 393,
+        "description": "UTF-8 Validation",
+        "concepts": [
+            "cc->computer_science_basics->bit_representation->check_leading_bits_of_each_byte"
+        ],
+        "datastructure": [],
+        "approach": "Check how many leading 1 bits for the first byte, then verify subsequent bytes start with '10'."
+    },
+    {
+        "id": 402,
+        "description": "Remove K Digits",
+        "concepts": [
+            "cc->data_structures->stack->monotonic_stack",
+            "cc->algorithm_design->selection->keep_smaller_digits"
+        ],
+        "datastructure": [
+            "stack"
+        ],
+        "approach": "Pop while the top is larger than current digit and k>0. If leftover k, remove from end."
+    },
+    {
+        "id": 916,
+        "description": "Word Subsets",
+        "concepts": [
+            "cc->algorithm_design->frequency->frequency_requirement_across_b"
+        ],
+        "datastructure": [
+            "map"
+        ],
+        "approach": "Compute the max freq needed for each letter in B. Check if each A meets those freq counts."
+    },
+    {
+        "id": 1400,
+        "description": "Construct K Palindrome Strings",
+        "concepts": [
+            "cc->algorithm_design->frequency->check_number_of_odd_freq_chars"
+        ],
+        "datastructure": [
+            "map"
+        ],
+        "approach": "If the # of odd freq characters > k, not possible. Else rearrange into k palindrome strings."
+    },
+    {
+        "id": 2116,
+        "description": "Check if a Parentheses String Can Be Valid",
+        "concepts": [
+            "cc->algorithm_design->greedy->greedy",
+            "cc->computer_science_basics->partial_lock_approach"
+        ],
+        "datastructure": [],
+        "approach": "We have locked parentheses. Track min/max open. If feasible final range includes 0, return true."
+    },
+    {
+        "id": 1062,
+        "description": "Longest Repeating Substring",
+        "concepts": [
+            "cc->algorithm_design->binary_search->binary_search",
+            "cc->data_structures->string->rolling_hash",
+            "cc->algorithm_design->suffix_structures"
+        ],
+        "datastructure": [],
+        "approach": "Try mid length, check if substring repeats. If yes, go bigger; else go smaller."
+    },
+    {
+        "id": 2348,
+        "description": "Number of Zero-Filled Subarrays",
+        "concepts": [
+            "cc->algorithm_design->array->count_consecutive_zero_segments"
+        ],
+        "datastructure": [],
+        "approach": "A run of length L zeroes contributes L*(L+1)/2 subarrays."
+    },
+    {
+        "id": 2657,
+        "description": "Find the Prefix Common Array of Two Arrays",
+        "concepts": [
+            "cc->data_structures->set->set_based",
+            "cc->algorithm_design->counting->index_based_counting"
+        ],
+        "datastructure": [
+            "set"
+        ],
+        "approach": "At prefix i, count how many elements appear in both arrays. Possibly store visited in a set."
+    },
+    {
+        "id": 2013,
+        "description": "Detect Squares",
+        "concepts": [
+            "cc->algorithm_design->geometry->hash_points_by_x_or_y"
+        ],
+        "datastructure": [
+            "map"
+        ],
+        "approach": "For each new point, check potential square corners. Maintain freq in a map."
+    },
+    {
+        "id": 2326,
+        "description": "Spiral Matrix IV",
+        "concepts": [
+            "cc->data_structures->linkedlist->spiral_fill_with_linked_list"
+        ],
+        "datastructure": [
+            "linkedlist"
+        ],
+        "approach": "Traverse the matrix in spiral order, placing linked-list values. Stop if list empty or end of spiral."
+    },
+    {
+        "id": 3428,
+        "description": "Maximum and Minimum Sums of at Most Size K Subsequences",
+        "concepts": [
+            "cc->algorithm_design->two_pointers->likely_sliding_window",
+            "cc->algorithm_design->selection->choose_subsequences"
+        ],
+        "datastructure": [],
+        "approach": "We can pick up to K disjoint subsequences. Possibly sort or sliding window strategy."
+    },
+    {
+        "id": 92,
+        "description": "Reverse Linked List II",
+        "concepts": [
+            "cc->data_structures->linkedlist->linked_list_partial_reverse"
+        ],
+        "datastructure": [
+            "linkedlist"
+        ],
+        "approach": "Reverse a subrange [m..n] in place. Reconnect sublists accordingly."
+    },
+    {
+        "id": 271,
+        "description": "Encode and Decode Strings",
+        "concepts": [
+            "cc->data_structures->strings->delim",
+            "cc->algorithm_design->prefix->length_prefix_approach"
+        ],
+        "datastructure": [],
+        "approach": "Encode by storing length + a delimiter, decode by reading length then substring."
+    },
+    {
+        "id": 39,
+        "description": "Combination Sum",
+        "concepts": [
+            "cc->algorithm_design->backtracking->backtracking",
+            "cc->domain_specific->unlimited_usage"
+        ],
+        "datastructure": [],
+        "approach": "Pick any candidate multiple times or skip it. Collect all combos summing to target."
+    },
+    {
+        "id": 1267,
+        "description": "Count Servers that Communicate",
+        "concepts": [
+            "cc->data_structures->matrix->row_col_counting_in_a_grid"
+        ],
+        "datastructure": [
+            "array"
+        ],
+        "approach": "A server is connected if it shares row or column with another. Count such servers."
+    },
+    {
+        "id": 802,
+        "description": "Find Eventual Safe States",
+        "concepts": [
+            "cc->algorithm_design->graph->graph_cycle_detection"
+        ],
+        "datastructure": [
+            "graph"
+        ],
+        "approach": "A node is safe if it doesn\u2019t lead to a cycle. Use DFS color or topological approach."
+    },
+    {
+        "id": 61,
+        "description": "Rotate List",
+        "concepts": [
+            "cc->data_structures->linkedlist->linked_list_rotate_by_k_steps"
+        ],
+        "datastructure": [
+            "linkedlist"
+        ],
+        "approach": "Link tail to head (circular), then break at the new head after length-k steps."
+    },
+    {
+        "id": 655,
+        "description": "Print Binary Tree",
+        "concepts": [
+            "cc->algorithm_design->dfs->dfs_placing_nodes_in_the_correct_position"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Find tree height for matrix dims. Recursively place each node in mid of range."
+    },
+    {
+        "id": 994,
+        "description": "Rotting Oranges",
+        "concepts": [
+            "cc->algorithm_design->bfs->multi_source_bfs_from_rotten_oranges"
+        ],
+        "datastructure": [
+            "array"
+        ],
+        "approach": "Push all rotten oranges initially, BFS outward. Track time until all fresh become rotten."
+    },
+    {
+        "id": 1541,
+        "description": "Minimum Insertions to Balance a Parentheses String",
+        "concepts": [
+            "cc->algorithm_design->greedy->greedy_to_form_complete_pairs"
+        ],
+        "datastructure": [],
+        "approach": "We need '(' and ')' in pairs. Insert missing parentheses to fix mismatches."
+    },
+    {
+        "id": 2915,
+        "description": "Length of the Longest Subsequence That Sums to Target",
+        "concepts": [
+            "cc->algorithm_design->dp->likely_dp",
+            "cc->algorithm_design->backtracking->backtracking"
+        ],
+        "datastructure": [],
+        "approach": "We want the max-length subsequence summing to target. Possibly subset-sum with an extra dimension for length."
+    },
+    {
+        "id": 2658,
+        "description": "Maximum Number of Fish in a Grid",
+        "concepts": [
+            "cc->algorithm_design->dfs->dfs_bfs_with_sum_of_fish"
+        ],
+        "datastructure": [
+            "array"
+        ],
+        "approach": "Similar to max island area but each cell has fish. DFS/BFS to find largest connected sum."
+    },
+    {
+        "id": 939,
+        "description": "Minimum Area Rectangle",
+        "concepts": [
+            "cc->algorithm_design->geometry->use_points_set_to_find_rectangle_corners"
+        ],
+        "datastructure": [
+            "set"
+        ],
+        "approach": "For each pair of points in the same row, see if the matching pair in another row exists. Track min area."
+    },
+    {
+        "id": 684,
+        "description": "Redundant Connection",
+        "concepts": [
+            "cc->data_structures->union_find->union_find_in_a_tree"
+        ],
+        "datastructure": [
+            "unionfind"
+        ],
+        "approach": "Add edges. If it forms a cycle in union-find, that edge is redundant."
+    },
+    {
+        "id": 373,
+        "description": "Find K Pairs with Smallest Sums",
+        "concepts": [
+            "cc->data_structures->heap->heap",
+            "cc->algorithm_design->bfs->k_limited_bfs"
+        ],
+        "datastructure": [
+            "heap"
+        ],
+        "approach": "Push the pair sums into a min-heap, pop smallest, push next from row/col if available."
+    },
+    {
+        "id": 1448,
+        "description": "Count Good Nodes in Binary Tree",
+        "concepts": [
+            "cc->algorithm_design->dfs->dfs_track_max_so_far"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "If the current node >= max so far, increment result. Update max, recurse children."
+    },
+    {
+        "id": 86,
+        "description": "Partition List",
+        "concepts": [
+            "cc->data_structures->linkedlist->linked_list_partition_by_x"
+        ],
+        "datastructure": [
+            "linkedlist"
+        ],
+        "approach": "Build two lists: < x and >= x. Concatenate them at the end."
+    },
+    {
+        "id": 609,
+        "description": "Find Duplicate File in System",
+        "concepts": [
+            "cc->data_structures->map->map_file_contents_list_of_paths"
+        ],
+        "datastructure": [
+            "map"
+        ],
+        "approach": "Parse each path, store content as key. Multiple paths for the same content => duplicates."
+    },
+    {
+        "id": 540,
+        "description": "Single Element in a Sorted Array",
+        "concepts": [
+            "cc->algorithm_design->binary_search->binary_search_on_pairs"
+        ],
+        "datastructure": [],
+        "approach": "Every pair is matched except the single. Compare mid with neighbors to pick search side."
+    },
+    {
+        "id": 300,
+        "description": "Longest Increasing Subsequence",
+        "concepts": [
+            "cc->algorithm_design->dp->dp",
+            "cc->data_structures->sorting->patience_sorting"
+        ],
+        "datastructure": [],
+        "approach": "DP O(n^2) or maintain a tails array in O(n log n)."
+    },
+    {
+        "id": 1838,
+        "description": "Frequency of the Most Frequent Element",
+        "concepts": [
+            "cc->data_structures->two_pointers->sliding_window",
+            "cc->algorithm_design->prefix_sum->prefix_sums"
+        ],
+        "datastructure": [],
+        "approach": "Keep a window. If we add a new element, can we make all equal by expansions? If not, shrink window."
+    },
+    {
+        "id": 1926,
+        "description": "Nearest Exit from Entrance in Maze",
+        "concepts": [
+            "cc->algorithm_design->bfs->bfs_from_the_entrance"
+        ],
+        "datastructure": [
+            "array"
+        ],
+        "approach": "Traverse in all directions, track steps. If we reach a boundary cell != entrance, return steps."
+    },
+    {
+        "id": 516,
+        "description": "Longest Palindromic Subsequence",
+        "concepts": [
+            "cc->algorithm_design->dp->dp_with_two_indices"
+        ],
+        "datastructure": [],
+        "approach": "If s[i]==s[j], dp[i][j] = 2+dp[i+1][j-1]. Else max of dp[i+1][j], dp[i][j-1]."
+    },
+    {
+        "id": 1726,
+        "description": "Tuple with Same Product",
+        "concepts": [
+            "cc->algorithm_design->hashing->hash_product_list_of_pairs"
+        ],
+        "datastructure": [
+            "map"
+        ],
+        "approach": "For each pair, compute product. If repeated, update combination counts."
+    },
+    {
+        "id": 213,
+        "description": "House Robber II",
+        "concepts": [
+            "cc->algorithm_design->dp->dp_on_circular_array"
+        ],
+        "datastructure": [],
+        "approach": "Compute best for [0..n-2] and [1..n-1]. Return the max, since we can\u2019t rob both ends."
+    },
+    {
+        "id": 981,
+        "description": "Time Based Key-Value Store",
+        "concepts": [
+            "cc->data_structures->map->map_of_key_list_of_timestamp_value"
+        ],
+        "datastructure": [
+            "map"
+        ],
+        "approach": "For get(key, timestamp), do a binary search in the list of (timestamp, value) pairs."
+    },
+    {
+        "id": 1248,
+        "description": "Count Number of Nice Subarrays",
+        "concepts": [
+            "cc->data_structures->two_pointers->sliding_window",
+            "cc->algorithm_design->counting->counting_odd_numbers"
+        ],
+        "datastructure": [],
+        "approach": "Expand window tracking # of odd nums. If exactly k, shift left to find all sub-windows."
+    },
+    {
+        "id": 2342,
+        "description": "Max Sum of a Pair With Equal Sum of Digits",
+        "concepts": [
+            "cc->algorithm_design->mathematics->map_digit_sum_top_two_values"
+        ],
+        "datastructure": [
+            "map"
+        ],
+        "approach": "For each number, compute digit_sum. Track top two in that bucket, update global max of their sum."
+    },
+    {
+        "id": 1008,
+        "description": "Construct Binary Search Tree from Preorder Traversal",
+        "concepts": [
+            "cc->programming_basics->recursion->recursively_with_boundaries",
+            "cc->data_structures->stack->stack"
+        ],
+        "datastructure": [
+            "tree",
+            "stack"
+        ],
+        "approach": "Root=first element. Next smaller => left, bigger => right. Or a stack approach for building BST."
+    },
+    {
+        "id": 364,
+        "description": "Nested List Weight Sum II",
+        "concepts": [
+            "cc->data_structures->tree->reverse_depth_weighting"
+        ],
+        "datastructure": [
+            "list"
+        ],
+        "approach": "First find max depth, then weight each level by (maxDepth - depth + 1). Sum up."
+    },
+    {
+        "id": 3066,
+        "description": "Minimum Operations to Exceed Threshold Value II",
+        "concepts": [
+            "cc->graph_theory->bfs->problem_specific_possibly_bfs",
+            "cc->algorithm_design->dp->dp"
+        ],
+        "datastructure": [],
+        "approach": "We want to exceed a threshold with minimal steps. Possibly BFS or DP with given increments."
+    },
+    {
+        "id": 602,
+        "description": "Friend Requests II: Who Has the Most Friends",
+        "concepts": [
+            "cc->database_fundamentals->sql->sql_grouping_or_join"
+        ],
+        "datastructure": [],
+        "approach": "Count friend relationships, group by user, pick the user with max. Possibly subselect or rank."
+    },
+    {
+        "id": 1352,
+        "description": "Product of the Last K Numbers",
+        "concepts": [
+            "cc->algorithm_design->prefix_product->keep_prefix_product",
+            "cc->data_structures->zero_handling->handle_zeros"
+        ],
+        "datastructure": [
+            "array"
+        ],
+        "approach": "Maintain prefix product. If zero occurs, reset. For getProduct(k), divide prefix if no zero interruption."
+    },
+    {
+        "id": 1254,
+        "description": "Number of Closed Islands",
+        "concepts": [
+            "cc->graph_traversal->dfs->dfs_from_boundary_to_mark_open_water"
+        ],
+        "datastructure": [
+            "array"
+        ],
+        "approach": "Mark all reachable '0' from edges as open. Then count islands fully enclosed by '1'."
+    },
+    {
+        "id": 1079,
+        "description": "Letter Tile Possibilities",
+        "concepts": [
+            "cc->algorithm_design->backtracking->backtracking",
+            "cc->data_structures->hashmap->frequency_map"
+        ],
+        "datastructure": [
+            "map"
+        ],
+        "approach": "Generate all permutations of the multiset of letters. Count distinct results."
+    },
+    {
+        "id": 277,
+        "description": "Find the Celebrity",
+        "concepts": [
+            "cc->problem_solving_strategies->elimination->elimination",
+            "cc->computer_science_basics->verification->verify"
+        ],
+        "datastructure": [],
+        "approach": "If a knows b, a can't be celebrity. Narrow down to one candidate, then verify by checks."
+    },
+    {
+        "id": 1415,
+        "description": "The k-th Lexicographical String of All Happy Strings of Length n",
+        "concepts": [
+            "cc->algorithm_design->backtracking->backtracking",
+            "cc->graph_theory->bfs->bfs_in_lex_order"
+        ],
+        "datastructure": [],
+        "approach": "Build strings from 'abc', disallow consecutive duplicates. Then pick the k-th in sorted order."
+    },
+    {
+        "id": 304,
+        "description": "Range Sum Query 2D - Immutable",
+        "concepts": [
+            "cc->algorithm_design->prefix_sum->2d_prefix_sum"
+        ],
+        "datastructure": [],
+        "approach": "Build sums[x][y] of sub-rectangle (0,0..x,y). Query in O(1) using prefix differences."
+    },
+    {
+        "id": 311,
+        "description": "Sparse Matrix Multiplication",
+        "concepts": [
+            "cc->data_structures->matrix->only_multiply_non_zero_elements"
+        ],
+        "datastructure": [],
+        "approach": "For each non-zero in A\u2019s row, multiply by matching B\u2019s col non-zero partial products."
+    },
+    {
+        "id": 650,
+        "description": "2 Keys Keyboard",
+        "concepts": [
+            "cc->algorithm_design->dp->dp",
+            "cc->graph_theory->bfs->bfs_for_minimal_steps"
+        ],
+        "datastructure": [],
+        "approach": "Use copy/paste operations. Possibly factor-based approach or BFS for minimal steps to get n 'A's."
+    },
+    {
+        "id": 95,
+        "description": "Unique Binary Search Trees II",
+        "concepts": [
+            "cc->algorithm_design->recursion->recursive_generation_of_bsts"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "For each root i in [1..n], recursively build left subtree (1..i-1) and right subtree (i+1..n)."
+    },
+    {
+        "id": 886,
+        "description": "Possible Bipartition",
+        "concepts": [
+            "cc->data_structures->graph->graph_2_coloring"
+        ],
+        "datastructure": [
+            "graph"
+        ],
+        "approach": "Build adjacency from dislike pairs, attempt 2-coloring. If conflict, return false."
+    },
+    {
+        "id": 487,
+        "description": "Max Consecutive Ones II",
+        "concepts": [
+            "cc->data_structures->two_pointers->sliding_window",
+            "cc->algorithm_design->sliding_window->allowing_one_zero_flip"
+        ],
+        "datastructure": [],
+        "approach": "Expand window, if more than one zero, shrink. Track the longest run of 1s."
+    },
+    {
+        "id": 2467,
+        "description": "Most Profitable Path in a Tree",
+        "concepts": [
+            "cc->algorithm_design->dfs->tree_dfs_with_path_constraints"
+        ],
+        "datastructure": [
+            "tree"
+        ],
+        "approach": "Likely track distances or father->child routes. Possibly a DP on edges to maximize profit."
+    },
+    {
+        "id": 221,
+        "description": "Maximal Square",
+        "concepts": [
+            "cc->algorithm_design->dp->dp_tracking_squares"
+        ],
+        "datastructure": [],
+        "approach": "dp[i][j] = 1 + min(top, left, diagonal) if cell=1. Track max side found."
+    },
+    {
+        "id": 740,
+        "description": "Delete and Earn",
+        "concepts": [
+            "cc->algorithm_design->dp->transform_to_house_robber_on_freq_array"
+        ],
+        "datastructure": [],
+        "approach": "Group identical numbers, apply house-robber logic skipping adjacent values."
+    },
+    {
+        "id": 621,
+        "description": "Task Scheduler",
+        "concepts": [
+            "cc->algorithm_design->greedy->greedy_scheduling_based_on_most_frequent_tasks"
+        ],
+        "datastructure": [],
+        "approach": "Let max frequency = f. We place them in slots, fill idle with other tasks if possible."
+    },
+    {
+        "id": 974,
+        "description": "Subarray Sums Divisible by K",
+        "concepts": [
+            "cc->algorithm_design->prefix_sum->prefix_sum_mod_technique"
+        ],
+        "datastructure": [],
+        "approach": "Compute prefixSum%k. If sum%k repeats, the subarray in between is divisible by k."
+    },
+    {
+        "id": 3371,
+        "description": "Identify the Largest Outlier in an Array",
+        "concepts": [
+            "cc->domain_specific->statistical_analysis->problem_specific_possibly_check_deviation_from_mean"
+        ],
+        "datastructure": [],
+        "approach": "Compute mean or median, find data point with largest difference."
+    },
+    {
+        "id": 1524,
+        "description": "Number of Sub-arrays With Odd Sum",
+        "concepts": [
+            "cc->algorithm_design->prefix_sum->prefix_sum_parity_counting"
+        ],
+        "datastructure": [],
+        "approach": "Track even/odd prefix counts. The subarray sum is odd if start/end parity differs."
+    },
+    {
+        "id": 204,
+        "description": "Count Primes",
+        "concepts": [
+            "cc->mathematics->number_theory->sieve_of_eratosthenes"
+        ],
+        "datastructure": [],
+        "approach": "Mark multiples of each prime up to sqrt(n). Count how many remain unmarked."
+    },
+    {
+        "id": 59,
+        "description": "Spiral Matrix II",
+        "concepts": [
+            "cc->algorithm_design->matrix->generate_n_by_n_spiral"
+        ],
+        "datastructure": [],
+        "approach": "Generate an n\u00d7n matrix in spiral order with values 1..n*n."
+    },
+    {
+        "id": 2579,
+        "description": "Count Total Number of Colored Cells",
+        "concepts": [
+            "cc->domain_specific->pattern_analysis->problem_statement_possibly_direct_formula_for_pattern"
+        ],
+        "datastructure": [],
+        "approach": "Analyze the pattern of coloring at each step, derive a direct formula."
+    },
+    {
+        "id": 2523,
+        "description": "Closest Prime Numbers in Range",
+        "concepts": [
+            "cc->mathematics->number_theory->sieve",
+            "cc->algorithm_design->linear_scan_for_minimal_gap"
+        ],
+        "datastructure": [],
+        "approach": "Generate primes up to the upper bound, track smallest difference of consecutive primes."
+    },
+    {
+        "id": 763,
+        "description": "Partition Labels",
+        "concepts": [
+            "cc->algorithm_design->greedy->greedy_using_last_occurrences"
+        ],
+        "datastructure": [],
+        "approach": "Track the last occurrence of each char. Partition so each chunk\u2019s chars don\u2019t appear outside that chunk."
+    }
+]

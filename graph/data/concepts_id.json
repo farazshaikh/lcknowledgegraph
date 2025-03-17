@@ -1,0 +1,2064 @@
+[
+  {
+    "id": 2,
+    "concepts": [
+      "linkedlist_addition",
+      "carry"
+    ]
+  },
+  {
+    "id": 3,
+    "concepts": [
+      "sliding_window",
+      "hashing"
+    ]
+  },
+  {
+    "id": 5,
+    "concepts": [
+      "expand_around_center",
+      "dp"
+    ]
+  },
+  {
+    "id": 7,
+    "concepts": [
+      "math_manipulations",
+      "handle_overflow"
+    ]
+  },
+  {
+    "id": 8,
+    "concepts": [
+      "string_parsing",
+      "edge_cases"
+    ]
+  },
+  {
+    "id": 11,
+    "concepts": [
+      "two_pointer_approach"
+    ]
+  },
+  {
+    "id": 15,
+    "concepts": [
+      "sorting",
+      "two_pointer"
+    ]
+  },
+  {
+    "id": 16,
+    "concepts": [
+      "sorting",
+      "two_pointer"
+    ]
+  },
+  {
+    "id": 17,
+    "concepts": [
+      "backtracking",
+      "phone_keypad_mapping"
+    ]
+  },
+  {
+    "id": 18,
+    "concepts": [
+      "sorting",
+      "two_pointer"
+    ]
+  },
+  {
+    "id": 19,
+    "concepts": [
+      "linked_list",
+      "fast_slow_pointer"
+    ]
+  },
+  {
+    "id": 22,
+    "concepts": [
+      "backtracking_with_constraints"
+    ]
+  },
+  {
+    "id": 24,
+    "concepts": [
+      "linked_list_node_swaps"
+    ]
+  },
+  {
+    "id": 29,
+    "concepts": [
+      "math",
+      "bit_manipulation"
+    ]
+  },
+  {
+    "id": 31,
+    "concepts": [
+      "permutation_rearrangement"
+    ]
+  },
+  {
+    "id": 33,
+    "concepts": [
+      "binary_search_variant"
+    ]
+  },
+  {
+    "id": 34,
+    "concepts": [
+      "binary_search_boundaries"
+    ]
+  },
+  {
+    "id": 36,
+    "concepts": [
+      "hash_sets_for_row_col_box"
+    ]
+  },
+  {
+    "id": 38,
+    "concepts": [
+      "string_generation_pattern"
+    ]
+  },
+  {
+    "id": 40,
+    "concepts": [
+      "backtracking_with_sorted_input"
+    ]
+  },
+  {
+    "id": 43,
+    "concepts": [
+      "string_multiplication_simulation"
+    ]
+  },
+  {
+    "id": 46,
+    "concepts": [
+      "backtracking",
+      "swapping"
+    ]
+  },
+  {
+    "id": 48,
+    "concepts": [
+      "matrix_transpose",
+      "reverse"
+    ]
+  },
+  {
+    "id": 49,
+    "concepts": [
+      "hashing_by_sorted_key_or_char_count"
+    ]
+  },
+  {
+    "id": 50,
+    "concepts": [
+      "fast_exponentiation"
+    ]
+  },
+  {
+    "id": 53,
+    "concepts": [
+      "kadanes_algorithm"
+    ]
+  },
+  {
+    "id": 54,
+    "concepts": [
+      "simulation_of_boundary_loops"
+    ]
+  },
+  {
+    "id": 55,
+    "concepts": [
+      "greedy_max_reach"
+    ]
+  },
+  {
+    "id": 56,
+    "concepts": [
+      "sorting",
+      "merging"
+    ]
+  },
+  {
+    "id": 57,
+    "concepts": [
+      "intervals",
+      "merging"
+    ]
+  },
+  {
+    "id": 62,
+    "concepts": [
+      "combinatorics",
+      "dp"
+    ]
+  },
+  {
+    "id": 63,
+    "concepts": [
+      "dp_with_obstacle_handling"
+    ]
+  },
+  {
+    "id": 71,
+    "concepts": [
+      "stack_for_directories"
+    ]
+  },
+  {
+    "id": 72,
+    "concepts": [
+      "dp_for_string_transformations"
+    ]
+  },
+  {
+    "id": 73,
+    "concepts": [
+      "matrix_marking_approach"
+    ]
+  },
+  {
+    "id": 75,
+    "concepts": [
+      "dutch_national_flag_algorithm"
+    ]
+  },
+  {
+    "id": 78,
+    "concepts": [
+      "backtracking",
+      "bitmask"
+    ]
+  },
+  {
+    "id": 79,
+    "concepts": [
+      "dfs_backtracking_on_board"
+    ]
+  },
+  {
+    "id": 80,
+    "concepts": [
+      "array_manipulation",
+      "pointer_approach"
+    ]
+  },
+  {
+    "id": 74,
+    "concepts": [
+      "binary_search"
+    ]
+  },
+  {
+    "id": 93,
+    "concepts": [
+      "backtracking",
+      "segment_validation"
+    ]
+  },
+  {
+    "id": 98,
+    "concepts": [
+      "recursion_with_range_bounds"
+    ]
+  },
+  {
+    "id": 102,
+    "concepts": [
+      "bfs_by_levels"
+    ]
+  },
+  {
+    "id": 103,
+    "concepts": [
+      "bfs_with_direction_toggle"
+    ]
+  },
+  {
+    "id": 105,
+    "concepts": [
+      "tree_construction_with_index_lookups"
+    ]
+  },
+  {
+    "id": 113,
+    "concepts": [
+      "dfs_path_building"
+    ]
+  },
+  {
+    "id": 114,
+    "concepts": [
+      "dfs",
+      "pointer_re_linking"
+    ]
+  },
+  {
+    "id": 116,
+    "concepts": [
+      "tree_bfs",
+      "perfect_tree_recursion"
+    ]
+  },
+  {
+    "id": 128,
+    "concepts": [
+      "set",
+      "union_find"
+    ]
+  },
+  {
+    "id": 129,
+    "concepts": [
+      "dfs_building_integer"
+    ]
+  },
+  {
+    "id": 131,
+    "concepts": [
+      "backtracking",
+      "palindrome_check"
+    ]
+  },
+  {
+    "id": 133,
+    "concepts": [
+      "graph_bfs_dfs_cloning"
+    ]
+  },
+  {
+    "id": 138,
+    "concepts": [
+      "linked_list_mapping",
+      "weaving"
+    ]
+  },
+  {
+    "id": 139,
+    "concepts": [
+      "dp_substring_checks"
+    ]
+  },
+  {
+    "id": 146,
+    "concepts": [
+      "design_with_doubly_linked_list",
+      "hash"
+    ]
+  },
+  {
+    "id": 150,
+    "concepts": [
+      "stack_for_rpn"
+    ]
+  },
+  {
+    "id": 152,
+    "concepts": [
+      "dp_tracking_min_max_up_to_current"
+    ]
+  },
+  {
+    "id": 153,
+    "concepts": [
+      "binary_search_pivot"
+    ]
+  },
+  {
+    "id": 151,
+    "concepts": [
+      "string_manipulation"
+    ]
+  },
+  {
+    "id": 162,
+    "concepts": [
+      "binary_search",
+      "linear_check"
+    ]
+  },
+  {
+    "id": 167,
+    "concepts": [
+      "two_pointer_in_sorted_array"
+    ]
+  },
+  {
+    "id": 173,
+    "concepts": [
+      "inorder_stack_approach"
+    ]
+  },
+  {
+    "id": 189,
+    "concepts": [
+      "reverse_array",
+      "auxiliary_array"
+    ]
+  },
+  {
+    "id": 198,
+    "concepts": [
+      "dp_on_linear_houses"
+    ]
+  },
+  {
+    "id": 199,
+    "concepts": [
+      "bfs",
+      "dfs_with_right_first"
+    ]
+  },
+  {
+    "id": 200,
+    "concepts": [
+      "dfs_bfs_on_grid"
+    ]
+  },
+  {
+    "id": 207,
+    "concepts": [
+      "graph_cycle_detection",
+      "topological_sort"
+    ]
+  },
+  {
+    "id": 209,
+    "concepts": [
+      "sliding_window",
+      "sliding_window_and_subarray_sum"
+    ]
+  },
+  {
+    "id": 210,
+    "concepts": [
+      "topological_sort"
+    ]
+  },
+  {
+    "id": 215,
+    "concepts": [
+      "heap",
+      "quickselect"
+    ]
+  },
+  {
+    "id": 227,
+    "concepts": [
+      "stack",
+      "direct_parse"
+    ]
+  },
+  {
+    "id": 235,
+    "concepts": [
+      "bst_property_compare_values"
+    ]
+  },
+  {
+    "id": 236,
+    "concepts": [
+      "tree_recursion"
+    ]
+  },
+  {
+    "id": 238,
+    "concepts": [
+      "prefix_suffix_multiplication"
+    ]
+  },
+  {
+    "id": 249,
+    "concepts": [
+      "hash_pattern_differences"
+    ]
+  },
+  {
+    "id": 253,
+    "concepts": [
+      "min_heap",
+      "timeline_approach"
+    ]
+  },
+  {
+    "id": 286,
+    "concepts": [
+      "multi_source_bfs"
+    ]
+  },
+  {
+    "id": 2265,
+    "concepts": [
+      "tree_dfs_for_sum_count"
+    ]
+  },
+  {
+    "id": 314,
+    "concepts": [
+      "bfs_with_column_indices"
+    ]
+  },
+  {
+    "id": 333,
+    "concepts": [
+      "tree_recursion_with_subtree_info"
+    ]
+  },
+  {
+    "id": 334,
+    "concepts": [
+      "greedy_track_two_smallest"
+    ]
+  },
+  {
+    "id": 339,
+    "concepts": [
+      "dfs",
+      "bfs_of_nested_structure"
+    ]
+  },
+  {
+    "id": 341,
+    "concepts": [
+      "stack_based_flatten"
+    ]
+  },
+  {
+    "id": 347,
+    "concepts": [
+      "heap",
+      "bucket_sort"
+    ]
+  },
+  {
+    "id": 348,
+    "concepts": [
+      "rows",
+      "cols",
+      "diag_counters"
+    ]
+  },
+  {
+    "id": 378,
+    "concepts": [
+      "heap",
+      "binary_searching_by_value"
+    ]
+  },
+  {
+    "id": 380,
+    "concepts": [
+      "hashmap",
+      "dynamic_array"
+    ]
+  },
+  {
+    "id": 394,
+    "concepts": [
+      "stack",
+      "recursion"
+    ]
+  },
+  {
+    "id": 398,
+    "concepts": [
+      "reservoir_sampling",
+      "storing_indices"
+    ]
+  },
+  {
+    "id": 419,
+    "concepts": [
+      "grid_scanning"
+    ]
+  },
+  {
+    "id": 424,
+    "concepts": [
+      "sliding_window",
+      "frequency"
+    ]
+  },
+  {
+    "id": 443,
+    "concepts": [
+      "two_pointer_in_place"
+    ]
+  },
+  {
+    "id": 468,
+    "concepts": [
+      "string_split_and_format_checks"
+    ]
+  },
+  {
+    "id": 490,
+    "concepts": [
+      "dfs_bfs_rolling_approach"
+    ]
+  },
+  {
+    "id": 494,
+    "concepts": [
+      "dfs",
+      "subset_sum_dp"
+    ]
+  },
+  {
+    "id": 498,
+    "concepts": [
+      "simulation_of_diagonals"
+    ]
+  },
+  {
+    "id": 523,
+    "concepts": [
+      "prefix_sum_mod_k"
+    ]
+  },
+  {
+    "id": 525,
+    "concepts": [
+      "prefix_sum_0_neg1_1_pos1"
+    ]
+  },
+  {
+    "id": 529,
+    "concepts": [
+      "dfs_bfs_reveal_squares"
+    ]
+  },
+  {
+    "id": 536,
+    "concepts": [
+      "recursion_with_parentheses_parse"
+    ]
+  },
+  {
+    "id": 545,
+    "concepts": [
+      "tree_traversal_boundary"
+    ]
+  },
+  {
+    "id": 556,
+    "concepts": [
+      "permutation_next_greater_logic"
+    ]
+  },
+  {
+    "id": 560,
+    "concepts": [
+      "prefix_sum",
+      "hashing"
+    ]
+  },
+  {
+    "id": 636,
+    "concepts": [
+      "stack_of_function_calls",
+      "timestamps"
+    ]
+  },
+  {
+    "id": 647,
+    "concepts": [
+      "expand_around_center",
+      "dp"
+    ]
+  },
+  {
+    "id": 658,
+    "concepts": [
+      "binary_search",
+      "two_pointer"
+    ]
+  },
+  {
+    "id": 670,
+    "concepts": [
+      "greedy_digit_swap_from_left"
+    ]
+  },
+  {
+    "id": 695,
+    "concepts": [
+      "dfs_bfs_in_grid"
+    ]
+  },
+  {
+    "id": 721,
+    "concepts": [
+      "union_find",
+      "dfs_on_email_lists"
+    ]
+  },
+  {
+    "id": 735,
+    "concepts": [
+      "stack_approach"
+    ]
+  },
+  {
+    "id": 739,
+    "concepts": [
+      "monotonic_stack"
+    ]
+  },
+  {
+    "id": 426,
+    "concepts": [
+      "inorder_traversal_link"
+    ]
+  },
+  {
+    "id": 787,
+    "concepts": [
+      "shortest_path_with_limited_stops",
+      "bellman_ford",
+      "bfs"
+    ]
+  },
+  {
+    "id": 791,
+    "concepts": [
+      "custom_priority_sort"
+    ]
+  },
+  {
+    "id": 708,
+    "concepts": [
+      "linked_list_insertion_logic"
+    ]
+  },
+  {
+    "id": 825,
+    "concepts": [
+      "sorting",
+      "two_pointer_on_age_constraints"
+    ]
+  },
+  {
+    "id": 622,
+    "concepts": [
+      "array_with_front_rear_indices"
+    ]
+  },
+  {
+    "id": 852,
+    "concepts": [
+      "binary_search_for_peak"
+    ]
+  },
+  {
+    "id": 863,
+    "concepts": [
+      "bfs_dfs_from_target_node"
+    ]
+  },
+  {
+    "id": 865,
+    "concepts": [
+      "tree_dfs",
+      "depth_tracking"
+    ]
+  },
+  {
+    "id": 528,
+    "concepts": [
+      "prefix_sums",
+      "random_selection"
+    ]
+  },
+  {
+    "id": 921,
+    "concepts": [
+      "balance_counters"
+    ]
+  },
+  {
+    "id": 930,
+    "concepts": [
+      "prefix_sum_in_0_1_array"
+    ]
+  },
+  {
+    "id": 934,
+    "concepts": [
+      "dfs",
+      "bfs_across_islands"
+    ]
+  },
+  {
+    "id": 958,
+    "concepts": [
+      "bfs_level_order_checking"
+    ]
+  },
+  {
+    "id": 973,
+    "concepts": [
+      "heap",
+      "quickselect"
+    ]
+  },
+  {
+    "id": 983,
+    "concepts": [
+      "dp_with_intervals"
+    ]
+  },
+  {
+    "id": 986,
+    "concepts": [
+      "merge_intervals_method"
+    ]
+  },
+  {
+    "id": 1004,
+    "concepts": [
+      "sliding_window",
+      "count_zero"
+    ]
+  },
+  {
+    "id": 1011,
+    "concepts": [
+      "binary_search_on_capacity"
+    ]
+  },
+  {
+    "id": 1060,
+    "concepts": [
+      "binary_search_using_the_missing_counts"
+    ]
+  },
+  {
+    "id": 1091,
+    "concepts": [
+      "bfs_in_8_directions"
+    ]
+  },
+  {
+    "id": 1209,
+    "concepts": [
+      "stack_based_count"
+    ]
+  },
+  {
+    "id": 1249,
+    "concepts": [
+      "stack",
+      "scanning_mismatches"
+    ]
+  },
+  {
+    "id": 1424,
+    "concepts": [
+      "group_by_i_plus_j_in_a_map"
+    ]
+  },
+  {
+    "id": 1443,
+    "concepts": [
+      "dfs_subtrees_with_apple_check"
+    ]
+  },
+  {
+    "id": 1570,
+    "concepts": [
+      "sparse_representation_iteration"
+    ]
+  },
+  {
+    "id": 1650,
+    "concepts": [
+      "nodes_have_parent_pointers"
+    ]
+  },
+  {
+    "id": 1762,
+    "concepts": [
+      "stack",
+      "scanning_from_the_right"
+    ]
+  },
+  {
+    "id": 1778,
+    "concepts": [
+      "interactive_bfs_dfs_concept"
+    ]
+  },
+  {
+    "id": 1868,
+    "concepts": [
+      "two_pointers_on_runs"
+    ]
+  },
+  {
+    "id": 1070,
+    "concepts": [
+      "sql_grouping_and_joining"
+    ]
+  },
+  {
+    "id": 322,
+    "concepts": [
+      "dp_for_the_fewest_coins"
+    ]
+  },
+  {
+    "id": 328,
+    "concepts": [
+      "linked_list_rearrangement"
+    ]
+  },
+  {
+    "id": 912,
+    "concepts": [
+      "implementation_of_standard_sorts"
+    ]
+  },
+  {
+    "id": 1344,
+    "concepts": [
+      "math_formula"
+    ]
+  },
+  {
+    "id": 91,
+    "concepts": [
+      "dp_on_string_decoding"
+    ]
+  },
+  {
+    "id": 117,
+    "concepts": [
+      "level_order_bfs_linking"
+    ]
+  },
+  {
+    "id": 161,
+    "concepts": [
+      "check_single_insert_delete_replace"
+    ]
+  },
+  {
+    "id": 1586,
+    "concepts": [
+      "bst_iteration_with_backtracking"
+    ]
+  },
+  {
+    "id": 1123,
+    "concepts": [
+      "dfs_depth",
+      "lca_logic"
+    ]
+  },
+  {
+    "id": 325,
+    "concepts": [
+      "prefix_sum_map"
+    ]
+  },
+  {
+    "id": 377,
+    "concepts": [
+      "dp_counting_combos"
+    ]
+  },
+  {
+    "id": 1810,
+    "concepts": [
+      "similar_bfs_with_hidden_adjacency"
+    ]
+  },
+  {
+    "id": 237,
+    "concepts": [
+      "in_place_pointer_swap"
+    ]
+  },
+  {
+    "id": 143,
+    "concepts": [
+      "linked_list_re_linking"
+    ]
+  },
+  {
+    "id": 82,
+    "concepts": [
+      "linked_list_skip_duplicates"
+    ]
+  },
+  {
+    "id": 179,
+    "concepts": [
+      "custom_sorting_by_string_comparison"
+    ]
+  },
+  {
+    "id": 45,
+    "concepts": [
+      "greedy_bfs_layering"
+    ]
+  },
+  {
+    "id": 450,
+    "concepts": [
+      "bst_node_manipulation"
+    ]
+  },
+  {
+    "id": 134,
+    "concepts": [
+      "greedy_solution"
+    ]
+  },
+  {
+    "id": 1609,
+    "concepts": [
+      "tree_bfs",
+      "constraints"
+    ]
+  },
+  {
+    "id": 875,
+    "concepts": [
+      "binary_search_on_eating_speed"
+    ]
+  },
+  {
+    "id": 230,
+    "concepts": [
+      "inorder_traversal"
+    ]
+  },
+  {
+    "id": 1371,
+    "concepts": [
+      "bitmask_prefix_approach"
+    ]
+  },
+  {
+    "id": 2419,
+    "concepts": [
+      "scan_for_segments_matching_global_max"
+    ]
+  },
+  {
+    "id": 539,
+    "concepts": [
+      "convert_times_to_minutes",
+      "sort"
+    ]
+  },
+  {
+    "id": 567,
+    "concepts": [
+      "sliding_window",
+      "frequency"
+    ]
+  },
+  {
+    "id": 416,
+    "concepts": [
+      "dp_subset_sum"
+    ]
+  },
+  {
+    "id": 122,
+    "concepts": [
+      "greedy_for_multiple_transactions"
+    ]
+  },
+  {
+    "id": 386,
+    "concepts": [
+      "dfs",
+      "iterative_approach"
+    ]
+  },
+  {
+    "id": 340,
+    "concepts": [
+      "sliding_window",
+      "char_count"
+    ]
+  },
+  {
+    "id": 3043,
+    "concepts": [
+      "simple_prefix_check_among_strings"
+    ]
+  },
+  {
+    "id": 81,
+    "concepts": [
+      "binary_search_with_duplicates"
+    ]
+  },
+  {
+    "id": 1367,
+    "concepts": [
+      "dfs_checking_subpath"
+    ]
+  },
+  {
+    "id": 767,
+    "concepts": [
+      "greedy_with_a_max_heap",
+      "sorting_by_freq"
+    ]
+  },
+  {
+    "id": 371,
+    "concepts": [
+      "bitwise_ops"
+    ]
+  },
+  {
+    "id": 1590,
+    "concepts": [
+      "prefix_sum_remainder_approach"
+    ]
+  },
+  {
+    "id": 96,
+    "concepts": [
+      "catalan_number",
+      "dp"
+    ]
+  },
+  {
+    "id": 12,
+    "concepts": [
+      "greedy_from_largest_roman_values"
+    ]
+  },
+  {
+    "id": 1644,
+    "concepts": [
+      "similar_to_lca_but_confirm_nodes_exist"
+    ]
+  },
+  {
+    "id": 1110,
+    "concepts": [
+      "tree_dfs_cut_approach"
+    ]
+  },
+  {
+    "id": 1497,
+    "concepts": [
+      "hash_mod_frequencies"
+    ]
+  },
+  {
+    "id": 2406,
+    "concepts": [
+      "interval_scheduling",
+      "min_heap"
+    ]
+  },
+  {
+    "id": 2090,
+    "concepts": [
+      "sliding_window",
+      "prefix_sums"
+    ]
+  },
+  {
+    "id": 287,
+    "concepts": [
+      "floyds_cycle_detection",
+      "binary_search"
+    ]
+  },
+  {
+    "id": 1233,
+    "concepts": [
+      "sort",
+      "prefix_check"
+    ]
+  },
+  {
+    "id": 1545,
+    "concepts": [
+      "recursive_pattern"
+    ]
+  },
+  {
+    "id": 453,
+    "concepts": [
+      "sum_approach_minus_min"
+    ]
+  },
+  {
+    "id": 1593,
+    "concepts": [
+      "backtracking",
+      "used_set"
+    ]
+  },
+  {
+    "id": 1438,
+    "concepts": [
+      "sliding_window",
+      "min_max_queue"
+    ]
+  },
+  {
+    "id": 2461,
+    "concepts": [
+      "sliding_window",
+      "distinct_check"
+    ]
+  },
+  {
+    "id": 1891,
+    "concepts": [
+      "binary_search_for_max_length"
+    ]
+  },
+  {
+    "id": 229,
+    "concepts": [
+      "boyer_moore_for_two_candidates"
+    ]
+  },
+  {
+    "id": 1197,
+    "concepts": [
+      "bfs",
+      "math_symmetry"
+    ]
+  },
+  {
+    "id": 814,
+    "concepts": [
+      "dfs_postorder"
+    ]
+  },
+  {
+    "id": 109,
+    "concepts": [
+      "slow_fast_pointer_find_mid"
+    ]
+  },
+  {
+    "id": 2501,
+    "concepts": [
+      "dp",
+      "set_approach_for_squares"
+    ]
+  },
+  {
+    "id": 435,
+    "concepts": [
+      "greedy_by_end_time"
+    ]
+  },
+  {
+    "id": 1498,
+    "concepts": [
+      "sort",
+      "two_pointer",
+      "pow2_usage"
+    ]
+  },
+  {
+    "id": 137,
+    "concepts": [
+      "bit_manipulation_counting_bits_mod_3"
+    ]
+  },
+  {
+    "id": 616,
+    "concepts": [
+      "mark_intervals_and_merge"
+    ]
+  },
+  {
+    "id": 240,
+    "concepts": [
+      "start_top_right_corner",
+      "move_left_down"
+    ]
+  },
+  {
+    "id": 2914,
+    "concepts": [
+      "check_flips_to_get_alternating_pattern"
+    ]
+  },
+  {
+    "id": 3011,
+    "concepts": [
+      "likely_checking_partial_swaps_or_some_condition"
+    ]
+  },
+  {
+    "id": 1493,
+    "concepts": [
+      "sliding_window",
+      "tracking_zero_count"
+    ]
+  },
+  {
+    "id": 6,
+    "concepts": [
+      "simulation_row_by_row"
+    ]
+  },
+  {
+    "id": 3133,
+    "concepts": [
+      "problem_specific_partial_info"
+    ]
+  },
+  {
+    "id": 2034,
+    "concepts": [
+      "design_with_data_structures"
+    ]
+  },
+  {
+    "id": 3097,
+    "concepts": [
+      "sliding_window",
+      "bitwise_or"
+    ]
+  },
+  {
+    "id": 510,
+    "concepts": [
+      "bst_with_parent_pointer"
+    ]
+  },
+  {
+    "id": 1845,
+    "concepts": [
+      "min_heap_of_seats"
+    ]
+  },
+  {
+    "id": 1574,
+    "concepts": [
+      "two_pointer_from_ends"
+    ]
+  },
+  {
+    "id": 451,
+    "concepts": [
+      "count",
+      "sort_desc_frequency"
+    ]
+  },
+  {
+    "id": 1382,
+    "concepts": [
+      "inorder_flatten",
+      "build_balanced"
+    ]
+  },
+  {
+    "id": 723,
+    "concepts": [
+      "simulation_of_collapses"
+    ]
+  },
+  {
+    "id": 856,
+    "concepts": [
+      "stack",
+      "counting_depth"
+    ]
+  },
+  {
+    "id": 1161,
+    "concepts": [
+      "bfs_level_sums"
+    ]
+  },
+  {
+    "id": 77,
+    "concepts": [
+      "backtracking_k_combinations"
+    ]
+  },
+  {
+    "id": 907,
+    "concepts": [
+      "monotonic_stack",
+      "subarray_coverage"
+    ]
+  },
+  {
+    "id": 692,
+    "concepts": [
+      "frequency",
+      "min_heap",
+      "sorting"
+    ]
+  },
+  {
+    "id": 918,
+    "concepts": [
+      "kadanes",
+      "invert_approach"
+    ]
+  },
+  {
+    "id": 678,
+    "concepts": [
+      "greedy_track_min_max_open"
+    ]
+  },
+  {
+    "id": 417,
+    "concepts": [
+      "dfs_from_edges_inward"
+    ]
+  },
+  {
+    "id": 176,
+    "concepts": [
+      "sql_ranking_or_subquery"
+    ]
+  },
+  {
+    "id": 247,
+    "concepts": [
+      "recursion_building_symmetrical_pairs"
+    ]
+  },
+  {
+    "id": 1358,
+    "concepts": [
+      "sliding_window",
+      "sliding_window_and_a_b_c"
+    ]
+  },
+  {
+    "id": 2109,
+    "concepts": [
+      "string_building_with_known_indices"
+    ]
+  },
+  {
+    "id": 1029,
+    "concepts": [
+      "greedy_sorting_by_cost_difference"
+    ]
+  },
+  {
+    "id": 1245,
+    "concepts": [
+      "double_dfs_approach"
+    ]
+  },
+  {
+    "id": 1679,
+    "concepts": [
+      "sorting",
+      "two_pointer",
+      "map_freq"
+    ]
+  },
+  {
+    "id": 2337,
+    "concepts": [
+      "greedy_alignment_check_of_l_r"
+    ]
+  },
+  {
+    "id": 388,
+    "concepts": [
+      "stack",
+      "counting_depth_from_t"
+    ]
+  },
+  {
+    "id": 395,
+    "concepts": [
+      "divide_and_conquer",
+      "sliding_window"
+    ]
+  },
+  {
+    "id": 2981,
+    "concepts": [
+      "string_hashing",
+      "suffix_array_approach"
+    ]
+  },
+  {
+    "id": 382,
+    "concepts": [
+      "reservoir_sampling_for_single_item"
+    ]
+  },
+  {
+    "id": 2593,
+    "concepts": [
+      "greedy",
+      "dp_approach_problem_specific"
+    ]
+  },
+  {
+    "id": 2125,
+    "concepts": [
+      "multiply_device_counts_in_consecutive_non_empty_rows"
+    ]
+  },
+  {
+    "id": 1277,
+    "concepts": [
+      "dp_counting_squares"
+    ]
+  },
+  {
+    "id": 1094,
+    "concepts": [
+      "prefix_difference",
+      "min_heap"
+    ]
+  },
+  {
+    "id": 503,
+    "concepts": [
+      "monotonic_stack",
+      "circular_array"
+    ]
+  },
+  {
+    "id": 729,
+    "concepts": [
+      "interval_booking_check"
+    ]
+  },
+  {
+    "id": 2352,
+    "concepts": [
+      "compare_row_patterns_with_column_patterns"
+    ]
+  },
+  {
+    "id": 515,
+    "concepts": [
+      "bfs_track_max_in_each_level"
+    ]
+  },
+  {
+    "id": 1980,
+    "concepts": [
+      "diagonal",
+      "backtracking_approach"
+    ]
+  },
+  {
+    "id": 1014,
+    "concepts": [
+      "dp_track_best_ai_plus_i_while_scanning"
+    ]
+  },
+  {
+    "id": 155,
+    "concepts": [
+      "stack_with_a_min_tracker"
+    ]
+  },
+  {
+    "id": 2466,
+    "concepts": [
+      "dp_with_steps",
+      "zero_one_increments"
+    ]
+  },
+  {
+    "id": 1055,
+    "concepts": [
+      "greedy_scanning_of_s_to_build_t"
+    ]
+  },
+  {
+    "id": 310,
+    "concepts": [
+      "bfs_from_leaves_inward"
+    ]
+  },
+  {
+    "id": 542,
+    "concepts": [
+      "multi_source_bfs_from_all_zero_cells"
+    ]
+  },
+  {
+    "id": 2270,
+    "concepts": [
+      "prefix_sums",
+      "vs_suffix_sums"
+    ]
+  },
+  {
+    "id": 1930,
+    "concepts": [
+      "track_positions_of_each_character"
+    ]
+  },
+  {
+    "id": 438,
+    "concepts": [
+      "sliding_window",
+      "freq_compare"
+    ]
+  },
+  {
+    "id": 2381,
+    "concepts": [
+      "prefix_approach_on_shift_ranges"
+    ]
+  },
+  {
+    "id": 130,
+    "concepts": [
+      "dfs_bfs_from_board_edges"
+    ]
+  },
+  {
+    "id": 1769,
+    "concepts": [
+      "prefix_sums",
+      "counting_distances"
+    ]
+  },
+  {
+    "id": 547,
+    "concepts": [
+      "union_find",
+      "dfs_adjacency"
+    ]
+  },
+  {
+    "id": 393,
+    "concepts": [
+      "check_leading_bits_of_each_byte"
+    ]
+  },
+  {
+    "id": 402,
+    "concepts": [
+      "monotonic_stack",
+      "keep_smaller_digits"
+    ]
+  },
+  {
+    "id": 916,
+    "concepts": [
+      "frequency_requirement_across_b"
+    ]
+  },
+  {
+    "id": 1400,
+    "concepts": [
+      "check_number_of_odd_freq_chars"
+    ]
+  },
+  {
+    "id": 2116,
+    "concepts": [
+      "greedy",
+      "partial_lock_approach"
+    ]
+  },
+  {
+    "id": 1062,
+    "concepts": [
+      "binary_search",
+      "rolling_hash",
+      "suffix_structures"
+    ]
+  },
+  {
+    "id": 2348,
+    "concepts": [
+      "count_consecutive_zero_segments"
+    ]
+  },
+  {
+    "id": 2657,
+    "concepts": [
+      "set_based",
+      "index_based_counting"
+    ]
+  },
+  {
+    "id": 2013,
+    "concepts": [
+      "hash_points_by_x_or_y"
+    ]
+  },
+  {
+    "id": 2326,
+    "concepts": [
+      "spiral_fill_with_linked_list"
+    ]
+  },
+  {
+    "id": 3428,
+    "concepts": [
+      "likely_sliding_window",
+      "choose_subsequences"
+    ]
+  },
+  {
+    "id": 92,
+    "concepts": [
+      "linked_list_partial_reverse"
+    ]
+  },
+  {
+    "id": 271,
+    "concepts": [
+      "delim",
+      "length_prefix_approach"
+    ]
+  },
+  {
+    "id": 39,
+    "concepts": [
+      "backtracking",
+      "unlimited_usage"
+    ]
+  },
+  {
+    "id": 1267,
+    "concepts": [
+      "row_col_counting_in_a_grid"
+    ]
+  },
+  {
+    "id": 802,
+    "concepts": [
+      "graph_cycle_detection"
+    ]
+  },
+  {
+    "id": 61,
+    "concepts": [
+      "linked_list_rotate_by_k_steps"
+    ]
+  },
+  {
+    "id": 655,
+    "concepts": [
+      "dfs_placing_nodes_in_the_correct_position"
+    ]
+  },
+  {
+    "id": 994,
+    "concepts": [
+      "multi_source_bfs_from_rotten_oranges"
+    ]
+  },
+  {
+    "id": 1541,
+    "concepts": [
+      "greedy_to_form_complete_pairs"
+    ]
+  },
+  {
+    "id": 2915,
+    "concepts": [
+      "likely_dp",
+      "backtracking_approach"
+    ]
+  },
+  {
+    "id": 2658,
+    "concepts": [
+      "dfs_bfs_with_sum_of_fish"
+    ]
+  },
+  {
+    "id": 939,
+    "concepts": [
+      "use_points_set_to_find_rectangle_corners"
+    ]
+  },
+  {
+    "id": 684,
+    "concepts": [
+      "union_find_in_a_tree"
+    ]
+  },
+  {
+    "id": 373,
+    "concepts": [
+      "heap",
+      "k_limited_bfs"
+    ]
+  },
+  {
+    "id": 1448,
+    "concepts": [
+      "dfs_track_max_so_far"
+    ]
+  },
+  {
+    "id": 86,
+    "concepts": [
+      "linked_list_partition_by_x"
+    ]
+  },
+  {
+    "id": 609,
+    "concepts": [
+      "map_file_contents_list_of_paths"
+    ]
+  },
+  {
+    "id": 540,
+    "concepts": [
+      "binary_search_on_pairs"
+    ]
+  },
+  {
+    "id": 300,
+    "concepts": [
+      "dp",
+      "patience_sorting"
+    ]
+  },
+  {
+    "id": 1838,
+    "concepts": [
+      "sliding_window",
+      "prefix_sums"
+    ]
+  },
+  {
+    "id": 1926,
+    "concepts": [
+      "bfs_from_the_entrance"
+    ]
+  },
+  {
+    "id": 516,
+    "concepts": [
+      "dp_with_two_indices"
+    ]
+  },
+  {
+    "id": 1726,
+    "concepts": [
+      "hash_product_list_of_pairs"
+    ]
+  },
+  {
+    "id": 213,
+    "concepts": [
+      "dp_on_circular_array"
+    ]
+  },
+  {
+    "id": 981,
+    "concepts": [
+      "map_of_key_list_of_timestamp_value"
+    ]
+  },
+  {
+    "id": 1248,
+    "concepts": [
+      "sliding_window",
+      "counting_odd_numbers"
+    ]
+  },
+  {
+    "id": 2342,
+    "concepts": [
+      "map_digit_sum_top_two_values"
+    ]
+  },
+  {
+    "id": 1008,
+    "concepts": [
+      "recursively_with_boundaries",
+      "stack"
+    ]
+  },
+  {
+    "id": 364,
+    "concepts": [
+      "reverse_depth_weighting"
+    ]
+  },
+  {
+    "id": 3066,
+    "concepts": [
+      "problem_specific_possibly_bfs",
+      "dp"
+    ]
+  },
+  {
+    "id": 602,
+    "concepts": [
+      "sql_grouping_or_join"
+    ]
+  },
+  {
+    "id": 1352,
+    "concepts": [
+      "keep_prefix_product",
+      "handle_zeros"
+    ]
+  },
+  {
+    "id": 1254,
+    "concepts": [
+      "dfs_from_boundary_to_mark_open_water"
+    ]
+  },
+  {
+    "id": 1079,
+    "concepts": [
+      "backtracking",
+      "frequency_map"
+    ]
+  },
+  {
+    "id": 277,
+    "concepts": [
+      "elimination",
+      "verify"
+    ]
+  },
+  {
+    "id": 1415,
+    "concepts": [
+      "backtracking",
+      "bfs_in_lex_order"
+    ]
+  },
+  {
+    "id": 304,
+    "concepts": [
+      "2d_prefix_sum"
+    ]
+  },
+  {
+    "id": 311,
+    "concepts": [
+      "only_multiply_non_zero_elements"
+    ]
+  },
+  {
+    "id": 650,
+    "concepts": [
+      "dp",
+      "bfs_for_minimal_steps"
+    ]
+  },
+  {
+    "id": 95,
+    "concepts": [
+      "recursive_generation_of_bsts"
+    ]
+  },
+  {
+    "id": 886,
+    "concepts": [
+      "graph_2_coloring"
+    ]
+  },
+  {
+    "id": 487,
+    "concepts": [
+      "sliding_window",
+      "allowing_one_zero_flip"
+    ]
+  },
+  {
+    "id": 2467,
+    "concepts": [
+      "tree_dfs_with_path_constraints"
+    ]
+  },
+  {
+    "id": 221,
+    "concepts": [
+      "dp_tracking_squares"
+    ]
+  },
+  {
+    "id": 740,
+    "concepts": [
+      "transform_to_house_robber_on_freq_array"
+    ]
+  },
+  {
+    "id": 621,
+    "concepts": [
+      "greedy_scheduling_based_on_most_frequent_tasks"
+    ]
+  },
+  {
+    "id": 974,
+    "concepts": [
+      "prefix_sum_mod_technique"
+    ]
+  },
+  {
+    "id": 3371,
+    "concepts": [
+      "problem_specific_possibly_check_deviation_from_mean"
+    ]
+  },
+  {
+    "id": 1524,
+    "concepts": [
+      "prefix_sum_parity_counting"
+    ]
+  },
+  {
+    "id": 204,
+    "concepts": [
+      "sieve_of_eratosthenes"
+    ]
+  },
+  {
+    "id": 59,
+    "concepts": [
+      "generate_n_by_n_spiral"
+    ]
+  },
+  {
+    "id": 2579,
+    "concepts": [
+      "problem_statement_possibly_direct_formula_for_pattern"
+    ]
+  },
+  {
+    "id": 2523,
+    "concepts": [
+      "sieve",
+      "linear_scan_for_minimal_gap"
+    ]
+  },
+  {
+    "id": 763,
+    "concepts": [
+      "greedy_using_last_occurrences"
+    ]
+  }
+]
