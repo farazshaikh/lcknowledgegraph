@@ -146,7 +146,61 @@
         .faded {
             opacity: 0.25;
         }
+
+        /* Mobile styles */
+        @media screen and (max-width: 768px) {
+            #header {
+                padding: 5px 10px;
+            }
+            .header-content {
+                flex-direction: column;
+            }
+            .control-group {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            #search, #problem-search {
+                width: 100%;
+            }
+            .highlight-options {
+                flex-wrap: wrap;
+            }
+            .controls {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
     </style>
+    <script>
+        // Detect if user is on mobile
+        function isMobile() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                   (window.innerWidth <= 768);
+        }
+
+        // Apply mobile-specific adjustments when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            if (isMobile()) {
+                document.body.classList.add('mobile-view');
+
+                // Additional mobile-specific JavaScript adjustments can be added here
+                // For example, changing default layout for mobile
+                const layoutSelect = document.getElementById('layout-select');
+                if (layoutSelect) {
+                    layoutSelect.value = 'grid'; // Use a more mobile-friendly layout by default
+                }
+            }
+        });
+
+        // Handle orientation changes
+        window.addEventListener('resize', function() {
+            if (isMobile()) {
+                document.body.classList.add('mobile-view');
+            } else {
+                document.body.classList.remove('mobile-view');
+            }
+        });
+    </script>
 </head>
 <body>
     <div id="header">
@@ -211,7 +265,7 @@
                     </label>
                 </div>
             </div>
-            
+
             <div class="header-column">
                 <div class="theme-toggle">
                     <label for="dark-mode-toggle" class="control-label">Dark Mode</label>
@@ -284,7 +338,7 @@
             // Dark mode toggle functionality
             const darkModeToggle = document.getElementById('dark-mode-toggle');
             const body = document.body;
-            
+
             // Add dark mode styles to document head
             const darkModeStyles = document.createElement('style');
             darkModeStyles.textContent = `
@@ -392,16 +446,16 @@
                 }
             `;
             document.head.appendChild(darkModeStyles);
-            
+
             // Check for saved preference
             const isDarkMode = localStorage.getItem('darkMode') === 'true';
-            
+
             // Apply saved preference
             if (isDarkMode) {
                 body.classList.add('dark-mode');
                 darkModeToggle.checked = true;
             }
-            
+
             // Toggle dark mode when checkbox is clicked
             darkModeToggle.addEventListener('change', function() {
                 if (this.checked) {
@@ -411,17 +465,17 @@
                     body.classList.remove('dark-mode');
                     localStorage.setItem('darkMode', 'false');
                 }
-                
+
                 // Update graph styles if it's already loaded
                 if (window.cy) {
                     updateGraphStyles();
                 }
             });
-            
+
             // Function to update graph styles based on dark mode
             function updateGraphStyles() {
                 const isDark = body.classList.contains('dark-mode');
-                
+
                 // Update node and edge styles based on dark mode
                 cy.style()
                     .selector('node')
@@ -461,20 +515,20 @@
             // Function to show problem tooltip
             async function showProblemTooltip(node, event) {
                 const label = node.data('label');
-                
+
                 // Check if this is a LeetCode problem node (starts with LC_)
                 if (label.startsWith('LC_')) {
                     const problemId = label.substring(3); // Extract the number after LC_
-                    
+
                     // Position tooltip near the cursor
                     tooltip.style.left = `${event.renderedPosition.x + 10}px`;
                     tooltip.style.top = `${event.renderedPosition.y + 10}px`;
                     tooltip.style.display = 'block';
                     tooltip.innerHTML = 'Loading problem info...';
-                    
+
                     // Fetch problem info
                     const problemInfo = await fetchProblemInfo(problemId);
-                    
+
                     if (problemInfo) {
                         // Format the tooltip content
                         tooltip.innerHTML = `
@@ -680,7 +734,7 @@
                             layoutOptions.startAngle = 3 / 2 * Math.PI; // Start from top
                             layoutOptions.sweep = 2 * Math.PI; // Full 360 degrees
                         }
-                        
+
                         try {
                             console.log(`Creating layout with options:`, layoutOptions);
                             const layout = cy.layout(layoutOptions);
@@ -690,8 +744,8 @@
                             console.error(`Error applying layout ${layoutName}:`, error);
                             // Fall back to circle layout
                             try {
-                                cy.layout({ 
-                                    name: 'circle', 
+                                cy.layout({
+                                    name: 'circle',
                                     padding: 30,
                                     avoidOverlap: true
                                 }).run();
@@ -778,6 +832,11 @@
                         }
                     }
 
+                    // Helper function to check if a character is a digit
+                    function isDigit(char) {
+                        return /^\d$/.test(char);
+                    }
+
                     // Show problem autocomplete dropdown when input is focused
                     problemSearchInput.addEventListener('focus', function() {
                         updateProblemAutocompleteList(this.value);
@@ -819,7 +878,7 @@
                                 const nextIndex = (activeIndex + 1) % items.length;
                                 items[nextIndex].classList.add('autocomplete-active');
                                 items[nextIndex].scrollIntoView({ block: 'nearest' });
-                                
+
                                 // Update search input and highlight in real-time
                                 problemSearchInput.value = items[nextIndex].textContent;
                                 // Clear the concept search input
@@ -829,7 +888,7 @@
                             } else {
                                 items[0].classList.add('autocomplete-active');
                                 items[0].scrollIntoView({ block: 'nearest' });
-                                
+
                                 // Update search input and highlight in real-time
                                 problemSearchInput.value = items[0].textContent;
                                 // Clear the concept search input
@@ -844,7 +903,7 @@
                                 const prevIndex = (activeIndex - 1 + items.length) % items.length;
                                 items[prevIndex].classList.add('autocomplete-active');
                                 items[prevIndex].scrollIntoView({ block: 'nearest' });
-                                
+
                                 // Update search input and highlight in real-time
                                 problemSearchInput.value = items[prevIndex].textContent;
                                 // Clear the concept search input
@@ -854,7 +913,7 @@
                             } else {
                                 items[items.length - 1].classList.add('autocomplete-active');
                                 items[items.length - 1].scrollIntoView({ block: 'nearest' });
-                                
+
                                 // Update search input and highlight in real-time
                                 problemSearchInput.value = items[items.length - 1].textContent;
                                 // Clear the concept search input
@@ -875,7 +934,7 @@
                         }
                     });
 
-                    
+
                     const searchInput = document.getElementById('search');
                     const autocompleteList = document.getElementById('autocomplete-list');
 
@@ -893,22 +952,22 @@
                     function highlightMatchingNodes(query) {
                         // Reset all styles
                         resetStyles();
-                        
+
                         if (query.length < 2) return;
-                        
+
                         // Find matching nodes
                         const matchingNodes = cy.nodes().filter(node => {
                             return node.data('label').toLowerCase().includes(query.toLowerCase());
                         });
-                        
+
                         if (matchingNodes.length > 0) {
                             // Apply the appropriate highlight based on the selected mode
                             const highlightMode = document.querySelector('input[name="highlight-mode"]:checked').value;
-                            
+
                             if (matchingNodes.length === 1) {
                                 // If only one node matches, apply the selected highlight mode
                                 applyHighlightMode(matchingNodes[0], highlightMode);
-                                
+
                                 // Center on the selected node
                                 cy.animate({
                                     center: { eles: matchingNodes },
@@ -918,31 +977,31 @@
                             } else {
                                 // If multiple nodes match, just highlight them directly
                                 matchingNodes.addClass('highlighted');
-                                
+
                                 // Hide all other nodes
                                 cy.nodes().difference(matchingNodes).addClass('hidden');
                                 cy.edges().addClass('hidden');
                             }
-                            
+
                             // Rearrange the graph to focus only on visible nodes
                             rearrangeVisibleNodes();
                         }
                     }
-                    
+
                     // Function to rearrange the graph to focus only on visible nodes
                     function rearrangeVisibleNodes() {
                         // Get all visible nodes
                         const visibleNodes = cy.nodes().filter(node => !node.hasClass('hidden'));
-                        const visibleEdges = cy.edges().filter(edge => 
-                            !edge.hasClass('hidden') && 
-                            !edge.source().hasClass('hidden') && 
+                        const visibleEdges = cy.edges().filter(edge =>
+                            !edge.hasClass('hidden') &&
+                            !edge.source().hasClass('hidden') &&
                             !edge.target().hasClass('hidden')
                         );
-                        
+
                         if (visibleNodes.length > 0) {
                             // Create a new layout with only visible nodes
                             const layoutName = document.getElementById('layout-select').value;
-                            
+
                             let layoutOptions = {
                                 name: layoutName,
                                 padding: 50,
@@ -951,7 +1010,7 @@
                                 // Only include visible elements in the layout
                                 eles: visibleNodes.union(visibleEdges)
                             };
-                            
+
                             // Add specific options for certain layouts
                             if (layoutName === 'dagre') {
                                 if (typeof cytoscapeDagre !== 'undefined') {
@@ -988,12 +1047,12 @@
                                 layoutOptions.grid = true;
                                 layoutOptions.directed = true;
                                 layoutOptions.avoidOverlap = true;
-                                
+
                                 // Try to find root nodes (nodes with no incoming edges)
-                                const roots = visibleNodes.filter(node => 
+                                const roots = visibleNodes.filter(node =>
                                     node.incomers('edge').filter(e => !e.hasClass('hidden')).size() === 0
                                 );
-                                
+
                                 if (roots.length > 0) {
                                     layoutOptions.roots = roots;
                                 }
@@ -1029,12 +1088,12 @@
                                 layoutOptions.startAngle = 3 / 2 * Math.PI; // Start from top
                                 layoutOptions.sweep = 2 * Math.PI; // Full 360 degrees
                             }
-                            
+
                             try {
                                 console.log(`Rearranging visible nodes with layout: ${layoutName}`);
                                 const layout = cy.layout(layoutOptions);
                                 layout.run();
-                                
+
                                 // Fit the view to show all visible nodes
                                 setTimeout(() => {
                                     cy.fit(visibleNodes, 50);
@@ -1043,14 +1102,14 @@
                                 console.error(`Error rearranging visible nodes:`, error);
                                 // Fall back to circle layout
                                 try {
-                                    cy.layout({ 
-                                        name: 'circle', 
+                                    cy.layout({
+                                        name: 'circle',
                                         padding: 50,
                                         eles: visibleNodes,
                                         avoidOverlap: true,
                                         radius: Math.max(150, visibleNodes.length * 10)
                                     }).run();
-                                    
+
                                     // Fit the view to show all visible nodes
                                     setTimeout(() => {
                                         cy.fit(visibleNodes, 50);
@@ -1061,31 +1120,31 @@
                             }
                         }
                     }
-                    
+
                     // Function to focus on a specific node by ID
                     function focusOnNode(nodeId) {
                         const node = cy.getElementById(nodeId);
                         if (node.length > 0) {
                             // Reset all styles
                             resetStyles();
-                            
+
                             // Apply the appropriate highlight based on the selected mode
                             const highlightMode = document.querySelector('input[name="highlight-mode"]:checked').value;
                             applyHighlightMode(node, highlightMode);
-                            
+
                             // Center on the node
                             cy.animate({
                                 center: { eles: node },
                                 zoom: 1.5,
                                 duration: 500
                             });
-                            
+
                             // Update search input with the node's label
                             searchInput.value = node.data('label');
-                            
+
                             // Rearrange the graph to focus only on visible nodes
                             rearrangeVisibleNodes();
-                            
+
                             console.log(`Focused on node: ${nodeId} (${node.data('label')})`);
                             return true;
                         } else {
@@ -1093,12 +1152,12 @@
                             return false;
                         }
                     }
-                    
+
                     // Function to reset all styles
                     function resetStyles() {
                         cy.elements().removeClass('highlighted reachable prerequisite faded hidden');
                     }
-                    
+
                     // Function to apply the selected highlight mode
                     function applyHighlightMode(node, mode) {
                         if (mode === 'direct') {
@@ -1107,31 +1166,31 @@
                             const connectedEdges = node.connectedEdges();
                             connectedEdges.addClass('highlighted');
                             const connectedNodes = connectedEdges.connectedNodes();
-                            
+
                             // Hide all other nodes and edges
                             cy.nodes().difference(node).difference(connectedNodes).addClass('hidden');
                             cy.edges().difference(connectedEdges).addClass('hidden');
-                        } 
+                        }
                         else if (mode === 'reachable') {
                             // Highlight the node
                             node.addClass('highlighted');
-                            
+
                             // Find all nodes reachable from this node (BFS)
                             const reachableNodes = [];
                             const reachableEdges = [];
-                            
+
                             // Start BFS from the selected node
                             const queue = [node];
                             const visited = new Set([node.id()]);
-                            
+
                             while (queue.length > 0) {
                                 const currentNode = queue.shift();
-                                
+
                                 // Get outgoing edges
                                 const outgoingEdges = currentNode.outgoers('edge');
                                 outgoingEdges.forEach(edge => {
                                     reachableEdges.push(edge);
-                                    
+
                                     const targetNode = edge.target();
                                     if (!visited.has(targetNode.id())) {
                                         visited.add(targetNode.id());
@@ -1140,11 +1199,11 @@
                                     }
                                 });
                             }
-                            
+
                             // Highlight reachable nodes and edges
                             cy.collection(reachableNodes).addClass('reachable');
                             cy.collection(reachableEdges).addClass('reachable');
-                            
+
                             // Hide all other nodes and edges
                             cy.nodes().difference(node).difference(cy.collection(reachableNodes)).addClass('hidden');
                             cy.edges().difference(cy.collection(reachableEdges)).addClass('hidden');
@@ -1152,23 +1211,23 @@
                         else if (mode === 'prerequisites') {
                             // Highlight the node
                             node.addClass('highlighted');
-                            
+
                             // Find all prerequisite nodes (reverse BFS)
                             const prerequisiteNodes = [];
                             const prerequisiteEdges = [];
-                            
+
                             // Start reverse BFS from the selected node
                             const queue = [node];
                             const visited = new Set([node.id()]);
-                            
+
                             while (queue.length > 0) {
                                 const currentNode = queue.shift();
-                                
+
                                 // Get incoming edges
                                 const incomingEdges = currentNode.incomers('edge');
                                 incomingEdges.forEach(edge => {
                                     prerequisiteEdges.push(edge);
-                                    
+
                                     const sourceNode = edge.source();
                                     if (!visited.has(sourceNode.id())) {
                                         visited.add(sourceNode.id());
@@ -1177,17 +1236,17 @@
                                     }
                                 });
                             }
-                            
+
                             // Highlight prerequisite nodes and edges
                             cy.collection(prerequisiteNodes).addClass('prerequisite');
                             cy.collection(prerequisiteEdges).addClass('prerequisite');
-                            
+
                             // Hide all other nodes and edges
                             cy.nodes().difference(node).difference(cy.collection(prerequisiteNodes)).addClass('hidden');
                             cy.edges().difference(cy.collection(prerequisiteEdges)).addClass('hidden');
                         }
                     }
-                    
+
                     // Function to update autocomplete list
                     function updateAutocompleteList(query) {
                         // Clear previous autocomplete list
@@ -1292,14 +1351,14 @@
                                 const nextIndex = (activeIndex + 1) % items.length;
                                 items[nextIndex].classList.add('autocomplete-active');
                                 items[nextIndex].scrollIntoView({ block: 'nearest' });
-                                
+
                                 // Update search input and highlight in real-time
                                 searchInput.value = items[nextIndex].textContent;
                                 highlightMatchingNodes(items[nextIndex].textContent);
                             } else {
                                 items[0].classList.add('autocomplete-active');
                                 items[0].scrollIntoView({ block: 'nearest' });
-                                
+
                                 // Update search input and highlight in real-time
                                 searchInput.value = items[0].textContent;
                                 highlightMatchingNodes(items[0].textContent);
@@ -1311,14 +1370,14 @@
                                 const prevIndex = (activeIndex - 1 + items.length) % items.length;
                                 items[prevIndex].classList.add('autocomplete-active');
                                 items[prevIndex].scrollIntoView({ block: 'nearest' });
-                                
+
                                 // Update search input and highlight in real-time
                                 searchInput.value = items[prevIndex].textContent;
                                 highlightMatchingNodes(items[prevIndex].textContent);
                             } else {
                                 items[items.length - 1].classList.add('autocomplete-active');
                                 items[items.length - 1].scrollIntoView({ block: 'nearest' });
-                                
+
                                 // Update search input and highlight in real-time
                                 searchInput.value = items[items.length - 1].textContent;
                                 highlightMatchingNodes(items[items.length - 1].textContent);
@@ -1362,7 +1421,7 @@
                     cy.on('dblclick', 'node', function(evt) {
                         const node = evt.target;
                         resetStyles();
-                        
+
                         // Apply the appropriate highlight based on the selected mode
                         const highlightMode = document.querySelector('input[name="highlight-mode"]:checked').value;
                         applyHighlightMode(node, highlightMode);
@@ -1376,11 +1435,11 @@
 
                         // Update search input with the selected node's label
                         searchInput.value = node.data('label');
-                        
+
                         // Rearrange the graph to focus only on visible nodes
                         rearrangeVisibleNodes();
                     });
-                    
+
                     // Add event listener for highlight mode change
                     document.querySelectorAll('input[name="highlight-mode"]').forEach(radio => {
                         radio.addEventListener('change', function() {
