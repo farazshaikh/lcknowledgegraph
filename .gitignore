@@ -3,7 +3,6 @@ node_modules/
 
 # Generated files
 output/
-web/graph.json
 
 # IDE files
 .vscode/
