@@ -55,5 +55,6 @@ jobs:
         id: deployment
         uses: JamesIves/github-pages-deploy-action@v4
         with:
+          folder: /
           branch: gh-pages
           token: ${{ secrets.GITHUB_TOKEN }}
